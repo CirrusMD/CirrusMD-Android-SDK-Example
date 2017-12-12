@@ -15,8 +15,8 @@ CirrusMDSDK it an embeddable SDK. It enables customers of CirrusMD to provide th
 - minSdk: `21`
 
 ## Installing CirrusMDSDK in your own project
-Follow the directions on Jitpack:
-![Release](https://jitpack.io/v/CirrusMD/cirrusmd-android-sdk.svg)
+Grab the latest release from Jitpack:
+[![Release](https://jitpack.io/v/CirrusMD/cirrusmd-android-sdk.svg)](https://jitpack.io/#CirrusMD/cirrusmd-android-sdk)
 
 ## Basic Usage
 
