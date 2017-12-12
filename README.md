@@ -15,7 +15,9 @@ CirrusMDSDK it an embeddable SDK. It enables customers of CirrusMD to provide th
 - minSdk: `21`
 
 ## Installing CirrusMDSDK in your own project
-Add the `.aar` file to your project
+Follow the directions on Jitpack:
+[![Release](https://jitpack.io/v/CirrusMD/cirrusmd-android-sdk.svg)]
+(https://jitpack.io/#CirrusMD/cirrusmd-android-sdk)
 
 ## Basic Usage
 
@@ -45,7 +47,7 @@ You may wish to log the user out of the SDK when they sign out of your applicati
 
 ### Custom Status Views
 
-Ideally, your patients always see a working messages view when you present a `CirrusMDMessagesFragment`. However, there are certain times when we're unable to show messages.
+Ideally, your patients always see a working messages view when you present a ` CirrusMDMessagesFragment`. However, there are certain times when we're unable to show messages.
 
 The first is when you have explicity called `logout()`. We recommend calling logout when your patient logs out of your appication. In that case they will not see the _logged out view_ because they will be logged out of your application as well. You should log them back into the SDK when they next log back into your application.
 
