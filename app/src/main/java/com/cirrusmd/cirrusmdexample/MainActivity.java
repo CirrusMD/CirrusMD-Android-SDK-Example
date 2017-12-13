@@ -1,13 +1,12 @@
 package com.cirrusmd.cirrusmdexample;
 
 import android.os.Bundle;
-import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
-import android.view.MenuItem;
 import android.view.View;
+import android.widget.FrameLayout;
 import android.widget.TextView;
 
 import com.cirrusmd.androidsdk.CirrusEvents;
@@ -23,38 +22,48 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class MainActivity extends AppCompatActivity implements CirrusListener {
 
-    private TextView mTextMessage;
+    private TextView homeText;
+
+    private FrameLayout frame;
+
+    private Fragment cirrusFragment;
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
-            = new BottomNavigationView.OnNavigationItemSelectedListener() {
-
-        @Override
-        public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-            switch (item.getItemId()) {
-                case R.id.navigation_home:
-                    mTextMessage.setText(R.string.title_home);
-                    return true;
-                case R.id.navigation_dashboard:
-                    mTextMessage.setText(R.string.title_dashboard);
-                    return true;
-                case R.id.navigation_notifications:
-                    mTextMessage.setText(R.string.title_notifications);
-                    return true;
-            }
-            return false;
-        }
-    };
+            = item -> {
+                switch (item.getItemId()) {
+                    case R.id.navigation_home:
+                        homeTapped();
+                        return true;
+                    case R.id.navigation_cirrus:
+                        cirrusMDTapped();
+                        return true;
+                }
+                return false;
+            };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        mTextMessage = findViewById(R.id.message);
+        homeText = new TextView(this);
+        homeText.setText(R.string.home_text);
+
+        frame = findViewById(R.id.frameLayout);
         BottomNavigationView navigation = findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
         CirrusMD.INSTANCE.setListener(this);
 
+        homeTapped();
+    }
+
+    private void homeTapped() {
+        removeMessages();
+        frame.removeAllViews();
+        frame.addView(homeText);
+    }
+
+    private void cirrusMDTapped() {
         Retrofit retrofit = new Retrofit.Builder()
                 .addConverterFactory(GsonConverterFactory.create(new GsonBuilder().create()))
                 .baseUrl("https://staging.cirrusmd.com/sdk/v1/")
@@ -84,11 +93,19 @@ public class MainActivity extends AppCompatActivity implements CirrusListener {
     }
 
     private void displayMessages() {
-        Fragment fragment = CirrusMD.INSTANCE.getFragment();
+        if (cirrusFragment == null) {
+            cirrusFragment = CirrusMD.INSTANCE.getFragment();
+        }
         FragmentManager fm = getSupportFragmentManager();
         fm.beginTransaction()
-                .add(R.id.frameLayout, fragment, "messages")
+                .add(R.id.frameLayout, cirrusFragment, "messages")
                 .commit();
+    }
+
+    private void removeMessages() {
+        if (cirrusFragment != null) {
+            getSupportFragmentManager().beginTransaction().remove(cirrusFragment).commit();
+        }
     }
 
     @Override
