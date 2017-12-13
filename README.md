@@ -1,5 +1,5 @@
 # CirrusMD-Android-SDK-Example
-CirrusMDSDK it an embeddable SDK. It enables customers of CirrusMD to provide the CirrusMD patient chat experience in their own applications. While the example application will work in a sandboxed environment when built, integrating CirrusMDSDK into your own application will require you to be a CirrusMD customer. Integration requires a unique `secret` and SSO `token` to work correctly. Please contact your CirrusMD account representative for more information.
+The CirrusMD SDK it an embeddable SDK. It enables customers of CirrusMD to provide the CirrusMD patient chat experience in their own applications. While the example application will work in a sandboxed environment when built, integrating the CirrusMD SDK into your own application will require you to be a CirrusMD customer. Integration requires a unique `secret` and SSO `token` to work correctly, however this example uses sandbox credentials for demo purposes. Please contact your CirrusMD account representative for more information.
 
 - [Requirements](#requirements)
 - [Installation](#installing-cirrusmdsdk-in-your-own-project)
@@ -78,6 +78,6 @@ CirrusMD
 
 ## License
 
-CirrusMD-iOS-SDK-Example is available under the MIT license. See the LICENSE file for more info.
+CirrusMD-Android-SDK-Example is available under the MIT license. See the LICENSE file for more info.
 
-CirrusMDSDK is available under the XXXX license. See the LICENSE file for more info.
+CirrusMD SDK is available under the XXXX license. See the LICENSE file for more info.
