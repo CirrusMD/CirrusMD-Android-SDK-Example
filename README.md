@@ -1,6 +1,8 @@
 # CirrusMD-Android-SDK-Example
 The CirrusMD SDK it an embeddable SDK. It enables customers of CirrusMD to provide the CirrusMD patient chat experience in their own applications. While the example application will work in a sandboxed environment when built, integrating the CirrusMD SDK into your own application will require you to be a CirrusMD customer. Integration requires a unique `secret` and SSO `token` to work correctly, however this example uses sandbox credentials for demo purposes. Please contact your CirrusMD account representative for more information.
 
+![screen](https://user-images.githubusercontent.com/11066298/34179281-874d1940-e4c7-11e7-9588-556de4bc5d62.png)
+
 - [Requirements](#requirements)
 - [Installation](#installing-cirrusmdsdk-in-your-own-project)
 - [Basic Usage](#basic-usage)
@@ -61,7 +63,11 @@ By default they will look similar to the screens below:
 
 The default logged out screen is shown after you call `CirrusMD.logout()`.
 
+![logout](https://user-images.githubusercontent.com/11066298/34179364-c60bbd9e-e4c7-11e7-85e5-7f92d5bd85ae.png)
+
 The error screen can be shown for several reasons, such as providing an expired token or invalid secret.
+
+![error](https://user-images.githubusercontent.com/11066298/34179280-873a7dda-e4c7-11e7-81df-26249aa75166.png)
 
 Providing custom views of both the _logged out view_ and _error view_ happens via the currently set `CirrusMD.CirrusListener`.
 
