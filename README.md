@@ -1,6 +1,8 @@
 # CirrusMD-Android-SDK-Example
 The CirrusMD SDK it an embeddable SDK. It enables customers of CirrusMD to provide the CirrusMD patient chat experience in their own applications. While the example application will work in a sandboxed environment when built, integrating the CirrusMD SDK into your own application will require you to be a CirrusMD customer. Integration requires a unique `secret` and SSO `token` to work correctly, however this example uses sandbox credentials for demo purposes. Please contact your CirrusMD account representative for more information.
 
+![screen](https://user-images.githubusercontent.com/11066298/34179281-874d1940-e4c7-11e7-9588-556de4bc5d62.png)
+
 - [Requirements](#requirements)
 - [Installation](#installing-cirrusmdsdk-in-your-own-project)
 - [Basic Usage](#basic-usage)
@@ -21,8 +23,9 @@ Grab the latest release from Jitpack:
 ## Basic Usage
 
 Basic usage of of the CirrusMD SDK is very simple.
+1. Initialize the SDK using the CirrusMD.start(Context, Secret)
 1. Retrieve a token via SSO (See [the details](#the-details))
-1. Set the CirrusMD provided secret and the retreived token via `CirrusMD.start(token: String, secret: String)`
+1. Set the CirrusMD provided secret and the retreived token via `CirrusMD.setSessionToken(token: String)`
 1. Get the fragment with `CirrusMD.getFragment()`
 
 ### The details
@@ -52,7 +55,7 @@ The first is when you have explicity called `logout()`. We recommend calling log
 
 The second is when the SDK is unable to verify the secret, the token or there is another issue (ie network) starting the SDK. In either case, an _error view_  is shown. We recommend you handle all errors through `CirrusListener` prior to showing the `CirrusMDMessagesFragment` if possible. Doing so will provide a better experience for your user. Some errors may happen after the `CirrusMDMessagesFragment` is already on screen. In that case, _error view_ is displayed.
 
-Two screens displayed by the SDK have default views that can be overridden via the `CirrusMD.CirrusListener.viewForError()` interface method. We strongly recommend that you provide your own custom views for both cases. Because the CirrusMDSDK uses SSO to authenticate your patients, we are unable to provide logged out UI that helps the patient log back in. By providing your patients with a custom _logout out view_ you can, for example, provide relevant messaging and a button to log back in using the same SSO you implemented to log them in originally. Every time the _error view_ is shown the resolution is retrieving a new SSO token and setting it via `CirrusMDSDK.start(token, secret)`. Providing a custom _error view_ gives you the ability to display relevant messaging and interactions the user can take, most likely a button to re-attempt SSO.
+Two screens displayed by the SDK have default views that can be overridden via the `CirrusMD.CirrusListener.viewForError()` interface method. We strongly recommend that you provide your own custom views for both cases. Because the CirrusMDSDK uses SSO to authenticate your patients, we are unable to provide logged out UI that helps the patient log back in. By providing your patients with a custom _logout out view_ you can, for example, provide relevant messaging and a button to log back in using the same SSO you implemented to log them in originally. Every time the _error view_ is shown the resolution is retrieving a new SSO token and setting it via `CirrusMDSDK.setSessionToken(token)`. Providing a custom _error view_ gives you the ability to display relevant messaging and interactions the user can take, most likely a button to re-attempt SSO.
 
 When an error view would be displayed, errors will also be delivered to the `CirrusMD.CirrusListener.onEvent` interface if you would like to handle the error entirely outside of the CirrusMD SDK.
 
@@ -60,7 +63,11 @@ By default they will look similar to the screens below:
 
 The default logged out screen is shown after you call `CirrusMD.logout()`.
 
+![logout](https://user-images.githubusercontent.com/11066298/34179364-c60bbd9e-e4c7-11e7-85e5-7f92d5bd85ae.png)
+
 The error screen can be shown for several reasons, such as providing an expired token or invalid secret.
+
+![error](https://user-images.githubusercontent.com/11066298/34179280-873a7dda-e4c7-11e7-81df-26249aa75166.png)
 
 Providing custom views of both the _logged out view_ and _error view_ happens via the currently set `CirrusMD.CirrusListener`.
 
