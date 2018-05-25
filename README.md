@@ -22,7 +22,8 @@ Grab the latest release from Jitpack:
 
 Basic usage of of the CirrusMD SDK is very simple.
 1. Retrieve a token via SSO (See [the details](#the-details))
-1. Set the CirrusMD provided secret and the retreived token via `CirrusMD.start(token: String, secret: String)`
+1. Set the CirrusMD provided secret and context via `CirrusMD.start(context: Context, secret: String)`
+1. Set the retrieved token via `CirrusMD.setSessionToken(token: String)`
 1. Get the fragment with `CirrusMD.getFragment()`
 
 ### The details
@@ -42,7 +43,7 @@ In Kotlin you can call `CirrusMD`.
 
 ### Logout
 
-You may wish to log the user out of the SDK when they sign out of your application. Logging the user out destroys the associated CirrusMD server session and unregisters the device from CirrusMD delivered push notifications if previously registred.
+You may wish to log the user out of the SDK when they sign out of your application. Logging the user out destroys the associated CirrusMD server session and unregisters the device from CirrusMD delivered push notifications if previously registred. A logout can be done by calling `CirrusMD.logout()`
 
 ### Custom Status Views
 
@@ -70,7 +71,34 @@ There are two options of push notification implementations.
 1. Use CirrusMD's Firebase account and CirrusMD will provide the `google_services.json` config file.
 2. Use your Firebase account and provide CirrusMD with the cloud messaging server key for your application.
 
-Within the application, the specific device must be registered for push notifications using the `CirrusMD.setPushToken(context, deviceToken`) method. Information about managing registration tokens with Firebase can be found [here](https://firebase.google.com/docs/cloud-messaging/android/client).
+Within the application, the specific device must be registered for push notifications using the `CirrusMD.setPushToken(context, deviceToken`) method. 
+
+Information about fetching/managing device tokens with Firebase can be found [here](https://firebase.google.com/docs/cloud-messaging/android/client).
+
+### Support Library Versions
+
+The current version of the CirrusMD SDK is build with version `26.1.0` of the Android Support Library. If your app requires a different version than what is included, you will need to exclude that package and then import the required packages using your version.
+
+To exclude the package:
+```groovy
+implementation('com.github.CirrusMD:cirrusmd-android-sdk:CURRENT-VERSION') {
+    ['com.google.android', 'com.android.support'].each {
+        exclude group: it
+    }
+}
+```
+
+The list of support libraries used by the CirrusMD SDK:
+```groovy
+implementation "com.android.support:design:$SUPPORT_LIBRARY_VERSION"
+implementation "com.android.support:appcompat-v7:$SUPPORT_LIBRARY_VERSION"
+implementation "com.android.support:cardview-v7:$SUPPORT_LIBRARY_VERSION"
+implementation "com.android.support:recyclerview-v7:$SUPPORT_LIBRARY_VERSION"
+implementation "com.android.support:support-fragment:$SUPPORT_LIBRARY_VERSION"
+implementation "com.android.support:support-compat:$SUPPORT_LIBRARY_VERSION"
+implementation "com.android.support:support-v4:$SUPPORT_LIBRARY_VERSION"
+implementation "com.android.support:support-annotations:$SUPPORT_LIBRARY_VERSION"
+```
 
 ## Author
 
