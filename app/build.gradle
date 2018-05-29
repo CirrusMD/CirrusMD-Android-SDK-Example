@@ -36,7 +36,8 @@ android {
     }
 }
 
-final SUPPORT_LIBRARY_VERSION = '24.2.1'
+
+final SUPPORT_LIBRARY_VERSION = '26.1.0'
 final PLAY_SERVICES_VERSION = '12.0.1'
 
 dependencies {
