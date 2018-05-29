@@ -23,9 +23,9 @@ Grab the latest release from Jitpack:
 ## Basic Usage
 
 Basic usage of of the CirrusMD SDK is very simple.
-1. Initialize the SDK using the CirrusMD.start(Context, Secret)
 1. Retrieve a token via SSO (See [the details](#the-details))
-1. Set the CirrusMD provided secret and the retreived token via `CirrusMD.setSessionToken(token: String)`
+1. Set the CirrusMD provided secret and context via `CirrusMD.start(context: Context, secret: String)`
+1. Set the retrieved token via `CirrusMD.setSessionToken(token: String)`
 1. Get the fragment with `CirrusMD.getFragment()`
 
 ### The details
@@ -45,7 +45,7 @@ In Kotlin you can call `CirrusMD`.
 
 ### Logout
 
-You may wish to log the user out of the SDK when they sign out of your application. Logging the user out destroys the associated CirrusMD server session and unregisters the device from CirrusMD delivered push notifications if previously registred.
+You may wish to log the user out of the SDK when they sign out of your application. Logging the user out destroys the associated CirrusMD server session and unregisters the device from CirrusMD delivered push notifications if previously registred. A logout can be done by calling `CirrusMD.logout()`
 
 ### Custom Status Views
 
@@ -55,7 +55,7 @@ The first is when you have explicity called `logout()`. We recommend calling log
 
 The second is when the SDK is unable to verify the secret, the token or there is another issue (ie network) starting the SDK. In either case, an _error view_  is shown. We recommend you handle all errors through `CirrusListener` prior to showing the `CirrusMDMessagesFragment` if possible. Doing so will provide a better experience for your user. Some errors may happen after the `CirrusMDMessagesFragment` is already on screen. In that case, _error view_ is displayed.
 
-Two screens displayed by the SDK have default views that can be overridden via the `CirrusMD.CirrusListener.viewForError()` interface method. We strongly recommend that you provide your own custom views for both cases. Because the CirrusMDSDK uses SSO to authenticate your patients, we are unable to provide logged out UI that helps the patient log back in. By providing your patients with a custom _logout out view_ you can, for example, provide relevant messaging and a button to log back in using the same SSO you implemented to log them in originally. Every time the _error view_ is shown the resolution is retrieving a new SSO token and setting it via `CirrusMDSDK.setSessionToken(token)`. Providing a custom _error view_ gives you the ability to display relevant messaging and interactions the user can take, most likely a button to re-attempt SSO.
+Two screens displayed by the SDK have default views that can be overridden via the `CirrusMD.CirrusListener.viewForError()` interface method. We strongly recommend that you provide your own custom views for both cases. Because the CirrusMDSDK uses SSO to authenticate your patients, we are unable to provide logged out UI that helps the patient log back in. By providing your patients with a custom _logout out view_ you can, for example, provide relevant messaging and a button to log back in using the same SSO you implemented to log them in originally. Every time the _error view_ is shown the resolution is retrieving a new SSO token and setting it via `CirrusMDSDK.start(token, secret)`. Providing a custom _error view_ gives you the ability to display relevant messaging and interactions the user can take, most likely a button to re-attempt SSO.
 
 When an error view would be displayed, errors will also be delivered to the `CirrusMD.CirrusListener.onEvent` interface if you would like to handle the error entirely outside of the CirrusMD SDK.
 
@@ -77,7 +77,34 @@ There are two options of push notification implementations.
 1. Use CirrusMD's Firebase account and CirrusMD will provide the `google_services.json` config file.
 2. Use your Firebase account and provide CirrusMD with the cloud messaging server key for your application.
 
-Within the application, the specific device must be registered for push notifications using the `CirrusMD.setPushToken(context, deviceToken`) method. Information about managing registration tokens with Firebase can be found [here](https://firebase.google.com/docs/cloud-messaging/android/client).
+Within the application, the specific device must be registered for push notifications using the `CirrusMD.setPushToken(context, deviceToken`) method. 
+
+Information about fetching/managing device tokens with Firebase can be found [here](https://firebase.google.com/docs/cloud-messaging/android/client).
+
+### Support Library Versions
+
+The current version of the CirrusMD SDK is build with version `26.1.0` of the Android Support Library. If your app requires a different version than what is included, you will need to exclude that package and then import the required packages using your version.
+
+To exclude the package:
+```groovy
+implementation('com.github.CirrusMD:cirrusmd-android-sdk:CURRENT-VERSION') {
+    ['com.google.android', 'com.android.support'].each {
+        exclude group: it
+    }
+}
+```
+
+The list of support libraries used by the CirrusMD SDK:
+```groovy
+implementation "com.android.support:design:$SUPPORT_LIBRARY_VERSION"
+implementation "com.android.support:appcompat-v7:$SUPPORT_LIBRARY_VERSION"
+implementation "com.android.support:cardview-v7:$SUPPORT_LIBRARY_VERSION"
+implementation "com.android.support:recyclerview-v7:$SUPPORT_LIBRARY_VERSION"
+implementation "com.android.support:support-fragment:$SUPPORT_LIBRARY_VERSION"
+implementation "com.android.support:support-compat:$SUPPORT_LIBRARY_VERSION"
+implementation "com.android.support:support-v4:$SUPPORT_LIBRARY_VERSION"
+implementation "com.android.support:support-annotations:$SUPPORT_LIBRARY_VERSION"
+```
 
 ## Author
 
