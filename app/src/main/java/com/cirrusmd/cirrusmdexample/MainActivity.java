@@ -52,6 +52,7 @@ public class MainActivity extends AppCompatActivity implements CirrusListener {
         frame = findViewById(R.id.frameLayout);
         BottomNavigationView navigation = findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
+        CirrusMD.INSTANCE.start(this, getSecret());
         CirrusMD.INSTANCE.setListener(this);
 
         homeTapped();
@@ -81,7 +82,7 @@ public class MainActivity extends AppCompatActivity implements CirrusListener {
                 //Once you have a token and secret, start the instance of the SDK.
                 //There is a pre-flight process in the SDK to fetch the user's profile once it has started and report back to the listener.
                 //Because of this pre-flight, it may be a better experience to start the SDK before the instant you choose to show the Fragment.
-                CirrusMD.INSTANCE.start(response.body().token, getSecret());
+                CirrusMD.INSTANCE.setSessionToken(response.body().token);
                 displayMessages();
             }
 
