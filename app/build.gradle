@@ -12,12 +12,12 @@ buildscript {
 //v25 - 25.4.0
 //v24 - 24.2.1
 android {
-    compileSdkVersion 24
+    compileSdkVersion 26
     buildToolsVersion '26.0.2'
     defaultConfig {
         applicationId "com.cirrusmd.cirrusmdexample"
         minSdkVersion 21
-        targetSdkVersion 24
+        targetSdkVersion 26
         versionCode 1
         versionName "1.0"
         multiDexEnabled true
