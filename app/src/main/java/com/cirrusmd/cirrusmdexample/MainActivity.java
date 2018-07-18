@@ -19,6 +19,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
+import timber.log.Timber;
 
 public class MainActivity extends AppCompatActivity implements CirrusListener {
 
@@ -52,6 +53,9 @@ public class MainActivity extends AppCompatActivity implements CirrusListener {
         frame = findViewById(R.id.frameLayout);
         BottomNavigationView navigation = findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
+
+        //This start() call would probably be better placed in the app's implementation of Application.
+        //For the example we placed it here for ease of access/readability.
         CirrusMD.INSTANCE.start(this, getSecret());
         CirrusMD.INSTANCE.setListener(this);
 
@@ -116,8 +120,30 @@ public class MainActivity extends AppCompatActivity implements CirrusListener {
     }
 
     @Override
-    public void onEvent(CirrusEvents cirrusEvents) {
+    public void onEvent(CirrusEvents cirrusEvent) {
         //This is where the CirrusMD SDK will report status events.
+        switch (cirrusEvent) {
+            case SUCCESS:
+                Timber.d("CirrusMD SDK successful pre-flight");
+                break;
+
+            case INVALID_JWT:
+                Timber.d("CirrusMD SDK invalid JWT supplied");
+                break;
+
+            case INVALID_SECRET:
+                Timber.d("CirrusMD SDK invalid secret supplied");
+                break;
+
+            case LOGGED_OUT:
+                Timber.d("CirrusMD SDK user was logged out.");
+                break;
+
+            case UNKNOWN_ERROR:
+                //This error would include cases like network errors
+                Timber.d("CirrusMD SDK generic error");
+                break;
+        }
     }
 
     @Override
