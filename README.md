@@ -11,7 +11,6 @@ The CirrusMD SDK it an embeddable SDK. It enables customers of CirrusMD to provi
   - [Logout](#logout)
   - [Custom Status Views](#custom-status-views)
   - [Push notifications](#push-notifications)
-  - [Additional API](#additional-api)
 - [License](#license)
 
 ## Requirements
@@ -48,11 +47,22 @@ In Kotlin you can call `CirrusMD`.
 
 You may wish to log the user out of the SDK when they sign out of your application. Logging the user out destroys the associated CirrusMD server session and unregisters the device from CirrusMD delivered push notifications if previously registred. A logout can be done by calling `CirrusMD.logout()`
 
+### Event/Error Handling
+
+Through the `CirrusMD.CirrusListener.onEvent` interface method, you can receive one of the following events:
+- `INVALID JWT` : An improperly formatted JWT was provided.
+- `INVALID SECRET` : An improperly formatted secret token was provided.
+- `AUTHENTICATION_ERROR` : There was an authentication failure on a network request.
+- `CONNECTION_ERROR` : There was an HTTP exception not otherwise specified.
+- `LOGGED OUT` : The current user session was logged out.
+- `SUCCESS` : The SDK was provided a valid JWT and secret token and was able to make a request. It is ideal to wait for this event before displaying the fragment.
+- `UNKNOWN_ERROR` : This is the generic catch for errors that could not be identified.
+
 ### Custom Status Views
 
 Ideally, your patients always see a working messages view when you present a ` CirrusMDMessagesFragment`. However, there are certain times when we're unable to show messages.
 
-The first is when you have explicity called `logout()`. We recommend calling logout when your patient logs out of your appication. In that case they will not see the _logged out view_ because they will be logged out of your application as well. You should log them back into the SDK when they next log back into your application.
+The first is when you have explicitly called `logout()`. We recommend calling logout when your patient logs out of your appication. In that case they will not see the _logged out view_ because they will be logged out of your application as well. You should log them back into the SDK when they next log back into your application.
 
 The second is when the SDK is unable to verify the secret, the token or there is another issue (ie network) starting the SDK. In either case, an _error view_  is shown. We recommend you handle all errors through `CirrusListener` prior to showing the `CirrusMDMessagesFragment` if possible. Doing so will provide a better experience for your user. Some errors may happen after the `CirrusMDMessagesFragment` is already on screen. In that case, _error view_ is displayed.
 
