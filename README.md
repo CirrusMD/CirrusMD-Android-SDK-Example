@@ -20,6 +20,17 @@ The CirrusMD SDK it an embeddable SDK. It enables customers of CirrusMD to provi
 Grab the latest release from Jitpack:
 [![Release](https://jitpack.io/v/CirrusMD/cirrusmd-android-sdk.svg)](https://jitpack.io/#CirrusMD/cirrusmd-android-sdk)
 
+**Version 1.0.9 note**
+For this version you will need to include the following lines in your build.gradle file in order for the JWT to parse correctly:
+```
+    implementation 'com.github.CirrusMD:cirrusmd-android-sdk:1.0.9'
+    runtimeOnly 'io.jsonwebtoken:jjwt-impl:0.10.5'
+    runtimeOnly('io.jsonwebtoken:jjwt-orgjson:0.10.5') {
+        exclude group: 'org.json', module: 'json' //provided by Android natively
+    }
+```
+A cleaner solution will be available in a future release.
+
 ## Basic Usage
 
 Basic usage of of the CirrusMD SDK is very simple.
