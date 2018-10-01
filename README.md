@@ -15,15 +15,16 @@ The CirrusMD SDK it an embeddable SDK. It enables customers of CirrusMD to provi
 
 ## Requirements
 - minSdk: `21`
+- supportLibrary: `27.1.1`
 
 ## Installing CirrusMDSDK in your own project
 Grab the latest release from Jitpack:
-[![Release](https://jitpack.io/v/CirrusMD/cirrusmd-android-sdk.svg)](https://jitpack.io/#CirrusMD/cirrusmd-android-sdk)
+[![](https://jitpack.io/v/CirrusMD/cirrusmd-android.svg)](https://jitpack.io/#CirrusMD/cirrusmd-android)
 
-**Version 1.0.9 note**
-For this version you will need to include the following lines in your build.gradle file in order for the JWT to parse correctly:
+**Version 1.0.9+ note**
+For this version and above you will need to include the following lines in your build.gradle file in order for the JWT to parse correctly:
 ```
-    implementation 'com.github.CirrusMD:cirrusmd-android-sdk:1.0.9'
+    implementation 'com.github.CirrusMD:cirrusmd-android::CURRENT-VERSION'
     runtimeOnly 'io.jsonwebtoken:jjwt-impl:0.10.5'
     runtimeOnly('io.jsonwebtoken:jjwt-orgjson:0.10.5') {
         exclude group: 'org.json', module: 'json' //provided by Android natively
@@ -105,28 +106,8 @@ Information about fetching/managing device tokens with Firebase can be found [he
 
 ### Support Library Versions
 
-The current version of the CirrusMD SDK is build with version `26.1.0` of the Android Support Library. If your app requires a different version than what is included, you will need to exclude that package and then import the required packages using your version.
-
-To exclude the package:
-```groovy
-implementation('com.github.CirrusMD:cirrusmd-android-sdk:CURRENT-VERSION') {
-    ['com.google.android', 'com.android.support'].each {
-        exclude group: it
-    }
-}
-```
-
-The list of support libraries used by the CirrusMD SDK:
-```groovy
-implementation "com.android.support:design:$SUPPORT_LIBRARY_VERSION"
-implementation "com.android.support:appcompat-v7:$SUPPORT_LIBRARY_VERSION"
-implementation "com.android.support:cardview-v7:$SUPPORT_LIBRARY_VERSION"
-implementation "com.android.support:recyclerview-v7:$SUPPORT_LIBRARY_VERSION"
-implementation "com.android.support:support-fragment:$SUPPORT_LIBRARY_VERSION"
-implementation "com.android.support:support-compat:$SUPPORT_LIBRARY_VERSION"
-implementation "com.android.support:support-v4:$SUPPORT_LIBRARY_VERSION"
-implementation "com.android.support:support-annotations:$SUPPORT_LIBRARY_VERSION"
-```
+The current version of the CirrusMD SDK is build with version `27.1.1` of the Android Support Library. 
+If your app requires a different version than what is included, you will need to exclude that package and then import the required packages using your version. However, we do not test against all versions and this could cause problems.
 
 ## Author
 
