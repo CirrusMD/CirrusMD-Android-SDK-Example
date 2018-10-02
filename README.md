@@ -15,15 +15,16 @@ The CirrusMD SDK it an embeddable SDK. It enables customers of CirrusMD to provi
 
 ## Requirements
 - minSdk: `21`
+- supportLibrary: `27.1.1`
 
 ## Installing CirrusMDSDK in your own project
 Grab the latest release from Jitpack:
-[![Release](https://jitpack.io/v/CirrusMD/cirrusmd-android-sdk.svg)](https://jitpack.io/#CirrusMD/cirrusmd-android-sdk)
+[![](https://jitpack.io/v/CirrusMD/cirrusmd-android.svg)](https://jitpack.io/#CirrusMD/cirrusmd-android)
 
-**Version 1.0.9 note**
-For this version you will need to include the following lines in your build.gradle file in order for the JWT to parse correctly:
+**Version 1.0.9+ note**
+For this version and above you will need to include the following lines in your build.gradle file in order for the JWT to parse correctly:
 ```
-    implementation 'com.github.CirrusMD:cirrusmd-android-sdk:1.0.9'
+    implementation 'com.github.CirrusMD:cirrusmd-android::CURRENT-VERSION'
     runtimeOnly 'io.jsonwebtoken:jjwt-impl:0.10.5'
     runtimeOnly('io.jsonwebtoken:jjwt-orgjson:0.10.5') {
         exclude group: 'org.json', module: 'json' //provided by Android natively
@@ -69,6 +70,32 @@ Through the `CirrusMD.CirrusListener.onEvent` interface method, you can receive 
 - `SUCCESS` : The SDK was provided a valid JWT and secret token and was able to make a request. It is ideal to wait for this event before displaying the fragment.
 - `UNKNOWN_ERROR` : This is the generic catch for errors that could not be identified.
 
+### Custom Colors/Drawables
+
+The following colors are used in the SDK, but can be overridden.
+```
+    // These colors are used throughout the app. Mostly used for accents/buttons
+    <color name="cirrus_primary" tools:override="true">#1A9AF2</color>
+    <color name="cirrus_primary_dark" tools:override="true">#0E5985</color>
+    <color name="cirrus_secondary" tools:override="true">#06CCBE</color>
+    <color name="cirrus_tertiary" tools:override="true">#39FEEE</color>
+
+    // These are used for the queue status bar/details screens
+    <color name="cirrus_off_hours" tools:override="true">#4a4a4a</color>
+    <color name="cirrus_unassigned" tools:override="true">#0c4c78</color>
+    <color name="cirrus_assigned" tools:override="true">#44db5e</color>
+
+    // These are used throughout the app in alert/warning style events
+    <color name="cirrus_success" tools:override="true">#44db5e</color>
+    <color name="cirrus_warning" tools:override="true">#daaf0f</color>
+    <color name="cirrus_error" tools:override="true">#DD0000</color>
+```
+
+Currently the only drawable intended to be overridden is `ic_welcome.xml` which is the clapping hands vector image on the welcome screen. If you would like to completely remove it, you can add a drawable file with the same name no information within it.
+```
+    <selector xmlns:android="http://schemas.android.com/apk/res/android" /> 
+```
+
 ### Custom Status Views
 
 Ideally, your patients always see a working messages view when you present a ` CirrusMDMessagesFragment`. However, there are certain times when we're unable to show messages.
@@ -105,28 +132,8 @@ Information about fetching/managing device tokens with Firebase can be found [he
 
 ### Support Library Versions
 
-The current version of the CirrusMD SDK is build with version `26.1.0` of the Android Support Library. If your app requires a different version than what is included, you will need to exclude that package and then import the required packages using your version.
-
-To exclude the package:
-```groovy
-implementation('com.github.CirrusMD:cirrusmd-android-sdk:CURRENT-VERSION') {
-    ['com.google.android', 'com.android.support'].each {
-        exclude group: it
-    }
-}
-```
-
-The list of support libraries used by the CirrusMD SDK:
-```groovy
-implementation "com.android.support:design:$SUPPORT_LIBRARY_VERSION"
-implementation "com.android.support:appcompat-v7:$SUPPORT_LIBRARY_VERSION"
-implementation "com.android.support:cardview-v7:$SUPPORT_LIBRARY_VERSION"
-implementation "com.android.support:recyclerview-v7:$SUPPORT_LIBRARY_VERSION"
-implementation "com.android.support:support-fragment:$SUPPORT_LIBRARY_VERSION"
-implementation "com.android.support:support-compat:$SUPPORT_LIBRARY_VERSION"
-implementation "com.android.support:support-v4:$SUPPORT_LIBRARY_VERSION"
-implementation "com.android.support:support-annotations:$SUPPORT_LIBRARY_VERSION"
-```
+The current version of the CirrusMD SDK is build with version `27.1.1` of the Android Support Library. 
+If your app requires a different version than what is included, you will need to exclude that package and then import the required packages using your version. However, we do not test against all versions and this could cause problems.
 
 ## Author
 
