@@ -70,7 +70,7 @@ dependencies {
     implementation 'com.squareup.retrofit2:retrofit:2.2.0'
     implementation 'com.squareup.retrofit2:converter-gson:2.2.0'
     implementation 'com.google.code.gson:gson:2.8.2'
-    implementation 'com.github.CirrusMD:cirrusmd-android:2.4.4'
+    implementation 'com.github.CirrusMD:cirrusmd-android:2.4.5'
     runtimeOnly 'io.jsonwebtoken:jjwt-impl:0.10.5'
     runtimeOnly('io.jsonwebtoken:jjwt-orgjson:0.10.5') {
         exclude group: 'org.json', module: 'json' //provided by Android natively
