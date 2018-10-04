@@ -126,7 +126,7 @@ There are two options of push notification implementations.
 1. Use CirrusMD's Firebase account and CirrusMD will provide the `google_services.json` config file.
 2. Use your Firebase account and provide CirrusMD with the cloud messaging server key for your application.
 
-Within the application, the specific device must be registered for push notifications using the `CirrusMD.setPushToken(context, deviceToken`) method. 
+Within the application, the specific device must be registered for push notifications using the `CirrusMD.setPushToken(deviceToken)` method. 
 
 Information about fetching/managing device tokens with Firebase can be found [here](https://firebase.google.com/docs/cloud-messaging/android/client).
 
