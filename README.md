@@ -75,20 +75,20 @@ Through the `CirrusMD.CirrusListener.onEvent` interface method, you can receive 
 The following colors are used in the SDK, but can be overridden.
 ```
     // These colors are used throughout the app. Mostly used for accents/buttons
-    <color name="cirrus_primary" tools:override="true">#1A9AF2</color>
-    <color name="cirrus_primary_dark" tools:override="true">#0E5985</color>
-    <color name="cirrus_secondary" tools:override="true">#06CCBE</color>
-    <color name="cirrus_tertiary" tools:override="true">#39FEEE</color>
+    <color name="cirrus_primary">#1A9AF2</color>
+    <color name="cirrus_primary_dark">#0E5985</color>
+    <color name="cirrus_secondary">#06CCBE</color>
+    <color name="cirrus_tertiary">#39FEEE</color>
 
     // These are used for the queue status bar/details screens
-    <color name="cirrus_off_hours" tools:override="true">#4a4a4a</color>
-    <color name="cirrus_unassigned" tools:override="true">#0c4c78</color>
-    <color name="cirrus_assigned" tools:override="true">#44db5e</color>
+    <color name="cirrus_off_hours">#4a4a4a</color>
+    <color name="cirrus_unassigned">#0c4c78</color>
+    <color name="cirrus_assigned">#44db5e</color>
 
     // These are used throughout the app in alert/warning style events
-    <color name="cirrus_success" tools:override="true">#44db5e</color>
-    <color name="cirrus_warning" tools:override="true">#daaf0f</color>
-    <color name="cirrus_error" tools:override="true">#DD0000</color>
+    <color name="cirrus_success">#44db5e</color>
+    <color name="cirrus_warning">#daaf0f</color>
+    <color name="cirrus_error">#DD0000</color>
 ```
 
 Currently the only drawable intended to be overridden is `ic_welcome.xml` which is the clapping hands vector image on the welcome screen. If you would like to completely remove it, you can add a drawable file with the same name no information within it.
