@@ -1,4 +1,10 @@
-# 2.4.4 / 2018-10-01
+# 2.4.7 / 2018-11-26
+
+* Fixed the incorrect colors used in some queue states. Colors should now be the same in both the banner above the message  input bar and the header of the details modal.
+* Text of the welcome message is now left aligned
+* Text of the message input bar is no longer bold when entered
+
+# 2.4.6 / 2018-10-01
 
 Bug Fix:
 
