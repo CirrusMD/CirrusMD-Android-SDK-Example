@@ -1,3 +1,7 @@
+# 2.4.8 / 2018-11-27
+
+* Addressing a crash where the `SdkEventStreamServiceInteractor` was attempting to create the instance of retrofit before the URL was gathered from the JWT.
+
 # 2.4.7 / 2018-11-26
 
 * Fixed the incorrect colors used in some queue states. Colors should now be the same in both the banner above the message  input bar and the header of the details modal.
