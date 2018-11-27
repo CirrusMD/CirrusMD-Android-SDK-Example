@@ -4,7 +4,13 @@
 * Text of the welcome message is now left aligned
 * Text of the message input bar is no longer bold when entered
 
-# 2.4.6 / 2018-10-01
+# 2.4.6 / 2018-10-23
+
+* Added the attending provder's plan name to the progress note details
+* Added the ability to pinch to zoom images in the details view
+* Fixed some issues with images flickering/refreshing when not needed
+
+# 2.4.5 / 2018-10-01
 
 Bug Fix:
 
