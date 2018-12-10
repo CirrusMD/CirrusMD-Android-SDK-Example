@@ -1,3 +1,7 @@
+# 2.4.9 / 2018-12-10
+
+* Adding a button/bar to dismiss the image details screen
+
 # 2.4.8 / 2018-11-27
 
 * Addressing a crash where the `SdkEventStreamServiceInteractor` was attempting to create the instance of retrofit before the URL was gathered from the JWT.
