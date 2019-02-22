@@ -1,3 +1,19 @@
+# 2.5.3 / 2019-2-22
+* Fixed a bug with the loading spinner staying visible after loading
+* Enhanced accessibility announcements for messages coming in/out
+* Phone numbers, emails and URLs are now clickable in messages, queue messages, welcome screen and progress notes
+* Updated styling for encounter state change events
+* Fixed a crash related to entering the app via push notifications
+* Providers in the stream picker will show their title
+* SDK: The SDK will now attempt to set the toolbar title based on the encounter state
+* SDK: Adding unread indicators for streams not currently being viewed
+
+# 2.5.0 / 2018-12-10
+
+* Added multiple channels of care
+* Updated default ProGuard config file
+* Updated interactions for screen reader users
+
 # 2.4.9 / 2018-12-10
 
 * Adding a button/bar to dismiss the image details screen
