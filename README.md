@@ -11,11 +11,14 @@ The CirrusMD SDK it an embeddable SDK. It enables customers of CirrusMD to provi
   - [Logout](#logout)
   - [Custom Status Views](#custom-status-views)
   - [Push notifications](#push-notifications)
+  - [External Channels](#external-channels)
 - [License](#license)
 
 ## Requirements
+
+- **Note: As of version 2.7.0 the CirrusMD SDK will be using AndroidX. More information can be found [Here](https://developer.android.com/jetpack/androidx)
 - minSdk: `21`
-- supportLibrary: `27.1.1`
+- supportLibrary: `28.0.0`
 
 ## Installing CirrusMDSDK in your own project
 Grab the latest release from Jitpack:
@@ -121,19 +124,32 @@ The error screen can be shown for several reasons, such as providing an expired 
 Providing custom views of both the _logged out view_ and _error view_ happens via the currently set `CirrusMD.CirrusListener`.
 
 ### Push notifications
-There are two options of push notification implementations.
 
-1. Use CirrusMD's Firebase account and CirrusMD will provide the `google_services.json` config file.
-2. Use your Firebase account and provide CirrusMD with the cloud messaging server key for your application.
+The method of notification delivery is different for each SDK consumer.
 
-Within the application, the specific device must be registered for push notifications using the `CirrusMD.setPushToken(deviceToken)` method. 
+The notifications from CirrusMD contain a JSON payload similar to this:
+```
+{
+     "stream_id": "j3kj4l-98f0s0fd9-d5b9s7jk6",
+     "event_type": "message:new"
+}
+```
 
-Information about fetching/managing device tokens with Firebase can be found [here](https://firebase.google.com/docs/cloud-messaging/android/client).
+The SDK provides a `NotificationMetaData` interface class, which can be used to pass this information in via the `CirrusMD.shouldShowNotification(metaData: NotificationMetaData)` and `CirrusMD.onPushNotificationSelected(metaData: NotificationMetaData)` functions. There is also a `CirrusMD.shouldShowNotification(streamId: String, event: String)` convenience function available, which maps those strings to a `NotificationMetaData` object and then calls `CirrusMD.shouldShowNotification(metaData: NotificationMetaData)`.
 
-### Support Library Versions
+When your app recieves a push notification from CirrusMD, the `CirrusMD.shouldShowNotification` functions can be used to help determine if the notification should be displayed.
 
-The current version of the CirrusMD SDK is build with version `27.1.1` of the Android Support Library. 
-If your app requires a different version than what is included, you will need to exclude that package and then import the required packages using your version. However, we do not test against all versions and this could cause problems.
+Once a user taps on a notification the `CirrusMD.onPushNotificationSelected(metaData: NotificationMetaData)` function can be used to navigate to the channel (stream) associated to the notification. If the `CirrusMD.fragment` is not currently being shown, it will open to the selected stream when it is shown.
+
+### External Channels
+
+The host application has the ability to fetch and navigate to the list of channels available to the currently authenticated user.
+
+Calling `CirrusMD.channels()` will return a `List<Pair<String, String>>` which contains the channel information for the current user. These can be used to display the channels with a custom UI anywhere in the host application.
+`Pair.first` represents the channel ID. 
+`Pair.second` represents the channel name.
+
+When a user selects a channel `CirrusMD.navigateToChannel(id: String)` can be called to navigate to the selected channel. The argument is `Pair.first` from the selected item in the list of channels from `CirrusMD.channels()`. Once this is called, the SDK will navigate to the selected channel or will default to the selected channel when it is displayed.
 
 ## Author
 
