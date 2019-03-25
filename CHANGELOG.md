@@ -1,3 +1,13 @@
+# 2.6.0 / 2019-3-25
+* **NOTE: This is the last version of the SDK to use the legacy Support Library. 2.7.0 and above will use AndroidX.**
+* Moved to Android 28 and Support Library 28.0.0
+* Now using R8 instead or ProGuard
+* Updated dependencies to current versions
+* Cleaning up the way we monitor/notify for internet connectivity
+* Adding the ability for a host application to go to a stream for push notifications via `onPushNotificationSelected(NotificationMetaData)`
+* Adding the ability for a host application to check if a notification should be displayed via `shouldShowNotification(NotificationMetaData)` and `shouldShowNotification(streamId: String, event: String)`
+* Adding the ability for a host application to fetch and navigate to a stream via the `external_id` using `CirrusMD.channels()` and `CirrusMD.navigateToChannel(String)`
+
 # 2.5.3 / 2019-2-22
 * Fixed a bug with the loading spinner staying visible after loading
 * Enhanced accessibility announcements for messages coming in/out
