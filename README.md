@@ -149,7 +149,7 @@ Calling `CirrusMD.channels()` will return a `List<Pair<String, String>>` which c
 `Pair.first` represents the channel ID. 
 `Pair.second` represents the channel name.
 
-When a user selects a channel `CirrusMD.navigateToChannel(id: String)` can be called to navigate to the selected channel. The argument is `Pair.first` from the selected item in the list of channels from `CirrusMD.channels()`. Once this is called, the SDK will navigate to the selected channel or will default to the selected when it is displayed.
+When a user selects a channel `CirrusMD.navigateToChannel(id: String)` can be called to navigate to the selected channel. The argument is `Pair.first` from the selected item in the list of channels from `CirrusMD.channels()`. Once this is called, the SDK will navigate to the selected channel or will default to the selected channel when it is displayed.
 
 ## Author
 
