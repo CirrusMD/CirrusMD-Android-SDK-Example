@@ -146,10 +146,15 @@ Once a user taps on a notification the `CirrusMD.onPushNotificationSelected(meta
 The host application has the ability to fetch and navigate to the list of channels available to the currently authenticated user.
 
 Calling `CirrusMD.channels()` will return a `List<Pair<String, String>>` which contains the channel information for the current user. These can be used to display the channels with a custom UI anywhere in the host application.
-`Pair.first` represents the channel ID. 
-`Pair.second` represents the channel name.
+1. `Pair.first` represents the channel ID. 
+1. `Pair.second` represents the channel name.
 
 When a user selects a channel `CirrusMD.navigateToChannel(id: String)` can be called to navigate to the selected channel. The argument is `Pair.first` from the selected item in the list of channels from `CirrusMD.channels()`. Once this is called, the SDK will navigate to the selected channel or will default to the selected channel when it is displayed.
+
+### Support Library Versions
+
+The current version of the CirrusMD SDK is build with version `28.0.0` of the Android Support Library. 
+If your app requires a different version than what is included, you will need to exclude that package and then import the required packages using your version. However, we do not test against all versions and this could cause problems.
 
 ## Author
 
