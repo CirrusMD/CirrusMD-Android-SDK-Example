@@ -1,3 +1,9 @@
+# 2.7.1 / 2019-6-6
+* Now using AndroidX
+* The attachment button can now be disabled via a back end config
+* Fixed a bug where encounter/stream updates were not happening when a new profile was fetched
+* Updated many dependencies
+
 # 2.6.0 / 2019-3-25
 * **NOTE: This is the last version of the SDK to use the legacy Support Library. 2.7.0 and above will use AndroidX.**
 * Moved to Android 28 and Support Library 28.0.0
