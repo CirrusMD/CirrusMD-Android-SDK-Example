@@ -131,7 +131,7 @@ The notifications from CirrusMD contain a JSON payload similar to this:
 ```
 {
      "stream_id": "j3kj4l-98f0s0fd9-d5b9s7jk6",
-     "event_type": "message:new"
+     "event": "message:new"
 }
 ```
 
