@@ -1,4 +1,4 @@
-# 2.7.2 / 2019-9-25
+# 2.8.0 / 2019-9-25
 * Adding video event handling
 * Fixed a bug where some devices would not use the correct time zone for the message time stamp
 
