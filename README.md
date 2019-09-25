@@ -8,6 +8,7 @@ The CirrusMD SDK it an embeddable SDK. It enables customers of CirrusMD to provi
 - [Installation](#installing-cirrusmdsdk-in-your-own-project)
 - [Basic Usage](#basic-usage)
 - [Advanced Usage](#advanced-usage)
+  - [Video/OpenTok](#video)
   - [Logout](#logout)
   - [Custom Status Views](#custom-status-views)
   - [Push notifications](#push-notifications)
@@ -18,11 +19,12 @@ The CirrusMD SDK it an embeddable SDK. It enables customers of CirrusMD to provi
 
 - **Note: As of version 2.7.0 the CirrusMD SDK will be using AndroidX. More information can be found [Here](https://developer.android.com/jetpack/androidx)
 - minSdk: `21`
-- supportLibrary: `28.0.0`
+- supportLibrary: `AndroidX`
 
 ## Installing CirrusMDSDK in your own project
-Grab the latest release from Jitpack:
+1. Grab the latest release from Jitpack:
 [![](https://jitpack.io/v/CirrusMD/cirrusmd-android.svg)](https://jitpack.io/#CirrusMD/cirrusmd-android)
+2. Update your gradle config to handle/exclude video: [Video/OpenTok](#video)
 
 **Version 1.0.9+ note**
 For this version and above you will need to include the following lines in your build.gradle file in order for the JWT to parse correctly:
@@ -57,6 +59,25 @@ In Kotlin you can call `CirrusMD`.
 5. On a successful event, you can display the fragment.
 
 ## Advanced Usage
+
+### Video
+
+The CirrusMD platform uses OpenTok for the video sessions. Because of this your app must either include the OpenTok repository or exclude the library, depending on your video usage. If you are unsure if your plan allows for video, please contact your CirrusMD account manager.
+
+If your plan allows providers to start video chat, you must add the OpenTok repository in your app's `build.gradle` file:
+```
+repositories {
+    maven { url "http://tokbox.bintray.com/maven" }
+}
+```
+
+If your plan does not allow providers to start video chat, you can exclude the dependency entirely:
+IMPORTANT: If a video event is received while this dependency is excluded, the SDK **will crash**.
+```
+implementation('com.github.CirrusMD:cirrusmd-android:CURRENT-VERSION') {
+    exclude group: 'com.opentok.android', module: 'opentok-android-sdk'
+}
+```
 
 ### Logout
 
