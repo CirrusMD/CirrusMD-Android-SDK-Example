@@ -1,3 +1,7 @@
+# 2.7.2 / 2019-9-25
+* Adding video event handling
+* Fixed a bug where some devices would not use the correct time zone for the message time stamp
+
 # 2.7.1 / 2019-6-6
 * Now using AndroidX
 * The attachment button can now be disabled via a back end config
