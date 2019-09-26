@@ -1,5 +1,5 @@
 # 2.8.0 / 2019-9-25
-* Adding video event handling (Note: This requires updates to your build.gradle, even if you're not using video. [https://github.com/CirrusMD/CirrusMD-Android-SDK-Example#video])
+* Adding video event handling (Note: This requires updates to your build.gradle, even if you're not using video. https://github.com/CirrusMD/CirrusMD-Android-SDK-Example#video)
 * Fixed a bug where some devices would not use the correct time zone for the message time stamp
 
 # 2.7.1 / 2019-6-6
