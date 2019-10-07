@@ -1,3 +1,7 @@
+# 2.8.1 / 2019-10-7
+* A user with multiple streams will now be presented with the stream picker if one is not selected
+* Initials in the avatar are no longer white text on white background
+
 # 2.8.0 / 2019-9-25
 * Adding video event handling (Note: This requires updates to your build.gradle, even if you're not using video. https://github.com/CirrusMD/CirrusMD-Android-SDK-Example#video)
 * Fixed a bug where some devices would not use the correct time zone for the message time stamp
