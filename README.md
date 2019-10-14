@@ -6,6 +6,7 @@ The CirrusMD SDK it an embeddable SDK. It enables customers of CirrusMD to provi
 - [Requirements](#requirements)
 - [Screenshots](https://github.com/CirrusMD/CirrusMD-Android-SDK-Example/wiki/Screenshots)
 - [Installation](#installing-cirrusmdsdk-in-your-own-project)
+- [SDK Size](#sdk-size)
 - [Basic Usage](#basic-usage)
 - [Advanced Usage](#advanced-usage)
   - [Video/OpenTok](#video)
@@ -176,6 +177,10 @@ When a user selects a channel `CirrusMD.navigateToChannel(id: String)` can be ca
 
 The current version of the CirrusMD SDK is build with version `28.0.0` of the Android Support Library. 
 If your app requires a different version than what is included, you will need to exclude that package and then import the required packages using your version. However, we do not test against all versions and this could cause problems.
+
+## SDK Size
+
+The SDK adds roughly 22mb with video and 4mb without video. [See here for video details](#video) 
 
 ## Author
 
