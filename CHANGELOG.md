@@ -1,3 +1,8 @@
+# 2.8.2 / 2019-10-16
+* Fixing the blank stream issue
+* Fixing the issue of sent messages not showing
+* Fixing an issue where the wrong TimeZone was being used for timestamps
+
 # 2.8.1 / 2019-10-7
 * A user with multiple streams will now be presented with the stream picker if one is not selected
 * Initials in the avatar are no longer white text on white background
