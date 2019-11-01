@@ -1,3 +1,8 @@
+# 2.8.3 / 2019-11-01
+* Now closing the keyboard when navigating to the stream picker
+* Adding better handling of failed messages sent
+* Fixing an issue where the connection snackbar is not being dismissed on screen rotations 
+
 # 2.8.2 / 2019-10-16
 * Fixing the blank stream issue
 * Fixing the issue of sent messages not showing
