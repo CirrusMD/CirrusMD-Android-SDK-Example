@@ -1,3 +1,8 @@
+# 2.8.4 / 2019-11-13
+* Fixed an issue where in some cases users were unable to send an image
+* Various bug and crash fixes
+* Hiding the message input bar when a plan is inactive with no active encounter
+
 # 2.8.3 / 2019-11-01
 * Now closing the keyboard when navigating to the stream picker
 * Adding better handling of failed messages sent
