@@ -85,9 +85,8 @@ public class MainActivity extends AppCompatActivity implements CirrusListener {
             public void onResponse(Call<Token> call, Response<Token> response) {
                 //Once you have a token and secret, start the instance of the SDK.
                 //There is a pre-flight process in the SDK to fetch the user's profile once it has started and report back to the listener.
-                //Because of this pre-flight, it may be a better experience to start the SDK before the instant you choose to show the Fragment.
+                //Because of this pre-flight, we are not displaying the fragment until we receive a CirrusEvents.SUCCESS event in the listener.
                 CirrusMD.INSTANCE.setSessionToken(response.body().token);
-                displayMessages();
             }
 
             @Override
@@ -125,6 +124,7 @@ public class MainActivity extends AppCompatActivity implements CirrusListener {
         switch (cirrusEvent) {
             case SUCCESS:
                 Timber.d("CirrusMD SDK successful pre-flight");
+                displayMessages();
                 break;
 
             case INVALID_JWT:
