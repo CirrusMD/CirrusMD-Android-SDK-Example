@@ -1,3 +1,10 @@
+# 2.8.7 / 2019-12-26
+* Updated video dependencies
+* Fixed a bug where and empty stream picker was being displayed in failed auth
+* Cleaned up requests/setup when there was no API URL due to failed auth
+* Adding support for alerting patients of high deductible plan billing
+* Fixed a bug with the error screen not being displayed in some situations
+
 # 2.8.4 / 2019-11-13
 * Fixed an issue where in some cases users were unable to send an image
 * Various bug and crash fixes
