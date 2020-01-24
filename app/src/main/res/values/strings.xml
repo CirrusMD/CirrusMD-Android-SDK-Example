@@ -2,5 +2,7 @@
     <string name="app_name">CirrusMD Example</string>
     <string name="title_home">Home</string>
     <string name="title_cirrus">CirrusMD</string>
-    <string name="home_text">Your app\'s home page</string>
+    <string name="initializing">Initializing CirrusMDSDK...</string>
+    <string name="ready">CirrusMDSDK is Ready!</string>
+    <string name="error">Something went wrong when initializing CirrusMDSDK.</string>
 </resources>
