@@ -1,3 +1,30 @@
+# 2.9.2 / 2020-03-05
+* Do not show pre-encounter alert (patient billing alert) if the header and body are empty
+* Fixed an issue that could prevent pre-encounter alerts from showing
+
+# 2.9.1 / 2020-02-21
+* Migrated to New Relic for crash reporting
+* Fixed a crash that could occur when loading new profiles
+
+# 2.9.0 / 2020-02-12
+* Added provider bio
+* Always land on the stream picker (unless linking in from push or external channels)
+* Fixed an error that could occur with admin dismiss actions
+* Fixed a crash when tapping on a progress note
+* Fixed an issue where unread states could be wrong
+* Fixed the behavior of the back button
+* Fixed an issue with unread states
+* Fixed an issue that could prevent users from entering a video session
+* Fixed an issue where the user could end up seeing empty streams
+* Fixed an issue where user would not always land on correct stream when tapping a push notification
+* Added support for video push notifications
+* Fixed an issue where backgrounding the app could cause a crash or an unexpected navigation stack change
+* Fixed issues that could prevent push notifications from showing
+* Fixed an issue that could prevent provider bios from appearing
+* Fixed an issue that could prevent video sessions from starting correctly
+* Fixed an issue that could prevent the queue status details from appearing when tapping the queue status bar
+* Fixed a crash when entering a video chat on a release build
+
 # 2.8.7 / 2019-12-26
 * Updated video dependencies
 * Fixed a bug where and empty stream picker was being displayed in failed auth
@@ -51,8 +78,8 @@
 * Updated styling for encounter state change events
 * Fixed a crash related to entering the app via push notifications
 * Providers in the stream picker will show their title
-* SDK: The SDK will now attempt to set the toolbar title based on the encounter state
-* SDK: Adding unread indicators for streams not currently being viewed
+* The SDK will now attempt to set the toolbar title based on the encounter state
+* Adding unread indicators for streams not currently being viewed
 
 # 2.5.0 / 2018-12-10
 
