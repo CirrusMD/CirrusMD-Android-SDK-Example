@@ -96,23 +96,9 @@ public class MainActivity extends AppCompatActivity implements CirrusListener, V
     }
 
     private void displayMessages() {
-        if (cirrusFragment == null) {
-            //Get the EventStreamFragment from the CirrusMD instance and display it
-            cirrusFragment = CirrusMD.INSTANCE.getFragment();
+        if (CirrusMD.INSTANCE.getIntent() != null) {
+            startActivity(CirrusMD.INSTANCE.getIntent());
         }
-
-        FragmentManager fm = getSupportFragmentManager();
-
-        if (fm.findFragmentByTag("messages") != null) {
-            return;
-        }
-
-        homeText.setVisibility(View.INVISIBLE);
-        button.setVisibility(View.INVISIBLE);
-
-        fm.beginTransaction()
-                .add(R.id.frameLayout, cirrusFragment, "messages")
-                .commit();
     }
 
     private void removeMessages() {
