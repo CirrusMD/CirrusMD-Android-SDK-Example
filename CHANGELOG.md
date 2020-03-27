@@ -1,3 +1,12 @@
+# 3.0.0 / 2020-03-27
+* Refactored the SDK to provide the consumer with an Intent that they can use to start a CirrusMD Activity instead of a Fragment
+* Added a debugFragment() function that provides developers with a fragment that displays some debug information
+* Made the tappable area around the Provider Bio button larger to prevent accidentally tapping the Back to channels of care bar instead
+* Fixed multiple bugs and a crash when switching between portrait and landscape orientations
+* Fixed multiple bugs and crashes that could occur when opening the SDK from a push notification
+* Fixed/improved handling of video push notifications
+* Improved handling of incoming video requests when the SDK's Activity is running
+
 # 2.9.2 / 2020-03-05
 * Do not show pre-encounter alert (patient billing alert) if the header and body are empty
 * Fixed an issue that could prevent pre-encounter alerts from showing
