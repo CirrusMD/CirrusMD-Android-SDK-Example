@@ -60,7 +60,7 @@ class MainActivity : AppCompatActivity(), CirrusListener, View.OnClickListener {
                 .baseUrl(BASE_URL)
                 .build()
         val fetcher = retrofit.create<TokenFetcher>(TokenFetcher::class.java)
-        val request = TokenRequestKt(SDK_ID, PATIENT_ID)
+        val request = TokenRequest(SDK_ID, PATIENT_ID)
         fetcher.getSessionJwt(request)?.enqueue(object : Callback<Token> {
             override fun onResponse(call: Call<Token>, response: Response<Token>) {
                 //Once you have a token and secret, start the instance of the SDK.

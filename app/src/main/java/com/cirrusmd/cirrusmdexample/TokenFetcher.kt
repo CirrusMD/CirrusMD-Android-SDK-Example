@@ -9,8 +9,8 @@ import retrofit2.http.POST
 interface TokenFetcher {
     @Headers("Content-Type: application/json", "Accept: application/json")
     @POST("sandbox/sessions")
-    fun getSessionJwt(@Body request: TokenRequestKt): Call<Token>?
+    fun getSessionJwt(@Body request: TokenRequest): Call<Token>?
 
     @DELETE("sandbox/history")
-    fun deleteUserHistory(@Body request: TokenRequestKt): Call<Void>?
+    fun deleteUserHistory(@Body request: TokenRequest): Call<Void>?
 }
