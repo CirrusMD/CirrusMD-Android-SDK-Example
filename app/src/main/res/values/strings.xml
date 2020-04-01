@@ -5,4 +5,5 @@
     <string name="initializing">Initializing CirrusMDSDK...</string>
     <string name="ready">CirrusMDSDK is Ready!</string>
     <string name="error">Something went wrong when initializing CirrusMDSDK.</string>
+    <string name="start_button_text">Start CirrusMDSDK</string>
 </resources>
