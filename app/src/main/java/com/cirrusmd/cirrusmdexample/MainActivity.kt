@@ -108,10 +108,9 @@ class MainActivity : AppCompatActivity(), CirrusListener, View.OnClickListener {
         when (cirrusEvent) {
             CirrusEvents.SUCCESS -> {
                 // Note: onEvent can be called multiple times during the execution of the SDK.
-                // It is best to just show/hide or enable/disable the button that presents the CirrusMDSDK fragment.
-                // If you are going to display the fragment based on this result be sure to check
-                // that it is not already shown (this will cause the "Fragment already added" crash).
-                // You will see this check in the displayMessages function.
+                // It is best to just show/hide or enable/disable the button that presents the CirrusMDSDK Activity.
+                // If you are going to display the Activity based on this result be sure to check
+                // that it is not already shown.
                 Timber.d("CirrusMD SDK successful pre-flight")
                 homeText?.text = getString(R.string.ready)
                 button?.isEnabled = true
