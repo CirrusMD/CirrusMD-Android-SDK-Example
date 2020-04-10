@@ -249,6 +249,10 @@ class ExampleFcmListenerService : FirebaseMessagingService() {
 }
 ```
 
+### Debugging
+
+By default, debug logging is turned OFF, but can be turned ON. When debug logging is turned ON, the SDK will print extensive logging around network requests, network responses, state changes, and other useful information to Logcat. To turn debug logging ON, set `CirrusMD.enableDebugLogging = true`, before calling any other functions on the SDK.
+
 ### External Channels
 
 The host application has the ability to fetch and navigate to the list of channels available to the currently authenticated user.
