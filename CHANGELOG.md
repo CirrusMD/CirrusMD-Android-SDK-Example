@@ -1,3 +1,9 @@
+# 3.1.0 / 2020-04-10
+* SDK: Refactored the SDK to provide optional debug logging, which can be enabled by setting 'CirrusMD.enableDebugLogging = true', before calling the CirrusMD.start() function. When set to 'true' the SDK will print extensive logging to Logcat for debugging purposes. By default, debug logging is NOT enabled.
+* SDK: Fixed crash when attempting to display an error message in channel that would cause an "IllegalStateException: Child already has parent".
+* SDK: Fixed Crash when tapping back button from messages view, caused by an "IllegalStateException: Can not perform this action after onSaveInstanceState"
+* Added support for messages with the CANCEL meta data action
+
 # 3.0.0 / 2020-03-27
 * Refactored the SDK to provide the consumer with an Intent that they can use to start a CirrusMD Activity instead of a Fragment
 * Added a debugFragment() function that provides developers with a fragment that displays some debug information

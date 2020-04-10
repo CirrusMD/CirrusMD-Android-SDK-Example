@@ -10,6 +10,7 @@ import androidx.fragment.app.Fragment
 import com.cirrusmd.androidsdk.CirrusEvents
 import com.cirrusmd.androidsdk.CirrusListener
 import com.cirrusmd.androidsdk.CirrusMD
+import com.cirrusmd.androidsdk.CirrusMD.enableDebugLogging
 import com.cirrusmd.androidsdk.CirrusMD.listener
 import com.cirrusmd.androidsdk.CirrusMD.setSessionToken
 import com.cirrusmd.androidsdk.CirrusMD.start
@@ -41,16 +42,24 @@ class MainActivity : AppCompatActivity(), CirrusListener, View.OnClickListener {
 
         frame = findViewById(R.id.frameLayout)
 
-        //This start() call would probably be better placed in the app's implementation of Application.
-        //For the example we placed it here for ease of access/readability.
-        start(this, SECRET)
-        listener = this
+        // This setup sequence would probably be better placed in the app's implementation of Application.
+        // For the example we call it here for ease of access/readability.
+        setupCirrus()
+
         homeTapped()
         fetchTokenForCirrusMDSDK()
     }
 
     override fun onClick(v: View) {
         displayMessages()
+    }
+
+    private fun setupCirrus() {
+        // For debug logging to be enabled correctly, set CirrusMD.enableDebugLogging = true,
+        // before calling CirrusMd.start()
+        enableDebugLogging = true
+        start(this, SECRET)
+        listener = this
     }
 
     private fun fetchTokenForCirrusMDSDK() {
