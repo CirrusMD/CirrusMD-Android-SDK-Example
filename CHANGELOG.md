@@ -1,3 +1,7 @@
+# 3.1.1 / 2020-04-23
+* SDK: Empty message toasts are now displayed for 10 seconds for ADA compliance.
+* SDK: Fixed issue where provider initials persists in care channel stream after provider releases, dismisses, or completes patient encounter.
+
 # 3.1.0 / 2020-04-10
 * SDK: Refactored the SDK to provide optional debug logging, which can be enabled by setting 'CirrusMD.enableDebugLogging = true', before calling the CirrusMD.start() function. When set to 'true' the SDK will print extensive logging to Logcat for debugging purposes. By default, debug logging is NOT enabled.
 * SDK: Fixed crash when attempting to display an error message in channel that would cause an "IllegalStateException: Child already has parent".
