@@ -1,3 +1,6 @@
+# 3.2.1 / 2020-06-25
+* Fixed an ID casting issue.
+
 # 3.1.1 / 2020-04-23
 * SDK: Empty message toasts are now displayed for 10 seconds for ADA compliance.
 * SDK: Fixed issue where provider initials persists in care channel stream after provider releases, dismisses, or completes patient encounter.
