@@ -126,7 +126,7 @@ Currently the only drawable intended to be overridden is `ic_welcome.xml` which 
 
 Ideally, your patients always see a working messages view when you start the Activity from `CirrusMD.intent`. However, there are certain times when we're unable to show messages.
 
-The first is when you have explicitly called `logout()`. In that case they will not see the _logged out view_ because they will be logged out of your application as well. You should log them back into the SDK when they next log back into your application.
+The first is when `CirrusMD.logout()` has been called. In that case they will not see the _logged out view_ because they will be logged out of your application as well. You should log them back into the SDK when they next log back into your application.
 
 The second is when the SDK is unable to verify the secret, the token or there is another issue (ie network) starting the SDK. In either case, an _error view_  is shown. We recommend you handle all errors through `CirrusListener` prior to starting the Activity from `CirrusMD.intent` if possible. Doing so will provide a better experience for your user. Some errors may happen after the Activity is already on screen. In that case, _error view_ is displayed.
 
