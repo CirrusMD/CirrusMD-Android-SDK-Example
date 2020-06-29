@@ -83,7 +83,7 @@ implementation('com.github.CirrusMD:cirrusmd-android:CURRENT-VERSION') {
 
 ### Logout
 
-`CirrusMD.logout()` should be called to log the user out of the SDK when they sign out of your application. Logging the user out destroys the associated CirrusMD server session, unregisters the device from CirrusMD delivered push notifications if previously registered, and also disconnects any connected web sockets.
+`CirrusMD.logout()` should be called to log the user out of the SDK when they sign out of your application. Logging the user out destroys the associated CirrusMD server session, unregisters the device from CirrusMD delivered push notifications if previously registered, and also closes any connected web sockets.
 
 ### Event/Error Handling
 
