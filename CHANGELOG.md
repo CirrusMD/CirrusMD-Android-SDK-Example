@@ -1,3 +1,9 @@
+# 3.2.2 / 2020-07-27
+* Updated the pinned SSL certificates.
+
+--- 
+# DEPRECATED: All builds below this line are deprecated and will not work starting on 8/20/2020
+
 # 3.2.1 / 2020-06-25
 * Fixed an ID casting issue.
 
