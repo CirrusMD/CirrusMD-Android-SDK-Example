@@ -1,7 +1,10 @@
 # 3.2.2 / 2020-07-27
 * Updated the pinned SSL certificates. Based off of 3.2.1.
 
-# 3.1.2 / 2020-07-27
+# 3.1.3 / 2020-08-19
+* Additional updates to the pinned SSL certificates. Based off of 3.1.2.
+
+# 3.1.2 / 2020-07-27 - DEPRECATED -
 * Updated the pinned SSL certificates. Based off of 3.1.1.
 
 --- 
