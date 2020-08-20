@@ -1,4 +1,4 @@
-# 3.2.3 / 2020-07-27
+# 3.2.3 / 2020-08-20
 * Additional updates to the pinned SSL certificates. Based off of 3.2.2.
 
 # 3.1.3 / 2020-08-19
