@@ -1,17 +1,20 @@
-# 3.2.2 / 2020-07-27
-* Updated the pinned SSL certificates. Based off of 3.2.1.
+# 3.2.3 / 2020-07-27
+* Additional updates to the pinned SSL certificates. Based off of 3.2.2.
 
 # 3.1.3 / 2020-08-19
 * Additional updates to the pinned SSL certificates. Based off of 3.1.2.
 
-# 3.1.2 / 2020-07-27 - DEPRECATED -
-* Updated the pinned SSL certificates. Based off of 3.1.1.
-
 --- 
 # DEPRECATED: All builds below this line are deprecated and will not work starting on 8/20/2020
 
+# 3.2.2 / 2020-07-27
+* Updated the pinned SSL certificates. Based off of 3.2.1.
+
 # 3.2.1 / 2020-06-25
 * Fixed an ID casting issue.
+
+# 3.1.2 / 2020-07-27
+* Updated the pinned SSL certificates. Based off of 3.1.1.
 
 # 3.1.1 / 2020-04-23
 * SDK: Empty message toasts are now displayed for 10 seconds for ADA compliance.
