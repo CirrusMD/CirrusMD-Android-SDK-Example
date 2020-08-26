@@ -1,3 +1,7 @@
+# 3.1.4 / 2020-08-25
+* Added new USER_INTERACTION event to CirrusEvents to give host app insight on when the user is interacting with the CirrusMD SDK.
+* Added new MISSING_JWT and MISSING_SECRET events to CirrusEvents, in order to gracefully handle the case where the secret or JWT gets cleared out while the CirrusMD SDK is actively making requests.
+
 # 3.2.3 / 2020-08-20
 * Additional updates to the pinned SSL certificates. Based off of 3.2.2.
 

@@ -88,13 +88,16 @@ implementation('com.github.CirrusMD:cirrusmd-android:CURRENT-VERSION') {
 ### Event/Error Handling
 
 Through the `CirrusMD.CirrusListener.onEvent` interface method, you can receive one of the following events:
-- `INVALID JWT` : An improperly formatted JWT was provided.
-- `INVALID SECRET` : An improperly formatted secret token was provided.
+- `INVALID_JWT` : An improperly formatted JWT was provided.
+- `INVALID_SECRET` : An improperly formatted secret token was provided.
+- `MISSING_JWT` : A null or empty JWT token was provided.
+- `MISSING_SECRET` : A null or empty secret token was provided.
 - `AUTHENTICATION_ERROR` : There was an authentication failure on a network request.
 - `CONNECTION_ERROR` : There was an HTTP exception not otherwise specified.
-- `LOGGED OUT` : The current user session was logged out.
-- `SUCCESS` : The SDK was provided a valid JWT and secret token and was able to make a request. It is ideal to wait for this event before using `CirrusMD.intent` to start the Activity.
+- `LOGGED_OUT` : The current user session was logged out.
 - `UNKNOWN_ERROR` : This is the generic catch for errors that could not be identified.
+- `USER_INTERACTION` : The current user is interacting with the CirrusMD SDK.
+- `SUCCESS` : The SDK was provided a valid JWT and secret token and was able to make a request. It is ideal to wait for this event before using `CirrusMD.intent` to start the Activity.
 
 ### Custom Colors/Drawables
 
@@ -155,6 +158,7 @@ Example implementation using `FirebaseInstanceId`:
 override fun onEvent(error: CirrusEvents) {
     when (error) {
         CirrusEvents.SUCCESS -> fetchPushToken()
+        CirrusEvents.USER_INTERACTION -> onUserInteraction()
         CirrusEvents.INVALID_SECRET -> onInvalidSecret()
         CirrusEvents.INVALID_JWT -> onInvalidJWT()
         else -> onUnknownError()

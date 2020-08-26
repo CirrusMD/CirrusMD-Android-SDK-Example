@@ -127,8 +127,11 @@ class MainActivity : AppCompatActivity(), CirrusListener, View.OnClickListener {
             CirrusEvents.LOGGED_OUT -> onEventError("CirrusMD SDK user was logged out.")
             CirrusEvents.INVALID_JWT -> onEventError("CirrusMD SDK invalid JWT supplied")
             CirrusEvents.INVALID_SECRET -> onEventError("CirrusMD SDK invalid secret supplied")
+            CirrusEvents.MISSING_JWT -> onEventError("CirrusMD SDK missing jwt")
+            CirrusEvents.MISSING_SECRET -> onEventError("CirrusMD SDK missing secret")
             CirrusEvents.CONNECTION_ERROR -> onEventError("CirrusMD SDK connection error")
             CirrusEvents.AUTHENTICATION_ERROR -> onEventError("CirrusMD SDK auth error")
+            CirrusEvents.USER_INTERACTION -> Timber.d("CirrusMD SDK user interaction")
             CirrusEvents.UNKNOWN_ERROR -> onEventError("CirrusMD SDK generic error") //This error would include cases like network errors
         }
     }
