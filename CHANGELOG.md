@@ -1,3 +1,6 @@
+# 3.1.4 / 2020-08-25
+* New USER_INTERACTION, MISSING_JWT and MISSING_SECRET CirrusEvents added to MainActivity. Based off of 3.1.3.
+
 # 3.2.3 / 2020-08-20
 * Additional updates to the pinned SSL certificates. Based off of 3.2.2.
 
