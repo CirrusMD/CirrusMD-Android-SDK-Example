@@ -108,6 +108,7 @@ The following colors are used in the SDK, but can be overridden.
     <color name="cirrus_primary_dark">#0E5985</color>
     <color name="cirrus_secondary">#06CCBE</color>
     <color name="cirrus_tertiary">#39FEEE</color>
+    <color name="back_button">#FFFFFF</color>
 
     // These are used for the queue status bar/details screens
     <color name="cirrus_off_hours">#4a4a4a</color>
@@ -141,11 +142,7 @@ By default they will look similar to the screens below:
 
 The default logged out screen is shown after you call `CirrusMD.logout()`.
 
-![logout](https://user-images.githubusercontent.com/11066298/34179364-c60bbd9e-e4c7-11e7-85e5-7f92d5bd85ae.png)
-
 The error screen can be shown for several reasons, such as providing an expired token or invalid secret.
-
-![error](https://user-images.githubusercontent.com/11066298/34179280-873a7dda-e4c7-11e7-81df-26249aa75166.png)
 
 Providing custom views of both the _logged out view_ and _error view_ happens via the currently set `CirrusMD.CirrusListener`.
 
@@ -155,13 +152,12 @@ If you would like for your app to recieve push notifications for the SDK you wil
 
 Example implementation using `FirebaseInstanceId`:
 ```
-override fun onEvent(error: CirrusEvents) {
-    when (error) {
+override fun onEvent(event: CirrusEvents) {
+    when (event) {
         CirrusEvents.SUCCESS -> fetchPushToken()
         CirrusEvents.USER_INTERACTION -> onUserInteraction()
-        CirrusEvents.INVALID_SECRET -> onInvalidSecret()
-        CirrusEvents.INVALID_JWT -> onInvalidJWT()
-        else -> onUnknownError()
+        CirrusEvents.LOGGED_OUT -> onLoggedOut()
+        else -> onError()
     }
 }
 
@@ -255,7 +251,56 @@ class ExampleFcmListenerService : FirebaseMessagingService() {
 
 ### Debugging
 
-By default, debug logging is turned OFF, but can be turned ON. When debug logging is turned ON, the SDK will print extensive logging around network requests, network responses, state changes, and other useful information to Logcat. To turn debug logging ON, set `CirrusMD.enableDebugLogging = true`, before calling any other functions on the SDK.
+By default, debug logging is turned OFF, but can be turned ON. When debug logging is turned ON, the SDK will print extensive logging around network requests, network responses, state changes, and other useful information to Logcat. The availability of Debug Logging is controlled by the `CirrusMD` Object.
+
+NOTE: Debug Logging defaults to be disabled. To turn Debug Logging ON, set `CirrusMD.enableDebugLogging = true`, before calling any other functions on the SDK.
+
+```
+    CirrusMD.enableDebugLogging = true
+    ...
+    CirrusMD.start(...)
+```
+
+### Enable Settings View
+
+There is an optional Settings view that you can allow your users to have access to. The Settings view, when enabled, is accessed via a 'gear' button in the SDK's toolbar. This Settings view allows the user to view and edit their profile, medical history, dependents, permissions, and Terms of Use / Privacy Policy. The Settings view also allows the user to manually log out of the CirrusMDSDK. The availability of the Settings view is controlled by the `CirrusMD` Object.
+
+NOTE: The Settings view defaults to be disabled. To turn the Settings view ON, set `CirrusMD.enableSettings = true`, before calling any other functions on the SDK.
+
+```
+    CirrusMD.enableSettings = true
+    ...
+    CirrusMD.start(...)
+```
+
+### Enable Dependents View
+
+The CirrusMDSDK can support a user having dependents that can chat under their guarantor's account. When dependents support is enabled and a user has dependents, they will see a 'silhouette/dependents' button, in the SDK's toolbar, that allows them to switch to chatting as that dependent. Support for dependents is controlled by the `CirrusMD` Object
+
+NOTE: The Dependent Profiles view defaults to be disabled. To turn the Dependent Profiles view ON, set `CirrusMD.enableDependentProfiles = true`, before calling any other functions on the SDK.
+
+```
+    CirrusMD.enableDependentProfiles = true
+    ...
+    CirrusMD.start(...)
+```
+
+### Credential ID
+
+We have introduced a new listener to the SDK, `CredentialIdListener`, which will be triggered once the patient's credential ID has been retrieved.
+
+NOTE: Create your own CredentialIdListener before calling any other functions on the SDK.
+
+```
+    CirrusMD.credentialIdListener = object : CredentialIdListener {
+        override fun onCredentialIdReady(id: String) {
+            ...
+        }
+    }
+    ...
+    CirrusMD.start(...)
+```
+
 
 ### External Channels
 
