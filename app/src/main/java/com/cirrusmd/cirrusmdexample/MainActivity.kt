@@ -10,10 +10,14 @@ import androidx.fragment.app.Fragment
 import com.cirrusmd.androidsdk.CirrusEvents
 import com.cirrusmd.androidsdk.CirrusListener
 import com.cirrusmd.androidsdk.CirrusMD
+import com.cirrusmd.androidsdk.CirrusMD.credentialIdListener
 import com.cirrusmd.androidsdk.CirrusMD.enableDebugLogging
+import com.cirrusmd.androidsdk.CirrusMD.enableDependentProfiles
+import com.cirrusmd.androidsdk.CirrusMD.enableSettings
 import com.cirrusmd.androidsdk.CirrusMD.listener
 import com.cirrusmd.androidsdk.CirrusMD.setSessionToken
 import com.cirrusmd.androidsdk.CirrusMD.start
+import com.cirrusmd.androidsdk.CredentialIdListener
 import com.google.gson.GsonBuilder
 import retrofit2.Call
 import retrofit2.Callback
@@ -58,6 +62,19 @@ class MainActivity : AppCompatActivity(), CirrusListener, View.OnClickListener {
         // For debug logging to be enabled correctly, set CirrusMD.enableDebugLogging = true,
         // before calling CirrusMd.start()
         enableDebugLogging = true
+
+        // Settings view allows the user to view and edit their profile, medical history, dependents, permissions, and Terms of Use / Privacy Policy.
+        enableSettings = true
+
+        // Demo Patient does not currently have any dependents
+        // enableDependentProfiles = true
+
+        // Obtain Credential Id
+        credentialIdListener = object : CredentialIdListener {
+            override fun onCredentialIdReady(id: String) {
+                Timber.d("Credential ID: $id")
+            }
+        }
         start(this, SECRET)
         listener = this
     }
@@ -113,8 +130,8 @@ class MainActivity : AppCompatActivity(), CirrusListener, View.OnClickListener {
     /**
      *   This is where the CirrusMD SDK will report status events.
      */
-    override fun onEvent(cirrusEvent: CirrusEvents) {
-        when (cirrusEvent) {
+    override fun onEvent(event: CirrusEvents) {
+        when (event) {
             CirrusEvents.SUCCESS -> {
                 // Note: onEvent can be called multiple times during the execution of the SDK.
                 // It is best to just show/hide or enable/disable the button that presents the CirrusMDSDK Activity.
@@ -136,7 +153,7 @@ class MainActivity : AppCompatActivity(), CirrusListener, View.OnClickListener {
         }
     }
 
-    override fun viewForError(error: CirrusEvents): View? {
+    override fun viewForError(event: CirrusEvents): View? {
         //If you would like to display branded error/logout messages, this is where the CirrusMD SDK will look.
         //Returning null will result in the default views being displayed.
         return null

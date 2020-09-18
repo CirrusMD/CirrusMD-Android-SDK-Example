@@ -1,3 +1,23 @@
+# 4.0.0 / 09/18/2020
+### New Features:
+- Added settings view to SDK, which can be enabled by the client and the ability to switch to and from dependent accounts associated with the user's account.
+- Created a callback in ```CirrusMD``` to dispatch a patient's credential ID
+- Added ability to change back button color across the SDK. Please check the documentation as a reference.
+- Chat/Encounter toolbar will now show plan name, and then the provider's name will take it's place when the patient is assigned.
+- Added inactive stream message to indicate that the patient no longer has access to the health plan/stream
+
+### Bug Fixes:
+- Fixed red dot appearing in toolbar for user profiles without any dependents.
+- CirrusMD.shouldShowNotification() should now return false if either of the NotificationMetaData fields are empty, because the SDK won't be able to show the notification in this case.
+- Push notification registration errors should now fail silently.
+- Fixed bug where Patients get switched to another channel of care
+- Fixed pre-encounter alert issue where it would show up multiple times in a row.
+
+### Other Updates:
+- Updated ```targetSdk``` and ```compileVersion``` to API ```29```
+- Updated ```minSdk``` to API ```24```
+
+
 # 3.1.4 / 2020-08-25
 * New USER_INTERACTION, MISSING_JWT and MISSING_SECRET CirrusEvents added to MainActivity. Based off of 3.1.3.
 
