@@ -18,6 +18,9 @@
 - Updated ```minSdk``` to API ```24```
 
 
+# 3.2.4 / 2020-08-26
+* New USER_INTERACTION, MISSING_JWT and MISSING_SECRET CirrusEvents added to MainActivity. Based off of 3.2.3.
+
 # 3.1.4 / 2020-08-25
 * New USER_INTERACTION, MISSING_JWT and MISSING_SECRET CirrusEvents added to MainActivity. Based off of 3.1.3.
 
