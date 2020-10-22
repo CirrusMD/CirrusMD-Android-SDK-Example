@@ -1,7 +1,7 @@
-# 4.0.1 / 10/22/2020
+# 4.0.1 / 10/22/2020 / minSdk = 21
 * Changed CirrusMDSDK's minSdk to 21
 
-# 4.0.0 / 09/18/2020
+# 4.0.0 / 09/18/2020 / minSdk = 24
 ### New Features:
 - Added settings view to SDK, which can be enabled by the client and the ability to switch to and from dependent accounts associated with the user's account.
 - Created a callback in ```CirrusMD``` to dispatch a patient's credential ID
@@ -21,16 +21,16 @@
 - Updated ```minSdk``` to API ```24```
 
 
-# 3.2.4 / 2020-08-26
+# 3.2.4 / 2020-08-26 / minSdk = 21
 * New USER_INTERACTION, MISSING_JWT and MISSING_SECRET CirrusEvents added to MainActivity. Based off of 3.2.3.
 
-# 3.1.4 / 2020-08-25
+# 3.1.4 / 2020-08-25 / minSdk = 21
 * New USER_INTERACTION, MISSING_JWT and MISSING_SECRET CirrusEvents added to MainActivity. Based off of 3.1.3.
 
-# 3.2.3 / 2020-08-20
+# 3.2.3 / 2020-08-20 / minSdk = 21
 * Additional updates to the pinned SSL certificates. Based off of 3.2.2.
 
-# 3.1.3 / 2020-08-19
+# 3.1.3 / 2020-08-19 / minSdk = 21
 * Additional updates to the pinned SSL certificates. Based off of 3.1.2.
 
 --- 
