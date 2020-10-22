@@ -1,3 +1,6 @@
+# 4.0.1 / 10/22/2020
+* Changed CirrusMDSDK's minSdk to 21
+
 # 4.0.0 / 09/18/2020
 ### New Features:
 - Added settings view to SDK, which can be enabled by the client and the ability to switch to and from dependent accounts associated with the user's account.
