@@ -15,12 +15,12 @@ repositories {
 }
 
 android {
-    compileSdkVersion 30
+    compileSdkVersion 29
     buildToolsVersion '28.0.3'
     defaultConfig {
         applicationId "com.cirrusmd.cirrusmdexample"
-        minSdkVersion 21
-        targetSdkVersion 30
+        minSdkVersion 24
+        targetSdkVersion 29
         versionCode 1
         versionName "1.0"
         multiDexEnabled true
@@ -67,7 +67,7 @@ dependencies {
     implementation 'com.squareup.retrofit2:retrofit:2.6.0'
     implementation 'com.squareup.retrofit2:converter-gson:2.6.0'
     implementation 'com.google.code.gson:gson:2.8.5'
-    implementation('com.github.CirrusMD:cirrusmd-android:4.0.1') {
+    implementation('com.github.CirrusMD:cirrusmd-android:5.0.0') {
 //        Only exclude this dependency if you're sure your plan does not use video. Check with your account manager if you have questions.
 //        exclude group: 'com.opentok.android', module: 'opentok-android-sdk'
     }
