@@ -1,3 +1,32 @@
+# 5.0.0 / 11/13/2020 / minSdk = 24
+### SDK Features
+* Add a new queue status to inform patients when there is a queue in a stream and how many patients are in that queue before they send a message
+* Implemented a new queue status UI where the all of the information is presented directly in the stream view
+* Implemented a new UI to inform the patient when the stream is in off-hours
+* Added an "Exit Queue" button to the queue status UI that allows the patient to leave the queue
+* Removed getProfile() calls upon encounterUpdated web socket events. Instead, we should now be calling getStream() and getEncounter().
+* Updated after-hours UI, so that we can show a new header and subtitle when a plan is in an after-hours state.
+* Added newly supported "benefits:updated" and "plan:started" web socket events, which should trigger a stream refresh
+* Added the enableUserLogOut property to CirrusMD Object, which controls whether the "Sign Out" option exists inside of the SDK, which allows the user to manually sign out of the CirrusMDSDK.
+For example, the Sign Out option can exist in the Settings view or in 401 error alerts. The enableUserLogOut property defaults to false.
+* Added the enableDebugFragmentInSettings property to CirrusMD Object, which controls whether the "Debug" option exists inside of the SDK, which allows the developer to see debug information while on the SDK.
+* Added the userAgentPrefix property to CirrusMD object, which allows the addition of a custom prefix to the User Agent used with network requests. This defaults to an empty string, which means there will be no custom prefix on the User Agent.
+* Improved/standardized the User Agent sent by the SDK
+* Removed "is Typing..." UI from the StreamPickerFragment
+* Added "pencil" icon, which indicates that a field is editable, in the Profile, Family, and Medical settings.
+* Added "edit" textview to profile image view in the profile settings, to indicate that the image is configurable.
+* Removed `dontobfuscate` proguard rule, so that SDK consumers can obfuscate their apps
+
+### SDK BUG FIXES:
+* Fixed issue where Timber logs could print twice if the SDK consumer has planted a Timber debug tree instance, before initializing the SDK
+* Added support contact info to settings
+* Fixed issue where SDK tries to unregister push devices even though they weren't registered to begin with.
+* Fixed issue where jwt can get cleared before unregistering push device, on logout.
+* Fixed issue where patient names could be misconfigured in the chat, if the the user navigated to it from a push notification.
+* Fixed issue where unhandled HTTP exceptions potentially crash the SDK. Instead, any previously unhandled HTTP errors fire a CirrusEvent.UNKNOWN_ERROR event
+* Fixed issue where NetworkStateObserver would produce a Network.Connect event, causing the red dotter to falsely show a red dot on a stream that has been acknowledged/read.
+* Fixed issue for Android 11 users, where capturing an image and sending it to a provider, via chat, would NOT work.
+
 # 4.0.1 / 10/22/2020 / minSdk = 21
 * Changed CirrusMDSDK's minSdk to 21
 

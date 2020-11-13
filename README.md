@@ -249,7 +249,7 @@ class ExampleFcmListenerService : FirebaseMessagingService() {
 }
 ```
 
-### Debugging
+### Debug Logging
 
 By default, debug logging is turned OFF, but can be turned ON. When debug logging is turned ON, the SDK will print extensive logging around network requests, network responses, state changes, and other useful information to Logcat. The availability of Debug Logging is controlled by the `CirrusMD` Object.
 
@@ -273,6 +273,19 @@ NOTE: The Settings view defaults to be disabled. To turn the Settings view ON, s
     CirrusMD.start(...)
 ```
 
+### Enable Debug Fragment in Settings
+
+There is an optional Debug view that you can use for *development ONLY, and you must have the Settings view enabled*. This view, when enabled, is accessed via the 'gear' button in the SDK's toolbar, and then it will appear as an option in the list of settings. This view allows developers to view debug infomation, that might be helpful during development. The availability of the Debug view is controlled by the `CirrusMD` Object.
+
+NOTE: You must have the Settings view enabled and then also enable the debug fragment view. To turn the Debug view ON, set `CirrusMD.enableSettings = true` *AND* `CirrusMD.enableDebugFragmentInSettings = true`, before calling any other functions on the SDK.
+
+```
+    CirrusMD.enableSettings = true
+    CirrusMD.enableDebugFragmentInSettings = true
+    ...
+    CirrusMD.start(...)
+```
+
 ### Enable Dependents View
 
 The CirrusMDSDK can support a user having dependents that can chat under their guarantor's account. When dependents support is enabled and a user has dependents, they will see a 'silhouette/dependents' button, in the SDK's toolbar, that allows them to switch to chatting as that dependent. Support for dependents is controlled by the `CirrusMD` Object
@@ -281,6 +294,33 @@ NOTE: The Dependent Profiles view defaults to be disabled. To turn the Dependent
 
 ```
     CirrusMD.enableDependentProfiles = true
+    ...
+    CirrusMD.start(...)
+```
+
+### Enable User Sign Out
+
+The CirrusMDSDK can support a user signing out of the SDK *If you have the Settings view enabled*. When User Sign Out is enabled, they will see a sign out option, in the SDK's settings, that allows them leave the SDK, and there by, removing a user's push notification token and session token. Support for User Sign Out is controlled by the `CirrusMD` Object
+
+IMPORTANT NOTE: If you allow your user to sign out of the SDK, you must re-initialize the SDK before attempting to give the user access to it!
+
+OTHER NOTES: The User Sign Out feature defaults to disabled. To turn this feature ON, set `CirrusMD.enableSettings = true` *AND* `CirrusMD.enableUserLogOut = true`, before calling any other functions on the SDK.
+
+```
+    CirrusMD.enableSettings = true
+    CirrusMD.enableUserLogOut = true
+    ...
+    CirrusMD.start(...)
+```
+
+### Set the User Agent Prefix String
+
+The CirrusMDSDK allows the addition of a prefix to the User Agent that is sent on network requests.
+
+NOTE: The User Agent Prefix defaults to an empty String. To set your own User Agent Prefix, set `CirrusMD.userAgentPrefix = "YOUR_CUSTOM_PREFIX"`, before calling any other functions on the SDK.
+
+```
+    CirrusMD.userAgentPrefix = true
     ...
     CirrusMD.start(...)
 ```

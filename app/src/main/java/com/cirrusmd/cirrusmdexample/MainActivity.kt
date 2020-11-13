@@ -12,7 +12,6 @@ import com.cirrusmd.androidsdk.CirrusListener
 import com.cirrusmd.androidsdk.CirrusMD
 import com.cirrusmd.androidsdk.CirrusMD.credentialIdListener
 import com.cirrusmd.androidsdk.CirrusMD.enableDebugLogging
-import com.cirrusmd.androidsdk.CirrusMD.enableDependentProfiles
 import com.cirrusmd.androidsdk.CirrusMD.enableSettings
 import com.cirrusmd.androidsdk.CirrusMD.listener
 import com.cirrusmd.androidsdk.CirrusMD.setSessionToken
