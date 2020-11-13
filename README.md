@@ -320,7 +320,7 @@ The CirrusMDSDK allows the addition of a prefix to the User Agent that is sent o
 NOTE: The User Agent Prefix defaults to an empty String. To set your own User Agent Prefix, set `CirrusMD.userAgentPrefix = "YOUR_CUSTOM_PREFIX"`, before calling any other functions on the SDK.
 
 ```
-    CirrusMD.userAgentPrefix = true
+    CirrusMD.userAgentPrefix = "YOUR_CUSTOM_PREFIX"
     ...
     CirrusMD.start(...)
 ```
