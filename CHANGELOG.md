@@ -1,3 +1,7 @@
+# 5.0.1 / 11/20/2020 / minSdk = 24
+### SDK Bug Fixes:
+Fixed issue where the patient avatar, in the chat, shows a null string and the dependent avatar, when using the CirrusMD.navigateToChannel() SDK function.
+
 # 5.0.0 / 11/13/2020 / minSdk = 24
 ### SDK Features
 * Add a new queue status to inform patients when there is a queue in a stream and how many patients are in that queue before they send a message
