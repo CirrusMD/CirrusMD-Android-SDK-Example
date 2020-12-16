@@ -10,9 +10,15 @@ The CirrusMD SDK it an embeddable SDK. It enables customers of CirrusMD to provi
 - [Basic Usage](#basic-usage)
 - [Advanced Usage](#advanced-usage)
   - [Video/OpenTok](#video)
+  - [Braze] (#braze)
   - [Logout](#logout)
   - [Custom Status Views](#custom-status-views)
   - [Push notifications](#push-notifications)
+  - [Debug Logging](#debug-logging)
+  - [Settings and Features](#enable-settings-view)
+  - [Enable Dependents](#enable-dependents-view)
+  - [User Agent Prefix](#set-the-user-agent-prefix-string)
+  - [Credential ID](#credential-id)
   - [External Channels](#external-channels)
   - [Debug Fragment](#debug-fragment)
 - [License](#license)
@@ -27,11 +33,15 @@ The CirrusMD SDK it an embeddable SDK. It enables customers of CirrusMD to provi
 1. Grab the latest release from Jitpack:
 [![](https://jitpack.io/v/CirrusMD/cirrusmd-android.svg)](https://jitpack.io/#CirrusMD/cirrusmd-android)
 2. Update your gradle config to handle/exclude video: [Video/OpenTok](#video)
+3. Update your gradle config to handle/exclude Braze Push Notifications & In-app Messaging: [Braze](#braze)
 
 **Version 1.0.9+ note**
 For this version and above you will need to include the following lines in your build.gradle file in order for the JWT to parse correctly:
 ```
-    implementation 'com.github.CirrusMD:cirrusmd-android::CURRENT-VERSION'
+    implementation('com.github.CirrusMD:cirrusmd-android::CURRENT-VERSION') {
+    //        Exclude this dependency if you don't wish to enable Braze Push Notifications and In-app messaging. Otherwise See Braze section under the Advanced Usage section to enable correctly
+    //        exclude group: 'com.appboy:android-sdk-ui'
+    }
     runtimeOnly 'io.jsonwebtoken:jjwt-impl:0.10.5'
     runtimeOnly('io.jsonwebtoken:jjwt-orgjson:0.10.5') {
         exclude group: 'org.json', module: 'json' //provided by Android natively
@@ -73,12 +83,101 @@ repositories {
 }
 ```
 
-If your plan does not allow providers to start video chat, you can exclude the dependency entirely:
+If your plan does NOT allow providers to start video chat, you can exclude the dependency entirely:
 IMPORTANT: If a video event is received while this dependency is excluded, the SDK **will crash**.
 ```
 implementation('com.github.CirrusMD:cirrusmd-android:CURRENT-VERSION') {
     exclude group: 'com.opentok.android', module: 'opentok-android-sdk'
 }
+```
+
+### Braze
+
+The CirrusMD platform includes an optional Braze integration for Attribution, additional Push Notification, and In-app messaging features. Because of this, your app must either include the Braze (Appboy) repository OR exclude the library. If you are unsure if your plan allows Braze Push Notifications and In-app Messaging, please contact your CirrusMD account manager.
+
+If your plan allows for Braze Push Notifications and In-app messaging, you must add the Braze (Appboy) repository in your app's `build.gradle` file:
+```
+repositories {
+     maven { url "https://appboy.github.io/appboy-android-sdk/sdk" }
+}
+```
+
+If your plan does NOT allow Braze Push Notifications and In-app messaging, you *MUST exclude* the dependency entirely, in order to avoid build failures:
+```
+implementation('com.github.CirrusMD:cirrusmd-android:CURRENT-VERSION') {
+    exclude group: 'com.appboy:android-sdk-ui'
+}
+```
+
+If you plan on enabling Braze Push Notification handling, you'll have to integrate Firebase to your project: https://firebase.google.com/docs/android/setup
+
+Next, you'll want to add the Firebase Messaging dependencies to your module's build.gradle file:
+
+```
+implementation "com.google.firebase:firebase-core:${FIREBASE_CORE_VERSION}"
+implementation "com.google.firebase:firebase-messaging:${FIREBASE_PUSH_MESSAGING_VERSION}"
+```
+
+In order to handle Braze's Session, you must first register the `CirrusMDBrazeLifecycleCallbackListener` in the `onCreate()` function of your Application class
+
+```
+override fun onCreate() {
+    registerActivityLifecycleCallbacks(
+            CirrusMDBrazeLifecycleCallbackListener(
+                    sessionHandlingEnabled = true, // Toggles Braze Session handling ON or OFF, (used for Push Notifications)
+                    inAppMessagingRegistrationEnabled = true, // Toggles IN-APP Messages ON or OFF
+                    inAppMessagingRegistrationBlocklist = null, // A set of Activities for which in-app message registration will not occur. Each class should be retrieved via Object.getClass()
+                    sessionHandlingBlocklist = null // A set of Activities for which session handling will not occur. Each class should be retrieved via Object.getClass().
+            )
+    )
+}
+```
+
+Then, you'll want to make sure you populate the CirrusMDBrazeConfig via the `CirrusMDBrazeProvider`, and call `CirrusMDBrazeProvider.start()` (before calling `CirrusMD.start()`)
+
+```
+...
+CirrusMDBrazeProvider.cirrusMDBrazeConfig = CirrusMDBrazeConfig(
+        apiKey = "YOUR_API_KEY",
+        urlEndpoint = "YOUR_URL_ENDPOINT",
+        senderId = "YOUR_FIREBASE_SENDER_ID") // Firebase SenderID can be found in your Firebase console
+CirrusMDBrazeProvider.start(context)
+...
+...
+CirrusMD.start(...)
+```
+
+Next, you'll want to make sure that any Braze push messages are handled correctly, in your `FirebaseMessagingService` class.
+You may create a new or use an existing `FirebaseMessagingService`
+
+Example implementation in a `FirebaseMessagingService`:
+
+```
+public class YourFirebaseMessagingService extends FirebaseMessagingService {
+  @Override
+  public void onMessageReceived(RemoteMessage remoteMessage) {
+    super.onMessageReceived(remoteMessage);
+    if (CirrusMDBrazeProvider.isBrazePushNotification(remoteMessage)) {
+        // This Remote Message originated from Braze, so go ahead and create and display the push notification
+        CirrusMDBrazeProvider.createBrazePushNotification(context, remoteMessage)
+    } else {
+        // This Remote Message did not originate from Braze.
+        // No action was taken and you can safely pass this Remote Message to other handlers.
+    }
+  }
+}
+```
+
+And finally, you'll want to make sure that you have registered your `FirebaseMessagingService` in your app's AndroidManifest, in order for it to work correctly.
+Skip this step if you are using an existing `FirebaseMessagingService` and have already registered that service.
+
+```
+<service android:name="com.example.YourFirebaseMessagingService"
+  android:exported="false">
+  <intent-filter>
+    <action android:name="com.google.firebase.MESSAGING_EVENT" />
+  </intent-filter>
+</service>
 ```
 
 ### Logout
@@ -286,18 +385,6 @@ NOTE: You must have the Settings view enabled and then also enable the debug fra
     CirrusMD.start(...)
 ```
 
-### Enable Dependents View
-
-The CirrusMDSDK can support a user having dependents that can chat under their guarantor's account. When dependents support is enabled and a user has dependents, they will see a 'silhouette/dependents' button, in the SDK's toolbar, that allows them to switch to chatting as that dependent. Support for dependents is controlled by the `CirrusMD` Object
-
-NOTE: The Dependent Profiles view defaults to be disabled. To turn the Dependent Profiles view ON, set `CirrusMD.enableDependentProfiles = true`, before calling any other functions on the SDK.
-
-```
-    CirrusMD.enableDependentProfiles = true
-    ...
-    CirrusMD.start(...)
-```
-
 ### Enable User Sign Out
 
 The CirrusMDSDK can support a user signing out of the SDK *If you have the Settings view enabled*. When User Sign Out is enabled, they will see a sign out option, in the SDK's settings, that allows them leave the SDK, and there by, removing a user's push notification token and session token. Support for User Sign Out is controlled by the `CirrusMD` Object
@@ -309,6 +396,18 @@ OTHER NOTES: The User Sign Out feature defaults to disabled. To turn this featur
 ```
     CirrusMD.enableSettings = true
     CirrusMD.enableUserLogOut = true
+    ...
+    CirrusMD.start(...)
+```
+
+### Enable Dependents View
+
+The CirrusMDSDK can support a user having dependents that can chat under their guarantor's account. When dependents support is enabled and a user has dependents, they will see a 'silhouette/dependents' button, in the SDK's toolbar, that allows them to switch to chatting as that dependent. Support for dependents is controlled by the `CirrusMD` Object
+
+NOTE: The Dependent Profiles view defaults to be disabled. To turn the Dependent Profiles view ON, set `CirrusMD.enableDependentProfiles = true`, before calling any other functions on the SDK.
+
+```
+    CirrusMD.enableDependentProfiles = true
     ...
     CirrusMD.start(...)
 ```
