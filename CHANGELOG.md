@@ -1,3 +1,14 @@
+# 6.0.0 / 12/15/2020 / minSdk = 24
+### SDK Features:
+* Added Braze push notification and in-app messaging support
+* Added support for virtual assistant messages
+* Added marketing communication setting to SDK Profile Settings
+
+### SDK Bug Fixes:
+* Fixed issue where SDK may produce crash because of an NPE during SDK initialization
+* Fixed issue where Progress Note does not show toolbar
+
+
 # 5.0.1 / 11/20/2020 / minSdk = 24
 ### SDK Bug Fixes:
 Fixed issue where the patient avatar, in the chat, shows a null string and the dependent avatar, when using the CirrusMD.navigateToChannel() SDK function.
