@@ -168,7 +168,8 @@ public class YourFirebaseMessagingService extends FirebaseMessagingService {
 }
 ```
 
-And finally, you'll want to make sure that you have registered your `FirebaseMessagingService` in your app's AndroidManifest, in order for it to work correctly:
+And finally, you'll want to make sure that you have registered your `FirebaseMessagingService` in your app's AndroidManifest, in order for it to work correctly.
+Skip this step if you are using an existing `FirebaseMessagingService` and have already registered that service.
 
 ```
 <service android:name="com.example.YourFirebaseMessagingService"
