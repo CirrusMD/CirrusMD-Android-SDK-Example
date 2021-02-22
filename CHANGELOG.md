@@ -1,3 +1,15 @@
+# 7.0.0 / 02/22/2021 / minSdk = 24
+### SDK Features:
+* Removed toolbar color gradient
+* Dependency updates
+* Build tools updated to 29.0.3
+* Images added to chat can now be seen in fullscreen
+* Added a security feature that allows the SDK to recover from certificate pinning failures
+
+### SDK Bug Fixes:
+* Fixed issue where SDK will crash if opentok dependency is excluded, and the sdk receives a video:now web-socket event
+* Fixed video session issue affecting Android 7.0 devices, where a patient's video feed is not visible to user
+
 # 6.0.0 / 12/15/2020 / minSdk = 24
 ### SDK Features:
 * Added Braze push notification and in-app messaging support
