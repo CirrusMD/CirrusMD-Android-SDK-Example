@@ -10,7 +10,7 @@ The CirrusMD SDK it an embeddable SDK. It enables customers of CirrusMD to provi
 - [Basic Usage](#basic-usage)
 - [Advanced Usage](#advanced-usage)
   - [Video/OpenTok](#video)
-  - [Braze] (#braze)
+  - [Braze](#braze)
   - [Logout](#logout)
   - [Custom Status Views](#custom-status-views)
   - [Push notifications](#push-notifications)
