@@ -1,3 +1,14 @@
+# 8.0.0 / 04/20/2021 / minSdk = 24
+### Features:
+* Added patient satisfaction survey capability, after a user completes an encounter
+* Accessibility updates
+
+### Bug Fixes:
+* Fixed issue where provider bio menu item appears in toolbar when user is already on the provider bio view
+* Fixed issue where multiple dependents receive an unread message indicator, instead of the actual dependent having a conversation
+* Fixed issue where dependent profiles weren't editable
+
+
 # 7.0.0 / 02/22/2021 / minSdk = 24
 ### SDK Features:
 * Removed toolbar color gradient
