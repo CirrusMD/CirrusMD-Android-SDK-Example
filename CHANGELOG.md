@@ -1,3 +1,7 @@
+# 8.0.1 / 04/28/2021 / minSdk = 24
+### SDK Bug Fixes:
+* Removed the Bintray maven repository that was being used to pull the OpenTok dependency and instead pull the OpenTok dependency from mavenCentral()
+
 # 8.0.0 / 04/20/2021 / minSdk = 24
 ### Features:
 * Added patient satisfaction survey capability, after a user completes an encounter
@@ -31,6 +35,9 @@
 * Fixed issue where SDK may produce crash because of an NPE during SDK initialization
 * Fixed issue where Progress Note does not show toolbar
 
+# 5.0.2 / 04/28/2021 / minSdk = 24
+### SDK Bug Fixes:
+* Removed the Bintray maven repository that was being used to pull the OpenTok dependency and instead pull the OpenTok dependency from mavenCentral()
 
 # 5.0.1 / 11/20/2020 / minSdk = 24
 ### SDK Bug Fixes:
