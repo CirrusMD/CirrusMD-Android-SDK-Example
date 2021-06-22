@@ -1,8 +1,6 @@
 # CirrusMD-Android-SDK-Example
 The CirrusMD SDK it an embeddable SDK. It enables customers of CirrusMD to provide the CirrusMD patient chat experience in their own applications. While the example application will work in a sandboxed environment when built, integrating the CirrusMD SDK into your own application will require you to be a CirrusMD customer. Integration requires a unique `secret` and SSO `token` to work correctly, however this example uses sandbox credentials for demo purposes. Please contact your CirrusMD account representative for more information.
 
-![screen](https://user-images.githubusercontent.com/11066298/34179281-874d1940-e4c7-11e7-9588-556de4bc5d62.png)
-
 - [Requirements](#requirements)
 - [Screenshots](https://github.com/CirrusMD/CirrusMD-Android-SDK-Example/wiki/Screenshots)
 - [Installation](#installing-cirrusmdsdk-in-your-own-project)
@@ -10,7 +8,6 @@ The CirrusMD SDK it an embeddable SDK. It enables customers of CirrusMD to provi
 - [Basic Usage](#basic-usage)
 - [Advanced Usage](#advanced-usage)
   - [Video/OpenTok](#video)
-  - [Braze](#braze)
   - [Logout](#logout)
   - [Custom Status Views](#custom-status-views)
   - [Push notifications](#push-notifications)
@@ -89,95 +86,6 @@ IMPORTANT: If a video event is received while this dependency is excluded, the S
 implementation('com.github.CirrusMD:cirrusmd-android:CURRENT-VERSION') {
     exclude group: 'com.opentok.android', module: 'opentok-android-sdk'
 }
-```
-
-### Braze
-
-The CirrusMD platform includes an optional Braze integration for Attribution, additional Push Notification, and In-app messaging features. Because of this, your app must either include the Braze (Appboy) repository OR exclude the library. If you are unsure if your plan allows Braze Push Notifications and In-app Messaging, please contact your CirrusMD account manager.
-
-If your plan allows for Braze Push Notifications and In-app messaging, you must add the Braze (Appboy) repository in your app's `build.gradle` file:
-```
-repositories {
-     maven { url "https://appboy.github.io/appboy-android-sdk/sdk" }
-}
-```
-
-If your plan does NOT allow Braze Push Notifications and In-app messaging, you *MUST exclude* the dependency entirely, in order to avoid build failures:
-```
-implementation('com.github.CirrusMD:cirrusmd-android:CURRENT-VERSION') {
-    exclude group: 'com.appboy:android-sdk-ui'
-}
-```
-
-If you plan on enabling Braze Push Notification handling, you'll have to integrate Firebase to your project: https://firebase.google.com/docs/android/setup
-
-Next, you'll want to add the Firebase Messaging dependencies to your module's build.gradle file:
-
-```
-implementation "com.google.firebase:firebase-core:${FIREBASE_CORE_VERSION}"
-implementation "com.google.firebase:firebase-messaging:${FIREBASE_PUSH_MESSAGING_VERSION}"
-```
-
-In order to handle Braze's Session, you must first register the `CirrusMDBrazeLifecycleCallbackListener` in the `onCreate()` function of your Application class
-
-```
-override fun onCreate() {
-    registerActivityLifecycleCallbacks(
-            CirrusMDBrazeLifecycleCallbackListener(
-                    sessionHandlingEnabled = true, // Toggles Braze Session handling ON or OFF, (used for Push Notifications)
-                    inAppMessagingRegistrationEnabled = true, // Toggles IN-APP Messages ON or OFF
-                    inAppMessagingRegistrationBlocklist = null, // A set of Activities for which in-app message registration will not occur. Each class should be retrieved via Object.getClass()
-                    sessionHandlingBlocklist = null // A set of Activities for which session handling will not occur. Each class should be retrieved via Object.getClass().
-            )
-    )
-}
-```
-
-Then, you'll want to make sure you populate the CirrusMDBrazeConfig via the `CirrusMDBrazeProvider`, and call `CirrusMDBrazeProvider.start()` (before calling `CirrusMD.start()`)
-
-```
-...
-CirrusMDBrazeProvider.cirrusMDBrazeConfig = CirrusMDBrazeConfig(
-        apiKey = "YOUR_API_KEY",
-        urlEndpoint = "YOUR_URL_ENDPOINT",
-        senderId = "YOUR_FIREBASE_SENDER_ID") // Firebase SenderID can be found in your Firebase console
-CirrusMDBrazeProvider.start(context)
-...
-...
-CirrusMD.start(...)
-```
-
-Next, you'll want to make sure that any Braze push messages are handled correctly, in your `FirebaseMessagingService` class.
-You may create a new or use an existing `FirebaseMessagingService`
-
-Example implementation in a `FirebaseMessagingService`:
-
-```
-public class YourFirebaseMessagingService extends FirebaseMessagingService {
-  @Override
-  public void onMessageReceived(RemoteMessage remoteMessage) {
-    super.onMessageReceived(remoteMessage);
-    if (CirrusMDBrazeProvider.isBrazePushNotification(remoteMessage)) {
-        // This Remote Message originated from Braze, so go ahead and create and display the push notification
-        CirrusMDBrazeProvider.createBrazePushNotification(context, remoteMessage)
-    } else {
-        // This Remote Message did not originate from Braze.
-        // No action was taken and you can safely pass this Remote Message to other handlers.
-    }
-  }
-}
-```
-
-And finally, you'll want to make sure that you have registered your `FirebaseMessagingService` in your app's AndroidManifest, in order for it to work correctly.
-Skip this step if you are using an existing `FirebaseMessagingService` and have already registered that service.
-
-```
-<service android:name="com.example.YourFirebaseMessagingService"
-  android:exported="false">
-  <intent-filter>
-    <action android:name="com.google.firebase.MESSAGING_EVENT" />
-  </intent-filter>
-</service>
 ```
 
 ### Logout

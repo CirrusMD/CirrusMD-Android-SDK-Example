@@ -1,3 +1,25 @@
+# 9.0.0 / 06/21/2021 / minSdk = 24
+### SDK Features:
+* Removed the com.appboy:android-sdk-ui (aka Braze) dependency
+* Removed CirrusMDBrazeConfig and CirrusMDBrazeProvider as part of removing the Braze dependency
+* Removed "my family" button from the header bar (in the channels of care view) and added a chevron icon to indicate a new navigation pattern. The new Navigation pattern will show a patient selector view, which is reminiscent of the "my family" dependents view.
+* Changed the SDK's FileProvider authority to a unique path that is less likely to collide with a parent app or other dependencies.
+* Added a 'Add Minor Dependent' button to My Family Settings view, which is enabled/disabled in Manage. This new button navigates the user to a form that allows the user to add a minor dependent.
+* Added Minor Dependent form to allow users to add their minor dependents, using first name, last name, DOB, and zipcode
+
+### SDK Bug Fixes:
+* Added Theme to VideoSessionActivity in AndroidManifest file: See https://github.com/CirrusMD/CirrusMD-Android-SDK-Example/issues/37 for more information
+* Dependent/My Family accessibility improvements
+* Removed the Bintray maven repository that was being used to pull the OpenTok dependency and instead pull the OpenTok dependency from mavenCentral(). This was done because the Bintray repository is being deprecated on May 1st, 2021.
+* Fixed issue where done button may not show up for users with slow connections
+* Fixed issue where survey error alerts may show up on top of each other, when receiving multiple error events.
+
+### Other SDK Changes:
+* Firebase and AndroidX dependency minor version bump
+* Other dependency updates
+* Compiler warning clean up
+
+
 # 8.0.1 / 04/28/2021 / minSdk = 24
 ### SDK Bug Fixes:
 * Removed the Bintray maven repository that was being used to pull the OpenTok dependency and instead pull the OpenTok dependency from mavenCentral()
