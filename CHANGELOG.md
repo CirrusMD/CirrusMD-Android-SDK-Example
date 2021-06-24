@@ -1,3 +1,6 @@
+# 9.0.1 / 06/24/2021 / minSdk = 24
+* Fixed issue where our Joda Time dependency cause an issue with Proguard, for Flutter projects.
+
 # 9.0.0 / 06/21/2021 / minSdk = 24
 ### SDK Features:
 * Removed the com.appboy:android-sdk-ui (aka Braze) dependency
