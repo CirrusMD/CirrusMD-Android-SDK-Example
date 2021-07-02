@@ -35,10 +35,7 @@ The CirrusMD SDK it an embeddable SDK. It enables customers of CirrusMD to provi
 **Version 1.0.9+ note**
 For this version and above you will need to include the following lines in your build.gradle file in order for the JWT to parse correctly:
 ```
-    implementation('com.github.CirrusMD:cirrusmd-android::CURRENT-VERSION') {
-    //        Exclude this dependency if you don't wish to enable Braze Push Notifications and In-app messaging. Otherwise See Braze section under the Advanced Usage section to enable correctly
-    //        exclude group: 'com.appboy:android-sdk-ui'
-    }
+    implementation 'com.github.CirrusMD:cirrusmd-android::CURRENT-VERSION'
     runtimeOnly 'io.jsonwebtoken:jjwt-impl:0.10.5'
     runtimeOnly('io.jsonwebtoken:jjwt-orgjson:0.10.5') {
         exclude group: 'org.json', module: 'json' //provided by Android natively
