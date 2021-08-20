@@ -1,3 +1,25 @@
+# 9.1.0 / 08/18/2021 / minSdk = 24
+### Features:
+* Added support for isSettingsEditable and isPatientSettingsVisible flags from CirrusMD Manage console
+* Added ability to update Primary Care Physician via the Medical Settings view, in Settings.
+* The Avatar, patient name, and the chevron icon (shown on the Channels of care) should now be one clickable unit that will navigate the user to the patient selector view.
+* Android client should now gracefully handle provider-deleted messages in the Event Stream (chat view)
+* Removed better-pickers dependency from CirrusMDSDK.
+* Androidx.Fragments dependency update to 1.3.5
+* Androidx.appcompat dependency update to 1.3.0
+* Firebase core and messaging dependency updated to 19.0.0 and 22.0.0, respectively
+* Moshi version update to 1.12.0
+* Kotlin plugin version bump to 1.5.10
+* Gradle build tools version update to 4.2.0
+* Opentok version update to 2.20.1
+* Kotlin Coroutines version update to 1.5.0
+* Other minor dependency updates
+
+### Bug Fixes:
+* Fixed issue where guarantor's name should be sent over to the web socket, to indicate that the guarantor's dependent is typing during an encounter meant for the dependent. This matches the behavior on iOS and Web.
+
+
+
 # 9.0.1 / 06/24/2021 / minSdk = 24
 * Fixed issue where our Joda Time dependency cause an issue with Proguard, for Flutter projects.
 
