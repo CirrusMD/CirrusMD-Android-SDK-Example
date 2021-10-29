@@ -17,6 +17,7 @@ The CirrusMD SDK it an embeddable SDK. It enables customers of CirrusMD to provi
   - [User Agent Prefix](#set-the-user-agent-prefix-string)
   - [Credential ID](#credential-id)
   - [External Channels](#external-channels)
+  - [Cirrus Actions](#cirrus-actions)
   - [Debug Fragment](#debug-fragment)
 - [License](#license)
 
@@ -359,6 +360,16 @@ When a user selects a channel `CirrusMD.navigateToChannel(id: String)` can be ca
 ### Debug Fragment
 
 You can use `CirrusMD.debugFragment()` to get a Fragment that will display some basic debugging information. For exmaple it can confirm that the session token and/or push token has been correctly set and that the expected user is logged in. This Fragment should NEVER be shown to an end user and is only to be used for development and debugging.
+
+### Cirrus Actions
+
+As of v9.2.0 of the Cirrus SDK, we have introduced `CirrusActions` which our SDK will respond to. For now, the only action available is `CirrusActions.FINISH_ACTIVITY`, which will tell our CirrusActivity to finish itself. In the future, we plan on expanding these actions, so stay tuned.
+
+You can send a `CirrusActions` event using the `CirrusMD` object:
+```
+CirrusMD.sendCirrusAction(CirrusActions.FINISH_ACTIVITY)
+```
+
 
 ### Support Library Versions
 
