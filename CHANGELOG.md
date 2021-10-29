@@ -1,3 +1,13 @@
+# 9.2.0 / 10-29-2021 / minSdk = API 24 (Android 7) / targetSDK: API 30 (Android 11)
+### Features:
+* Added `CirrusActions`, which will allow mobile clients to send actions/events to our SDK to respond to, via `CirrusMD.sendCirrusAction()`. See documentation for more details.
+* Added an "ask location" feature that will allow users to select the state in which they are currently located, in order to get matched up with a provider in the future.
+* SDK version is now displayed in the settings page, when settings are enabled.
+
+### Bug Fixes:
+* Fixed sizing issues with the patient satisfaction survey on smaller screens
+
+
 # 9.1.0 / 08/18/2021 / minSdk = 24
 ### Features:
 * Added support for isSettingsEditable and isPatientSettingsVisible flags from CirrusMD Manage console
