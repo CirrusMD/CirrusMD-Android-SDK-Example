@@ -7,16 +7,13 @@ import android.widget.FrameLayout
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
-import com.cirrusmd.androidsdk.CirrusEvents
-import com.cirrusmd.androidsdk.CirrusListener
-import com.cirrusmd.androidsdk.CirrusMD
+import com.cirrusmd.androidsdk.*
 import com.cirrusmd.androidsdk.CirrusMD.credentialIdListener
 import com.cirrusmd.androidsdk.CirrusMD.enableDebugLogging
 import com.cirrusmd.androidsdk.CirrusMD.enableSettings
 import com.cirrusmd.androidsdk.CirrusMD.listener
 import com.cirrusmd.androidsdk.CirrusMD.setSessionToken
 import com.cirrusmd.androidsdk.CirrusMD.start
-import com.cirrusmd.androidsdk.CredentialIdListener
 import com.google.gson.GsonBuilder
 import retrofit2.Call
 import retrofit2.Callback
@@ -25,10 +22,10 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import timber.log.Timber
 
-class MainActivity : AppCompatActivity(), CirrusListener, View.OnClickListener {
+class MainActivity : AppCompatActivity(), CirrusListener {
 
     private var homeText: TextView? = null
-    private var button: Button? = null
+    private var displayCirrusSDKButton: Button? = null
     private var frame: FrameLayout? = null
     private val cirrusFragment: Fragment? = null
 
@@ -39,9 +36,11 @@ class MainActivity : AppCompatActivity(), CirrusListener, View.OnClickListener {
         homeText = findViewById(R.id.textView)
         homeText?.text = getString(R.string.initializing)
 
-        button = findViewById(R.id.button)
-        button?.isEnabled = false
-        button?.setOnClickListener(this)
+        displayCirrusSDKButton = findViewById(R.id.display_cirrussdk_button)
+        displayCirrusSDKButton?.isEnabled = false
+        displayCirrusSDKButton?.setOnClickListener {
+            displayMessages()
+        }
 
         frame = findViewById(R.id.frameLayout)
 
@@ -51,10 +50,6 @@ class MainActivity : AppCompatActivity(), CirrusListener, View.OnClickListener {
 
         homeTapped()
         fetchTokenForCirrusMDSDK()
-    }
-
-    override fun onClick(v: View) {
-        displayMessages()
     }
 
     private fun setupCirrus() {
@@ -117,13 +112,13 @@ class MainActivity : AppCompatActivity(), CirrusListener, View.OnClickListener {
             supportFragmentManager.beginTransaction().remove(cirrusFragment).commit()
         }
         homeText?.visibility = View.VISIBLE
-        button?.visibility = View.VISIBLE
+        displayCirrusSDKButton?.visibility = View.VISIBLE
     }
 
     private fun onEventError(error: String) {
         Timber.e(error)
         homeText?.text = getString(R.string.error)
-        button?.isEnabled = false
+        displayCirrusSDKButton?.isEnabled = false
     }
 
     /**
@@ -138,7 +133,7 @@ class MainActivity : AppCompatActivity(), CirrusListener, View.OnClickListener {
                 // that it is not already shown.
                 Timber.d("CirrusMD SDK successful pre-flight")
                 homeText?.text = getString(R.string.ready)
-                button?.isEnabled = true
+                displayCirrusSDKButton?.isEnabled = true
             }
             CirrusEvents.LOGGED_OUT -> onEventError("CirrusMD SDK user was logged out.")
             CirrusEvents.INVALID_JWT -> onEventError("CirrusMD SDK invalid JWT supplied")
