@@ -1,3 +1,18 @@
+# 9.3.0 / 01-21-2022 / minSdk = API 24 (Android 7) / targetSDK: API 30 (Android 11)
+### SDK Features:
+* Added the ability for the user to set a preferred name, preferred pronouns, and gender Identity, in profile settings
+* The CirrusMD SDK now locks down any eligibility related data in the profile settings and dependent settings.
+
+### SDK Bug Fixes:
+* Zipcode field in Profile settings will now only allow 5 digit entries
+* Fixed issue where user's previously selected location wasn't persisting in the location selection view.
+* Added FLAG_IMMUTABLE to PendingIntents to solve IllegalStateException and Lint errors
+
+### Dependency Updates:
+* Remaining dependencies now pull from mavenCentral(), in order to remove the deprecated JCenter() dependency
+* Update Opentok dependency to 2.21.4, in order to fix video chat issues for Android 12 users
+
+
 # 9.2.0 / 10-29-2021 / minSdk = API 24 (Android 7) / targetSDK: API 30 (Android 11)
 ### Features:
 * Added `CirrusActions`, which will allow mobile clients to send actions/events to our SDK to respond to, via `CirrusMD.sendCirrusAction()`. See documentation for more details.
