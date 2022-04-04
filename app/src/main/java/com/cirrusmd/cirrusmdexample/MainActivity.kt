@@ -8,6 +8,7 @@ import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.cirrusmd.androidsdk.*
+import com.cirrusmd.androidsdk.CirrusMD.cirrusDataEventListener
 import com.cirrusmd.androidsdk.CirrusMD.credentialIdListener
 import com.cirrusmd.androidsdk.CirrusMD.enableDebugLogging
 import com.cirrusmd.androidsdk.CirrusMD.enableSettings
@@ -22,7 +23,7 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import timber.log.Timber
 
-class MainActivity : AppCompatActivity(), CirrusListener {
+class MainActivity : AppCompatActivity(), CirrusDataEventListener {
 
     private var homeText: TextView? = null
     private var displayCirrusSDKButton: Button? = null
@@ -69,8 +70,8 @@ class MainActivity : AppCompatActivity(), CirrusListener {
                 Timber.d("Credential ID: $id")
             }
         }
+        cirrusDataEventListener = this
         start(this, SECRET)
-        listener = this
     }
 
     private fun fetchTokenForCirrusMDSDK() {
@@ -124,9 +125,9 @@ class MainActivity : AppCompatActivity(), CirrusListener {
     /**
      *   This is where the CirrusMD SDK will report status events.
      */
-    override fun onEvent(event: CirrusEvents) {
+    override fun onDataEvent(event: CirrusDataEvents) {
         when (event) {
-            CirrusEvents.SUCCESS -> {
+            CirrusDataEvents.Success -> {
                 // Note: onEvent can be called multiple times during the execution of the SDK.
                 // It is best to just show/hide or enable/disable the button that presents the CirrusMDSDK Activity.
                 // If you are going to display the Activity based on this result be sure to check
@@ -135,19 +136,20 @@ class MainActivity : AppCompatActivity(), CirrusListener {
                 homeText?.text = getString(R.string.ready)
                 displayCirrusSDKButton?.isEnabled = true
             }
-            CirrusEvents.LOGGED_OUT -> onEventError("CirrusMD SDK user was logged out.")
-            CirrusEvents.INVALID_JWT -> onEventError("CirrusMD SDK invalid JWT supplied")
-            CirrusEvents.INVALID_SECRET -> onEventError("CirrusMD SDK invalid secret supplied")
-            CirrusEvents.MISSING_JWT -> onEventError("CirrusMD SDK missing jwt")
-            CirrusEvents.MISSING_SECRET -> onEventError("CirrusMD SDK missing secret")
-            CirrusEvents.CONNECTION_ERROR -> onEventError("CirrusMD SDK connection error")
-            CirrusEvents.AUTHENTICATION_ERROR -> onEventError("CirrusMD SDK auth error")
-            CirrusEvents.USER_INTERACTION -> Timber.d("CirrusMD SDK user interaction")
-            CirrusEvents.UNKNOWN_ERROR -> onEventError("CirrusMD SDK generic error") //This error would include cases like network errors
+            CirrusDataEvents.LoggedOut -> onEventError("CirrusMD SDK user was logged out.")
+            CirrusDataEvents.UserInteraction -> Timber.d("CirrusMD SDK user interaction")
+            CirrusDataEvents.Error.InvalidJwt -> onEventError("CirrusMD SDK invalid JWT supplied")
+            CirrusDataEvents.Error.InvalidSecret -> onEventError("CirrusMD SDK invalid secret supplied")
+            CirrusDataEvents.Error.MissingJwt -> onEventError("CirrusMD SDK missing jwt")
+            CirrusDataEvents.Error.MissingSecret -> onEventError("CirrusMD SDK missing secret")
+            CirrusDataEvents.Error.ConnectionError -> onEventError("CirrusMD SDK connection error")
+            CirrusDataEvents.Error.AuthenticationError -> onEventError("CirrusMD SDK auth error")
+            CirrusDataEvents.Error.UnknownError -> onEventError("CirrusMD SDK generic error") //This error would include cases like network errors
+            is CirrusDataEvents.Error.VideoSessionError -> onEventError("CirrusMD SDK Video Session error. Exception: ${event.exception}, Attributes: ${event.errorMap}")
         }
     }
-
-    override fun viewForError(event: CirrusEvents): View? {
+    
+    override fun viewForError(event: CirrusDataEvents): View? {
         //If you would like to display branded error/logout messages, this is where the CirrusMD SDK will look.
         //Returning null will result in the default views being displayed.
         return null

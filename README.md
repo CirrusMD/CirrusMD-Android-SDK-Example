@@ -107,18 +107,18 @@ Through the `CirrusMD.CirrusListener.onEvent` interface method, you can receive 
 NOTE: the `CirrusMD.CirrusListener` has been deprecated and `CirrusDataEventListener` is now being used to track events.
 
 Through the `CirrusMD.CirrusDataEventListener.onDataEvent` interface method, you can receive one of the following events:
-`LoggedOut`: The current user session was logged out
-`Success`: The SDK was provided a valid JWT and secret token and was able to make a request
-`UserInteraction`: The user is interacting with the SDK. This event is dispatched when an activity's onUserInteraction() is called
-`Error`: Error related events
-`InvalidJwt`: An improperly formatted JWT was provided
-`InvalidSecret`: An improperly formatted secret token was provided
-`MissingJwt`: The SDK was presented without a JWT set
-`MissingSecret`: The SDK was presented without a Secret set
-`ConnectionError`: There was an HTTP exception not otherwise specified
-`AuthenticationError`: There was an authentication failure on a network request
-`UnknownError`: This is the generic catch for errors that could not be identified
-`VideoSessionError`:  An error occurred during a Video session
+- `LoggedOut`: The current user session was logged out
+- `Success`: The SDK was provided a valid JWT and secret token and was able to make a request
+- `UserInteraction`: The user is interacting with the SDK. This event is dispatched when an activity's onUserInteraction() is called
+- `Error`: Error related events:
+    - `InvalidJwt`: An improperly formatted JWT was provided
+    - `InvalidSecret`: An improperly formatted secret token was provided
+    - `MissingJwt`: The SDK was presented without a JWT set
+    - `MissingSecret`: The SDK was presented without a Secret set
+    - `ConnectionError`: There was an HTTP exception not otherwise specified
+    - `AuthenticationError`: There was an authentication failure on a network request
+    - `UnknownError`: This is the generic catch for errors that could not be identified
+    - `VideoSessionError`:  An error occurred during a Video session
 
 ### Custom Colors/Drawables
 
@@ -173,11 +173,23 @@ If you would like for your app to receive push notifications for the SDK you wil
 
 Example implementation using `FirebaseInstanceId`:
 ```
+@Deprecated
 override fun onEvent(event: CirrusEvents) {
     when (event) {
-        CirrusEvents.SUCCESS -> fetchPushToken()
+        CirrusEvents.SUCCESS -> fetchPushToken() // fetch push token here
         CirrusEvents.USER_INTERACTION -> onUserInteraction()
         CirrusEvents.LOGGED_OUT -> onLoggedOut()
+        else -> onError()
+    }
+}
+
+// Using new CirrusDataEventListener and CirrusDataEvents
+override fun onDataEvent(event: CirrusDataEvents) {
+    when (event) {
+        CirrusDataEvents.Success -> fetchPushToken() // fetch push token here
+        CirrusDataEvents.USER_INTERACTION -> onUserInteraction()
+        CirrusEvents.LOGGED_OUT -> onLoggedOut()
+        CirrusEvents.Error.AuthenticationError -> onAuthError()
         else -> onError()
     }
 }
