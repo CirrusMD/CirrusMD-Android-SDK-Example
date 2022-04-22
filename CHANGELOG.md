@@ -1,4 +1,4 @@
-# 9.4.0 / 04-01-2022 / minSdk = API 24 (Android 7) / targetSDK: API 30 (Android 11)
+# 9.4.0 / 04-01-2022 / minSdk = API 24 (Android 7) / targetSDK: API 31 (Android 12)
 ### SDK Features:
 * CirrusMD SDK now targets Android 12!
 * CirrusEvents is now deprecated. CirrusDataEvents is its replacement, which gives us more flexibility around sending instance data to mobile clients. We are maintaining compatibility, but will stop supporting it in the near future.
