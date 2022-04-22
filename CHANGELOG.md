@@ -1,12 +1,12 @@
 # 9.4.0 / 04-01-2022 / minSdk = API 24 (Android 7) / targetSDK: API 30 (Android 11)
 ### SDK Features:
-CirrusMD SDK now targets Android 12!
-CirrusEvents is now deprecated. CirrusDataEvents is its replacement, which gives us more flexibility around sending instance data to mobile clients. We are maintaining compatibility, but will stop supporting it in the near future.
-CirrusListener is now deprecated. CirrusDataEventListener is its replacement. Again, we are maintaining compatibility, but will stop supporting it in the near future.
-VideoSessionActivity throws video errors to CirrusDataEventListener now, so the mobile clients can do whatever they want with it (either report it to a crash handler or something else)
-Added subscriber verification feature
-Added Insurance info view to settings, which will display the patient's subscriber ID and insurance provider
-Terms of service URL, shown in settings, is now configurable via manage.
+* CirrusMD SDK now targets Android 12!
+* CirrusEvents is now deprecated. CirrusDataEvents is its replacement, which gives us more flexibility around sending instance data to mobile clients. We are maintaining compatibility, but will stop supporting it in the near future.
+* CirrusListener is now deprecated. CirrusDataEventListener is its replacement. Again, we are maintaining compatibility, but will stop supporting it in the near future.
+* Video Sessions throw video errors to CirrusDataEventListener now, so the mobile clients can do whatever they want with it (either report it to a crash handler or something else)
+* Added subscriber verification feature
+* Added Insurance info view to settings, which will display the patient's subscriber ID and insurance provider
+* Terms of service URL, shown in settings, is now configurable via CirrusMD's manage.
 
 
 # 9.3.0 / 01-21-2022 / minSdk = API 24 (Android 7) / targetSDK: API 30 (Android 11)
