@@ -145,7 +145,7 @@ class MainActivity : AppCompatActivity(), CirrusDataEventListener {
             CirrusDataEvents.Error.ConnectionError -> onEventError("CirrusMD SDK connection error")
             CirrusDataEvents.Error.AuthenticationError -> onEventError("CirrusMD SDK auth error")
             CirrusDataEvents.Error.UnknownError -> onEventError("CirrusMD SDK generic error") //This error would include cases like network errors
-            is CirrusDataEvents.Error.VideoSessionError -> onEventError("CirrusMD SDK Video Session error. Exception: ${event.exception}, Attributes: ${event.errorMap}")
+            is CirrusDataEvents.VideoSessionEvents.SessionError -> onEventError("CirrusMD SDK Video Session error. Exception: ${event.exception}, Attributes: ${event.errorMap}")
         }
     }
     

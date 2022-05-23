@@ -118,7 +118,9 @@ Through the `CirrusMD.CirrusDataEventListener.onDataEvent` interface method, you
     - `ConnectionError`: There was an HTTP exception not otherwise specified
     - `AuthenticationError`: There was an authentication failure on a network request
     - `UnknownError`: This is the generic catch for errors that could not be identified
-    - `VideoSessionError`:  An error occurred during a Video session
+- `VideoSessionEvents`: Video session related events:
+    - `ConnectionStatus`: Video session connection events
+    - `SessionError`:  An error occurred during a video session
 
 ### Custom Colors/Drawables
 
