@@ -12,7 +12,6 @@ import com.cirrusmd.androidsdk.CirrusMD.cirrusDataEventListener
 import com.cirrusmd.androidsdk.CirrusMD.credentialIdListener
 import com.cirrusmd.androidsdk.CirrusMD.enableDebugLogging
 import com.cirrusmd.androidsdk.CirrusMD.enableSettings
-import com.cirrusmd.androidsdk.CirrusMD.listener
 import com.cirrusmd.androidsdk.CirrusMD.setSessionToken
 import com.cirrusmd.androidsdk.CirrusMD.start
 import com.google.gson.GsonBuilder
@@ -146,6 +145,7 @@ class MainActivity : AppCompatActivity(), CirrusDataEventListener {
             CirrusDataEvents.Error.AuthenticationError -> onEventError("CirrusMD SDK auth error")
             CirrusDataEvents.Error.UnknownError -> onEventError("CirrusMD SDK generic error") //This error would include cases like network errors
             is CirrusDataEvents.VideoSessionEvents.SessionError -> onEventError("CirrusMD SDK Video Session error. Exception: ${event.exception}, Attributes: ${event.errorMap}")
+            is CirrusDataEvents.VideoSessionEvents.ConnectionStatus -> Timber.d("CirrusMD SDK ConnectionStatus: ${event.meta}")
         }
     }
     

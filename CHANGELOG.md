@@ -1,3 +1,12 @@
+# 10.0.0 / 2022-07-27 / minSdk = API 24 (Android 7) / targetSDK: API 31 (Android 12)
+### SDK Features:
+- Added assessments feature, which will allow patients to receive and submit GAD7, PHQ9, and ACT questionnaires. Mobile Clients that are on 10.0.0+ will receive a native experience questionnaire, while older versions will receive a URL link to complete the assessment outside of the SDK experience.
+
+###SDK Bug Fixes:
+- Fixed issue where provider name doesn't display in toolbar on some occasions
+- Fixed issue where patient name isn't displayed properly in the stream when using channels to link directly to the desired chat
+
+
 # 9.5.0 / 2022-05-23 / minSdk = API 24 (Android 7) / targetSDK: API 31 (Android 12)
 
 ### SDK Features/Updates:
