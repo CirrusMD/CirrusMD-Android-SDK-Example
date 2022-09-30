@@ -189,9 +189,9 @@ override fun onEvent(event: CirrusEvents) {
 override fun onDataEvent(event: CirrusDataEvents) {
     when (event) {
         CirrusDataEvents.Success -> fetchPushToken() // fetch push token here
-        CirrusDataEvents.USER_INTERACTION -> onUserInteraction()
-        CirrusEvents.LOGGED_OUT -> onLoggedOut()
-        CirrusEvents.Error.AuthenticationError -> onAuthError()
+        CirrusDataEvents.UserInteraction -> onUserInteraction()
+        CirrusDataEvents.LoggedOut -> onLoggedOut()
+        is CirrusDataEvents.VideoSessionEvents.SessionError -> onEventError("Exception: ${event.exception}, Attributes: ${event.errorMap}")
         else -> onError()
     }
 }
