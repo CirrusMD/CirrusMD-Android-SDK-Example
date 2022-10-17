@@ -10,7 +10,7 @@ buildscript {
 
 repositories {
     //This is only needed if your plan utilizes video chat. Check with your account manager if you have questions.
-    maven { url "http://tokbox.bintray.com/maven" }
+    maven { url "https://tokbox.bintray.com/maven" }
 
     //This is only needed if you plan to use Braze Push notifications and/or in-app messaging. Check with your account manager if you have questions.
     maven { url "https://appboy.github.io/appboy-android-sdk/sdk" }
@@ -18,7 +18,7 @@ repositories {
 
 android {
     compileSdkVersion 31
-    buildToolsVersion '28.0.3'
+    buildToolsVersion '30.0.3'
     defaultConfig {
         applicationId "com.cirrusmd.cirrusmdexample"
         minSdkVersion 24
@@ -47,11 +47,11 @@ android {
 
 dependencies {
     implementation 'com.google.android.material:material:1.6.1'
-    implementation 'androidx.appcompat:appcompat:1.5.1'
-    implementation 'androidx.fragment:fragment-ktx:1.5.3'
-    implementation "androidx.core:core-ktx:1.9.0"
+    implementation 'androidx.appcompat:appcompat:1.4.2'
+    implementation 'androidx.fragment:fragment-ktx:1.5.1'
+    implementation "androidx.core:core-ktx:1.8.0"
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
-    implementation 'androidx.annotation:annotation:1.5.0'
+    implementation 'androidx.annotation:annotation:1.4.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
 
     implementation("com.google.firebase:firebase-core:21.1.1") {
