@@ -1,3 +1,39 @@
+# 10.1.0 / 2022-10-20
+### SDK Features/Changes:
+- Dependency updates
+- Removed `VideoError.kt`
+- Added support for Spanish localization. Please contact your CirrusMD account representative for more information.
+  - Added Language tab to settings, which navigates user to device locale settings
+  - If device and CirrusMD's user profile languages do not match, the app preferred_language is set to english, unless the device language is set specifically to Spanish (at which point an AlertDialog is displayed notifying the user)
+  - Real time translation support, in Spanish, when chatting with a doctor. The device language must be set to Spanish (es, es-US, or any other spanish locale), AND must be configured in CirrusMD's Manage settings.
+  - Accessibility announces translated message if the language code matches the language code in user preferences
+- Progress notes translated
+
+### SDK Bug Fixes:
+- Updated `sourcesJar` gradle task to include new customer facing classes (CirrusDataEventListener, CirrusDataEvent etc.)
+- Fixed issue where multiple encounters are created, when user decides to open an encounter with an image first, followed by text message quickly after (before the backend has a chance to create the encounter on record). The fix involves disabling the text send button until the image has successfully been uploaded and therefore the encounter has also been created. The user will be allowed to send the message after, without creating 2 encounters.
+- Fixed issue/crash where users were unable to answer multiselect answers in assessments
+- Fixed issue where we weren't refreshing the stream (and hence show the out of service hours banner) when the patient happens to open the chat stream right before the end of service hours, sends a message, and then the plan happens to be out of service hours.
+- Fixed issue with toolbar disappearance after the app is backgrounded while on the Chat stream
+
+### SDK dependency updates:
+- Shared Dependency updates:
+    - Gradle Wrapper -> 7.0.2
+    - Gradle Build tools -> 7.0.0 (compatible with New Relic)
+    - Timber -> 5.0.1
+    - Android Build Tools -> 30.0.3
+    - AndroidX Fragment -> 1.5.1
+    - AppCompat -> 1.4.2
+    - AndroidX ConstraintLayout -> 2.1.4
+    - JUnit -> 4.13.1
+    - Kotlin Coroutines -> 1.6.1
+    - Kotlin Coroutines Test -> 1.5.2
+    - Google Material -> 1.6.1
+    - unmockplugin -> 0.7.8
+    - Kotlin-gradle-plugin -> 1.6.10
+    - Kotlin reflect -> 1.7.10
+    
+
 # 10.0.0 / 2022-07-27 / minSdk = API 24 (Android 7) / targetSDK: API 31 (Android 12)
 ### SDK Features:
 - Added assessments feature, which will allow patients to receive and submit GAD7, PHQ9, and ACT questionnaires. Mobile Clients that are on 10.0.0+ will receive a native experience questionnaire, while older versions will receive a URL link to complete the assessment outside of the SDK experience.
