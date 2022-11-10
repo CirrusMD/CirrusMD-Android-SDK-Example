@@ -409,6 +409,8 @@ With v10.1.0 of the CirrusMD SDK, we introduced support for Spanish localization
 - Real time translation support when chatting with a doctor. The device's language must be set to Spanish (es, es-US, or any other spanish locale), AND this feature must be enabled in CirrusMD's Manage settings.
 - Accessibility announcements for translated messages, when using talk-back
 
+Please contact your CirrusMD account representative for more information.
+
 ### Support Library Versions
 
 The current version of the CirrusMD SDK is build with version `28.0.0` of the Android Support Library. 
