@@ -19,6 +19,7 @@ The CirrusMD SDK it an embeddable SDK. It enables customers of CirrusMD to provi
   - [External Channels](#external-channels)
   - [Cirrus Actions](#cirrus-actions)
   - [Debug Fragment](#debug-fragment)
+  - [Spanish Localization](#spanish-localization)
 - [License](#license)
 
 ## Requirements
@@ -400,6 +401,15 @@ You can send a `CirrusActions` event using the `CirrusMD` object:
 CirrusMD.sendCirrusAction(CirrusActions.FINISH_ACTIVITY)
 ```
 
+### Spanish Localization
+
+With v10.1.0 of the CirrusMD SDK, we introduced support for Spanish localization. This feature includes:
+- Automatic translation of the CirrusMD SDK. 
+- A "Language" tab in the CirrusMD SDK Settings, which navigates user to the device's locale settings
+- Real time translation support when chatting with a doctor. The device's language must be set to Spanish (es, es-US, or any other spanish locale), AND this feature must be enabled in CirrusMD's Manage settings.
+- Accessibility announcements for translated messages, when using talk-back
+
+Please contact your CirrusMD account representative for more information.
 
 ### Support Library Versions
 

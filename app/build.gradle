@@ -10,19 +10,19 @@ buildscript {
 
 repositories {
     //This is only needed if your plan utilizes video chat. Check with your account manager if you have questions.
-    maven { url "http://tokbox.bintray.com/maven" }
+    maven { url "https://tokbox.bintray.com/maven" }
 
     //This is only needed if you plan to use Braze Push notifications and/or in-app messaging. Check with your account manager if you have questions.
     maven { url "https://appboy.github.io/appboy-android-sdk/sdk" }
 }
 
 android {
-    compileSdkVersion 31
-    buildToolsVersion '28.0.3'
+    compileSdkVersion 33
+    buildToolsVersion '30.0.3'
     defaultConfig {
         applicationId "com.cirrusmd.cirrusmdexample"
         minSdkVersion 24
-        targetSdkVersion 31
+        targetSdkVersion 33
         versionCode 1
         versionName "1.0"
         multiDexEnabled true
@@ -46,28 +46,28 @@ android {
 }
 
 dependencies {
-    implementation 'com.google.android.material:material:1.6.1'
-    implementation 'androidx.appcompat:appcompat:1.4.2'
-    implementation 'androidx.fragment:fragment-ktx:1.5.1'
-    implementation "androidx.core:core-ktx:1.8.0"
+    implementation 'com.google.android.material:material:1.7.0'
+    implementation 'androidx.appcompat:appcompat:1.5.1'
+    implementation 'androidx.fragment:fragment-ktx:1.5.4'
+    implementation "androidx.core:core-ktx:1.9.0"
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
-    implementation 'androidx.annotation:annotation:1.4.0'
+    implementation 'androidx.annotation:annotation:1.5.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
 
-    implementation("com.google.firebase:firebase-core:21.1.0") {
+    implementation("com.google.firebase:firebase-core:21.1.1") {
         ['com.google.android', 'com.android.support'].each {
             exclude group: it
         }
         exclude group: 'com.google.firebase', module: 'firebase-analytics'
     }
-    implementation("com.google.firebase:firebase-messaging:23.0.6") {
+    implementation("com.google.firebase:firebase-messaging:23.1.0") {
         exclude group: 'com.google.android'
         exclude group: 'com.android.support'
     }
     implementation 'com.squareup.retrofit2:retrofit:2.9.0'
     implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
     implementation 'com.google.code.gson:gson:2.8.9'
-    implementation('com.github.CirrusMD:cirrusmd-android:10.0.0') {
+    implementation('com.github.CirrusMD:cirrusmd-android:10.1.0') {
 //        Only exclude this dependency if you're sure your plan does not use video. Check with your account manager if you have questions.
 //        exclude group: 'com.opentok.android', module: 'opentok-android-sdk'
     }
