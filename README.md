@@ -2,9 +2,7 @@
 The CirrusMD SDK it an embeddable SDK. It enables customers of CirrusMD to provide the CirrusMD patient chat experience in their own applications. While the example application will work in a sandboxed environment when built, integrating the CirrusMD SDK into your own application will require you to be a CirrusMD customer. Integration requires a unique `secret` and SSO `token` to work correctly, however this example uses sandbox credentials for demo purposes. Please contact your CirrusMD account representative for more information.
 
 - [Requirements](#requirements)
-- [Screenshots](https://github.com/CirrusMD/CirrusMD-Android-SDK-Example/wiki/Screenshots)
 - [Installation](#installing-cirrusmdsdk-in-your-own-project)
-- [SDK Size](#sdk-size)
 - [Basic Usage](#basic-usage)
 - [Advanced Usage](#advanced-usage)
   - [Video/OpenTok](#video)
@@ -20,13 +18,16 @@ The CirrusMD SDK it an embeddable SDK. It enables customers of CirrusMD to provi
   - [Cirrus Actions](#cirrus-actions)
   - [Debug Fragment](#debug-fragment)
   - [Spanish Localization](#spanish-localization)  
-  - [Android 13 Permission Updates](#Android-13-Permission-Updates)
+- [Android 13 Permission Updates](#Android-13-Permission-Updates)
+- [SDK Size](#sdk-size)
 - [License](#license)
+- [Screenshots](https://github.com/CirrusMD/CirrusMD-Android-SDK-Example/wiki/Screenshots)
 
 ## Requirements
 
 - Project language: Kotlin or Java
 - minSdk: `24`
+- targetSdk: `33` (As of v10.2.0 of CirrusMD SDK) 
 - supportLibrary: `AndroidX`
 
 ## Installing CirrusMDSDK in your own project
@@ -417,11 +418,7 @@ Please contact your CirrusMD account representative for more information.
 The current version of the CirrusMD SDK is build with version `28.0.0` of the Android Support Library. 
 If your app requires a different version than what is included, you will need to exclude that package and then import the required packages using your version. However, we do not test against all versions and this could cause problems.
 
-## SDK Size
-
-The SDK adds roughly 22mb with video and 4mb without video. [See here for video details](#video) 
-
-### Android 13 Permission Updates
+## Android 13 Permission Updates
 With Android 13's permission updates, we've changed permission declarations in our AndroidManifest.xml file.
 Our SDK now requests permissions during runtime, according to the version running on the device.
 
@@ -439,6 +436,10 @@ Our SDK now requests permissions during runtime, according to the version runnin
 
 If your app still uses `WRITE_EXTERNAL_STORAGE` or `READ_EXTERNAL_STORAGE`, we recommend that you set ` android:maxSdkVersion="32"` on these permissions (as shown above),
 since these are or will be deprecated, and can conflict with permission handling on Android 13 devices.
+
+## SDK Size
+
+The SDK adds roughly 22mb with video and 4mb without video. [See here for video details](#video) 
 
 ## Author
 
