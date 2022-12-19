@@ -19,7 +19,8 @@ The CirrusMD SDK it an embeddable SDK. It enables customers of CirrusMD to provi
   - [External Channels](#external-channels)
   - [Cirrus Actions](#cirrus-actions)
   - [Debug Fragment](#debug-fragment)
-  - [Spanish Localization](#spanish-localization)
+  - [Spanish Localization](#spanish-localization)  
+  - [Android 13 Permission Updates](#Android-13-Permission-Updates)
 - [License](#license)
 
 ## Requirements
@@ -419,6 +420,25 @@ If your app requires a different version than what is included, you will need to
 ## SDK Size
 
 The SDK adds roughly 22mb with video and 4mb without video. [See here for video details](#video) 
+
+### Android 13 Permission Updates
+With Android 13's permission updates, we've changed permission declarations in our AndroidManifest.xml file.
+Our SDK now requests permissions during runtime, according to the version running on the device.
+
+```
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" android:maxSdkVersion="32" />
+    <uses-permission android:name="android.permission.READ_MEDIA_IMAGES" />
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+    <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
+    <uses-permission android:name="com.google.android.gms.permission.AD_ID"/>
+```
+
+If your app still uses `WRITE_EXTERNAL_STORAGE` or `READ_EXTERNAL_STORAGE`, we recommend that you set ` android:maxSdkVersion="32"` on these permissions (as shown above),
+since these are or will be deprecated, and can conflict with permission handling on Android 13 devices.
 
 ## Author
 

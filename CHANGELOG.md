@@ -1,3 +1,42 @@
+# 10.2.0 / 2022-12-19
+### SDK Bug Fixes:
+- Fixed issues with text wrapping in Subscriber ID capture flow/view
+
+### SDK Features/Changes:
+- Updated `targetSDK` to `33`
+- Dependency updates:
+  - AndroidX Exifinterface -> 1.3.4
+  - AndroidX Fragment -> 1.5.3
+  - AndroidX Compose -> 1.2.1
+  - AppCompat -> 1.5.1
+  - Firebase Core -> 21.1.1
+  - Firebase Messaging -> 23.1.0
+  - NewRelic -> 6.8.0
+- Refactored all AlertDialogs to use light theme, with primary color (`cirrus_primary_dark`) used as accent.
+- Added `POST_NOTIFICATION`, `READ_MEDIA_IMAGES`, and `AD_ID` permission declarations in `sdk/AndroidManifest.xml` (necessary when targeting Android 13)
+- Added logic to support showing Push Notification permissions request once the user enters the SDK (for Android 13+ devices only). (Matches iOS CirrusMD SDK now)
+- Added Android 13 specific flow for image/media permission requests
+- Refactored runtime permissions logic for profile images. The logic should now match what we have in the Chat stream
+
+NOTE: With Android 13's permission changes, we've had to change permission declarations in our AndroidManifest.xml file.
+Our SDK now requests permissions during runtime, according to the version running on the device.
+
+```
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" android:maxSdkVersion="32" />
+    <uses-permission android:name="android.permission.READ_MEDIA_IMAGES" />
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+    <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
+    <uses-permission android:name="com.google.android.gms.permission.AD_ID"/>
+```
+
+If your app still uses `WRITE_EXTERNAL_STORAGE` or `READ_EXTERNAL_STORAGE`, we recommend that you set ` android:maxSdkVersion="32"` on these permissions (as shown above), 
+since these are or will be deprecated, and can conflict with permission handling on Android 13 devices.
+
+
 # 10.1.0 / 2022-10-20
 ### SDK Features/Changes:
 - Dependency updates
