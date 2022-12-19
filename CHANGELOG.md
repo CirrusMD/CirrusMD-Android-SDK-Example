@@ -1,4 +1,4 @@
-# 10.2.0 / 2022-12-19
+# 10.2.0 / 2022-12-19 / minSdk = API 24 (Android 7) / targetSDK: API 33 (Android 13)
 ### SDK Bug Fixes:
 - Fixed issues with text wrapping in Subscriber ID capture flow/view
 
@@ -37,7 +37,7 @@ If your app still uses `WRITE_EXTERNAL_STORAGE` or `READ_EXTERNAL_STORAGE`, we r
 since these are or will be deprecated, and can conflict with permission handling on Android 13 devices.
 
 
-# 10.1.0 / 2022-10-20
+# 10.1.0 / 2022-10-20 / minSdk = API 24 (Android 7) / targetSDK: API 31 (Android 12)
 ### SDK Features/Changes:
 - Dependency updates
 - Removed `VideoError.kt`
