@@ -4,7 +4,7 @@
     <color name="colorPrimaryDark">#660C00</color>
     <color name="colorAccent">#FFD2CC</color>
 
-<!--  Specify Night Mode color explicitly. Otherwise, the night mode primary colors will default to CirrusMD's default -->
+    <!--  Specify Night theme colors explicitly, by overriding our color palette. Otherwise, the Night theme primary colors will default to CirrusMD's default -->
     <color name="cirrus_primary">@color/colorPrimary</color>
     <color name="cirrus_primary_dark">@color/colorPrimaryDark</color>
 </resources>
