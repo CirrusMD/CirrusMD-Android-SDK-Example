@@ -194,22 +194,7 @@ allowDarkMode = true
 
 ```
 
-NOTE: Create your own CredentialIdListener before calling any other functions on the SDK.
-
-```
-    CirrusMD.credentialIdListener = object : CredentialIdListener {
-        override fun onCredentialIdReady(id: String) {
-            ...
-        }
-    }
-    ...
-    CirrusMD.start(...)
-```
-
-
 Additional Night theme documentation: https://developer.android.com/develop/ui/views/theming/darktheme
-
-
 
 ### Custom Status Views
 
