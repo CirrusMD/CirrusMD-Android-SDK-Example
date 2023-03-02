@@ -1,3 +1,20 @@
+# 10.3.0 / March 2nd, 2023 / minSdk = API 24 (Android 7) / targetSDK: API 33 (Android 13)
+### SDK Features/Changes:
+- Night theme support!
+  - Look at our documentation for a full depth look at how to enable Night theme support: https://github.com/CirrusMD/CirrusMD-Android-SDK-Example#readme
+- Chat stream accessibility updates
+- Removed LifecycleObserver build warnings for SDK module. The remaining warning are mostly due do CirrusEvent deprecation, which we will remove in the near future
+- Added "Details" button and border to ProgressNote (now matches iOS CirrusMD SDK)
+
+### SDK Bug Fixes:
+- Fixed image permissions issues in dependent profile fragment
+- Fixed `IllegalStateException`, in `EventStreamFragment` caused by improper fragment transaction
+- Logcat logging cleanup
+- Now trimming empty space from Add Minor Dependent form fields,
+- Fixed Toolbar disappearing issues in settings
+
+
+
 # 10.2.0 / 2022-12-19 / minSdk = API 24 (Android 7) / targetSDK: API 33 (Android 13)
 ### SDK Bug Fixes:
 - Fixed issues with text wrapping in Subscriber ID capture flow/view

@@ -7,6 +7,8 @@ The CirrusMD SDK it an embeddable SDK. It enables customers of CirrusMD to provi
 - [Advanced Usage](#advanced-usage)
   - [Video/OpenTok](#video)
   - [Logout](#logout)
+  - [Custom Colors And Drawables](#custom-colors-and-drawables)
+  - [Night Theme Support](#night-theme-support)
   - [Custom Status Views](#custom-status-views)
   - [Push notifications](#push-notifications)
   - [Debug Logging](#debug-logging)
@@ -125,7 +127,7 @@ Through the `CirrusMD.CirrusDataEventListener.onDataEvent` interface method, you
     - `ConnectionStatus`: Video session connection events
     - `SessionError`:  An error occurred during a video session
 
-### Custom Colors/Drawables
+### Custom Colors And Drawables
 
 The following colors are used in the SDK, but can be overridden.
 ```
@@ -151,6 +153,63 @@ Currently the only drawable intended to be overridden is `ic_welcome.xml` which 
 ```
     <selector xmlns:android="http://schemas.android.com/apk/res/android" /> 
 ```
+
+### Night Theme Support
+
+In v10.3.0 of the CirrusMD SDK, we introduced support for Night/Dark theme!
+
+We have introduced a new configurable variable to the SDK, `CirrusMD.allowDarkMode`, which will allow our CirrusMD SDK to follow the system's theme dynamically.
+Currently, there is no way for the user to control this from our SDK directly, BUT turning on this configuration will make our SDK follow the user's device settings for Day/Night theme.
+By default, this flag is set to false, so no work is required on the consuming end, if the desired UI is to remain the same. However, if you plan to enable this feature, we recommend
+having your Night theme color palette ready, and creating a `/values-night/colors.xml` file in your project. You can then override the colors you want to permeate throughout
+the CirrusMD SDK, otherwise it will default to our CirrusMD brand color for dark theme `#7209B7`
+
+Example:
+
+```
+// turn on Dark/Night Theme when configuring the CirrusMD SDK:
+allowDarkMode = true
+
+// Explicitly override cirrus_primary and cirrus_primary_dark in your values/colors.xml file
+<resources>
+    <color name="colorPrimary">#3a6ba7</color>     // blue
+    <color name="colorPrimaryDark">#234171</color>
+    <color name="colorAccent">#23caca</color>
+
+    <!--  Specifying Day Theme colors explicitly. Otherwise, the night mode primary colors will default to CirrusMD's default -->
+    <color name="cirrus_primary">@color/colorPrimary</color>
+    <color name="cirrus_primary_dark">@color/colorPrimaryDark</color>
+</resources>
+
+// Then, create a values-night/colors.xml file, and explicitly override cirrus_primary and cirrus_primary_dark
+<resources>
+    <color name="colorPrimary">#CC1800</color>     // red
+    <color name="colorPrimaryDark">#660C00</color>
+    <color name="colorAccent">#FFD2CC</color>
+
+    <!--  Specifying Night Theme color explicitly. Otherwise, the night mode primary colors will default to CirrusMD's default -->
+    <color name="cirrus_primary">@color/colorPrimary</color>
+    <color name="cirrus_primary_dark">@color/colorPrimaryDark</color>
+</resources>
+
+```
+
+NOTE: Create your own CredentialIdListener before calling any other functions on the SDK.
+
+```
+    CirrusMD.credentialIdListener = object : CredentialIdListener {
+        override fun onCredentialIdReady(id: String) {
+            ...
+        }
+    }
+    ...
+    CirrusMD.start(...)
+```
+
+
+Additional Night theme documentation: https://developer.android.com/develop/ui/views/theming/darktheme
+
+
 
 ### Custom Status Views
 
@@ -405,7 +464,7 @@ CirrusMD.sendCirrusAction(CirrusActions.FINISH_ACTIVITY)
 
 ### Spanish Localization
 
-With v10.1.0 of the CirrusMD SDK, we introduced support for Spanish localization. This feature includes:
+In v10.1.0 of the CirrusMD SDK, we introduced support for Spanish localization. This feature includes:
 - Automatic translation of the CirrusMD SDK. 
 - A "Language" tab in the CirrusMD SDK Settings, which navigates user to the device's locale settings
 - Real time translation support when chatting with a doctor. The device's language must be set to Spanish (es, es-US, or any other spanish locale), AND this feature must be enabled in CirrusMD's Manage settings.

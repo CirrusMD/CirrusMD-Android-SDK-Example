@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#CC1800</color>
+    <color name="colorPrimaryDark">#660C00</color>
+    <color name="colorAccent">#FFD2CC</color>
+
+<!--  Specify Night Mode color explicitly. Otherwise, the night mode primary colors will default to CirrusMD's default -->
+    <color name="cirrus_primary">@color/colorPrimary</color>
+    <color name="cirrus_primary_dark">@color/colorPrimaryDark</color>
+</resources>
