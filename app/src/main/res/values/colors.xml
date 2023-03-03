@@ -3,4 +3,8 @@
     <color name="colorPrimary">#3a6ba7</color>
     <color name="colorPrimaryDark">#234171</color>
     <color name="colorAccent">#23caca</color>
+
+    <!--  Specify Day theme colors explicitly, by overriding our color palette. Otherwise, the Night theme primary colors will default to CirrusMD's default -->
+    <color name="cirrus_primary">@color/colorPrimary</color>
+    <color name="cirrus_primary_dark">@color/colorPrimaryDark</color>
 </resources>

@@ -8,6 +8,7 @@ import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.cirrusmd.androidsdk.*
+import com.cirrusmd.androidsdk.CirrusMD.allowDarkMode
 import com.cirrusmd.androidsdk.CirrusMD.cirrusDataEventListener
 import com.cirrusmd.androidsdk.CirrusMD.credentialIdListener
 import com.cirrusmd.androidsdk.CirrusMD.enableDebugLogging
@@ -59,6 +60,9 @@ class MainActivity : AppCompatActivity(), CirrusDataEventListener {
 
         // Settings view allows the user to view and edit their profile, medical history, dependents, permissions, and Terms of Use / Privacy Policy.
         enableSettings = true
+    
+        // Allows the CirrusMD SDK to follow the system wide setting for enabling/disabling Dark Theme. Otherwise the CirrusMD SDK will remain in Light mode
+        allowDarkMode = true
 
         // Demo Patient does not currently have any dependents
         // enableDependentProfiles = true
