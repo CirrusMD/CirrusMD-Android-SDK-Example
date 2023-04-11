@@ -1,3 +1,19 @@
+# 10.4.0 / April 6th, 2023 / minSdk = API 24 (Android 7) / targetSDK: API 33 (Android 13)
+### SDK Features/Changes:
+- Minor dependency updates:
+  - `androidx_exifinterface = '1.3.6'`
+  - `androidx_fragment = '1.5.5'`
+  - `androidx_recyclerview = '1.3.0'`
+  - `appcompat = '1.6.1'`
+  - `firebase_messaging = '23.1.2'`
+  - `test_core = '1.5.0', test_runner = '1.5.2', test_rules = '1.5.0'`
+  - Google Play services: `'com.google.gms:google-services:4.3.15'`
+- Improved assessment/questionnaire capabilities
+- Improved assessment/questionnaire accessibility
+- Users with no streams now see a "no streams" message instead of blank screen
+- Minor dark/night theme bug fixes and updates
+
+
 # 10.3.0 / March 2nd, 2023 / minSdk = API 24 (Android 7) / targetSDK: API 33 (Android 13)
 ### SDK Features/Changes:
 - Night theme support!
