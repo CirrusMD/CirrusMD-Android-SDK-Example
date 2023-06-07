@@ -1,3 +1,17 @@
+# 10.5.0 / June 7th, 2023 / minSdk = API 24 (Android 7) / targetSDK: API 33 (Android 13)
+### SDK Features/Changes:
+- Minor UI updates in My Family settings
+- Enhanced prescription information capture for patients, with pharmacy search feature
+- Enhanced accessibility for patient assessments
+- Minor Dependency updates
+
+### SDK Bug Fixes:
+- All detail text view subtitles will now autolink phone, emails, web links, and map coordinates (Specifically, in the Support settings, all phone numbers and emails will autolink to provide a good user experience)
+- Fixed toolbar bug in Support settings
+- Fixed issue where rapidly tapping on an assessment action button would cause multiple assessments to be created and displayed to the user
+- Fixed issue where the message body was disappearing from encounter messages, as the patient scrolls to older messages in the chat.
+
+
 # 10.4.0 / April 6th, 2023 / minSdk = API 24 (Android 7) / targetSDK: API 33 (Android 13)
 ### SDK Features/Changes:
 - Minor dependency updates:
