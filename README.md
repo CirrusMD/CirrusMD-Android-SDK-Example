@@ -55,7 +55,7 @@ Basic usage of of the CirrusMD SDK is very simple.
 1. Retrieve a token via SSO (See [the details](#the-details))
 2. Set the CirrusMD provided secret and context via `CirrusMD.start(context: Context, secret: String)`
 3. Set the retrieved token via `CirrusMD.setSessionToken(token: String)`
-4. After a `Success` event in `CirrusMD.CirrusDataEventListener.onDataEvent` get the Intent with `CirrusMD.intent` and use it to start the Activity
+4. After a `CirrusDataEvents.Success` event in `CirrusMD.CirrusDataEventListener.onDataEvent` get the Intent with `CirrusMD.intent` and use it to start the Activity
 
 ### The details
 
