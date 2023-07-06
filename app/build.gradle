@@ -9,10 +9,8 @@ buildscript {
 }
 
 repositories {
-    //This is only needed if your plan utilizes video chat. Check with your account manager if you have questions.
-    maven { url "https://tokbox.bintray.com/maven" }
-
-    //This is only needed if you plan to use Braze Push notifications and/or in-app messaging. Check with your account manager if you have questions.
+    // This is only needed if you plan to use Braze Push notifications and/or in-app messaging.
+    // Check with your account manager if you have questions.
     maven { url "https://appboy.github.io/appboy-android-sdk/sdk" }
 }
 
@@ -46,14 +44,24 @@ android {
 }
 
 dependencies {
+    // CirrusMD SDK
+    implementation ('com.github.CirrusMD:cirrusmd-android:11.0.0') {
+        // Only exclude this dependency if you're sure your plan does not use video.
+        // Check with your account manager if you have questions.
+        // exclude group: 'software.aws.chimesdk', module: 'amazon-chime-sdk'
+        // exclude group: 'software.aws.chimesdk', module: 'amazon-chime-sdk-media'
+    }
+
+    // Android
     implementation 'com.google.android.material:material:1.9.0'
     implementation 'androidx.appcompat:appcompat:1.6.1'
-    implementation 'androidx.fragment:fragment-ktx:1.5.7'
+    implementation 'androidx.fragment:fragment-ktx:1.6.0'
     implementation "androidx.core:core-ktx:1.10.1"
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     implementation 'androidx.annotation:annotation:1.6.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
 
+    // Firebase
     implementation("com.google.firebase:firebase-core:21.1.1") {
         ['com.google.android', 'com.android.support'].each {
             exclude group: it
@@ -64,17 +72,9 @@ dependencies {
         exclude group: 'com.google.android'
         exclude group: 'com.android.support'
     }
+
+    // Retrofit and GSON
     implementation 'com.squareup.retrofit2:retrofit:2.9.0'
     implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
     implementation 'com.google.code.gson:gson:2.9.0'
-    implementation('com.github.CirrusMD:cirrusmd-android:10.5.0') {
-//        Only exclude this dependency if you're sure your plan does not use video. Check with your account manager if you have questions.
-//        exclude group: 'com.opentok.android', module: 'opentok-android-sdk'
-    }
-    runtimeOnly 'io.jsonwebtoken:jjwt-impl:0.11.5'
-    runtimeOnly('io.jsonwebtoken:jjwt-orgjson:0.11.5') {
-        exclude group: 'org.json', module: 'json' //provided by Android natively
-    }
-    implementation 'io.reactivex.rxjava2:rxandroid:2.1.1'
-    implementation 'io.reactivex.rxjava2:rxjava:2.2.21'
 }
