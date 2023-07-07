@@ -5,7 +5,7 @@ The CirrusMD SDK it an embeddable SDK. It enables customers of CirrusMD to provi
 - [Installation](#installing-cirrusmdsdk-in-your-own-project)
 - [Basic Usage](#basic-usage)
 - [Advanced Usage](#advanced-usage)
-  - [Video/OpenTok](#video)
+  - [Video](#video)
   - [Logout](#logout)
   - [Custom Colors And Drawables](#custom-colors-and-drawables)
   - [Night Theme Support](#night-theme-support)
@@ -53,9 +53,9 @@ A cleaner solution will be available in a future release.
 
 Basic usage of of the CirrusMD SDK is very simple.
 1. Retrieve a token via SSO (See [the details](#the-details))
-1. Set the CirrusMD provided secret and context via `CirrusMD.start(context: Context, secret: String)`
-1. Set the retrieved token via `CirrusMD.setSessionToken(token: String)`
-1. After a SUCCESS event in `CirrusMD.CirrusListener.onEvent` get the Intent with `CirrusMD.intent` and use it to start the Activity (NOTE: This has been deprecated, you will receive a Success event in the `CirrusMD.CirrusDataEventListener.onDataEvent` interface)
+2. Set the CirrusMD provided secret and context via `CirrusMD.start(context: Context, secret: String)`
+3. Set the retrieved token via `CirrusMD.setSessionToken(token: String)`
+4. After a `CirrusDataEvents.Success` event in `CirrusMD.CirrusDataEventListener.onDataEvent` get the Intent with `CirrusMD.intent` and use it to start the Activity
 
 ### The details
 
@@ -65,31 +65,28 @@ In Kotlin you can call `CirrusMD`.
 *** **_Do not cache CirrusMD provided JWTs_** ***
 
 1. Our team works with your technical staff to provide SSO for your patients using the CirrusMD platform. The CirrusMDSDK uses tokens retrieved via SSO from CirrusMD's SSO service. Each SSO integration is slightly customized based on your needs. In general, your backend service requests a token representing a patient from our SSO service which provides the token that should be set on the SDK.
-2. You have the option to set a `CirrusListener` for error and success events, as well as optionally providing customized error screens. This can be done with `CirrusMD.setListener(CirrusListener)` (NOTE: This has been deprecated, you can now use `CirrusMD.CirrusDataEventListener` for error and success events, as well as optionally providing customized error screens.)
+2. You have the option to set a `CirrusDataEventListener` for error and success events, as well as optionally providing customized error screens. This can be done with `CirrusMD.cirrusDataEventListener = yourCirrusDataEventListener`.
 3. Start the SDK with the secret and SSO token
-4. Once the SDK is started it will attempt to fetch the users profile. At this point you will either receive an error or success through the `CirrusMD.CirrusListener.onEvent(CirrusEvents)` method. (NOTE: This has been deprecated, you can now use `CirrusMD.CirrusDataEventListener` for error and success events.)
+4. Once the SDK is started it will attempt to fetch the users profile. At this point you will either receive an error or success through the `CirrusMD.CirrusDataEventListener.onDataEvent(CirrusDataEvents)` method.
 5. On a successful event, you can use `CirrusMD.intent` to start the Activity.
 
 ## Advanced Usage
 
 ### Video
 
-The CirrusMD platform uses OpenTok for the video sessions. Because of this your app must either include the OpenTok repository or exclude the library, depending on your video usage. If you are unsure if your plan allows for video, please contact your CirrusMD account manager.
+The CirrusMD platform now uses AWS Chime for the video sessions. Because of this your app must either include the AWS Chime dependency or exclude the library altogether, depending on your video usage. 
 
-If your plan allows providers to start video chat, you must add the OpenTok repository in your app's `build.gradle` file:
-```
-repositories {
-    maven { url "http://tokbox.bintray.com/maven" }
-}
-```
+If you are unsure if your plan allows for video, please contact your CirrusMD account manager.
 
 If your plan does NOT allow providers to start video chat, you can exclude the dependency entirely:
-IMPORTANT: If a video event is received while this dependency is excluded, the SDK **will crash**.
 ```
 implementation('com.github.CirrusMD:cirrusmd-android:CURRENT-VERSION') {
-    exclude group: 'com.opentok.android', module: 'opentok-android-sdk'
+    exclude group: 'software.aws.chimesdk', module: 'amazon-chime-sdk'
+    exclude group: 'software.aws.chimesdk', module: 'amazon-chime-sdk-media'
 }
 ```
+
+**IMPORTANT:** If a video session is initiated while this dependency is excluded, the SDK **WILL CRASH!**.
 
 ### Logout
 
@@ -97,35 +94,23 @@ implementation('com.github.CirrusMD:cirrusmd-android:CURRENT-VERSION') {
 
 ### Event/Error Handling
 
-Through the `CirrusMD.CirrusListener.onEvent` interface method, you can receive one of the following events:
-- `INVALID_JWT` : An improperly formatted JWT was provided.
-- `INVALID_SECRET` : An improperly formatted secret token was provided.
-- `MISSING_JWT` : A null or empty JWT token was provided.
-- `MISSING_SECRET` : A null or empty secret token was provided.
-- `AUTHENTICATION_ERROR` : There was an authentication failure on a network request.
-- `CONNECTION_ERROR` : There was an HTTP exception not otherwise specified.
-- `LOGGED_OUT` : The current user session was logged out.
-- `UNKNOWN_ERROR` : This is the generic catch for errors that could not be identified.
-- `USER_INTERACTION` : The current user is interacting with the CirrusMD SDK.
-- `SUCCESS` : The SDK was provided a valid JWT and secret token and was able to make a request. It is ideal to wait for this event before using `CirrusMD.intent` to start the Activity.
-
-NOTE: the `CirrusMD.CirrusListener` has been deprecated and `CirrusDataEventListener` is now being used to track events.
+NOTE: The old `CirrusMD.CirrusListener` has been deprecated and was removed in v11.0.0. `CirrusDataEventListener` is now being used to track events.
 
 Through the `CirrusMD.CirrusDataEventListener.onDataEvent` interface method, you can receive one of the following events:
 - `LoggedOut`: The current user session was logged out
 - `Success`: The SDK was provided a valid JWT and secret token and was able to make a request
 - `UserInteraction`: The user is interacting with the SDK. This event is dispatched when an activity's onUserInteraction() is called
 - `Error`: Error related events:
-    - `InvalidJwt`: An improperly formatted JWT was provided
-    - `InvalidSecret`: An improperly formatted secret token was provided
-    - `MissingJwt`: The SDK was presented without a JWT set
-    - `MissingSecret`: The SDK was presented without a Secret set
-    - `ConnectionError`: There was an HTTP exception not otherwise specified
-    - `AuthenticationError`: There was an authentication failure on a network request
-    - `UnknownError`: This is the generic catch for errors that could not be identified
+  - `InvalidJwt`: An improperly formatted JWT was provided
+  - `InvalidSecret`: An improperly formatted secret token was provided
+  - `MissingJwt`: The SDK was presented without a JWT set
+  - `MissingSecret`: The SDK was presented without a Secret set
+  - `ConnectionError`: There was an HTTP exception not otherwise specified
+  - `AuthenticationError`: There was an authentication failure on a network request
+  - `UnknownError`: This is the generic catch for errors that could not be identified
 - `VideoSessionEvents`: Video session related events:
-    - `ConnectionStatus`: Video session connection events
-    - `SessionError`:  An error occurred during a video session
+  - `ConnectionStatus`: Video session connection events
+
 
 ### Custom Colors And Drawables
 
@@ -202,11 +187,11 @@ Ideally, your patients always see a working messages view when you start the Act
 
 The first is when `CirrusMD.logout()` has been called. In that case they will not see the _logged out view_ because they will be logged out of your application as well. You should log them back into the SDK when they next log back into your application.
 
-The second is when the SDK is unable to verify the secret, the token or there is another issue (ie network) starting the SDK. In either case, an _error view_  is shown. We recommend you handle all errors through `CirrusListener` (NOTE: This has been deprecated, all errors will now be handled with `CirrusDataEventListener`) prior to starting the Activity from `CirrusMD.intent` if possible. Doing so will provide a better experience for your user. Some errors may happen after the Activity is already on screen. In that case, _error view_ is displayed.
+The second is when the SDK is unable to verify the secret, the token or there is another issue (ie network) starting the SDK. In either case, an _error view_  is shown. We recommend you handle all errors through `CirrusDataEventListener` prior to starting the Activity from `CirrusMD.intent` if possible. Doing so will provide a better experience for your user. Some errors may happen after the Activity is already on screen. In that case, _error view_ is displayed.
 
-Two screens displayed by the SDK have default views that can be overridden via the `CirrusMD.CirrusListener.viewForError()`(NOTE: This has been deprecated, default views that can be overridden via `CirrusMD.CirrusDataEventListener.viewForError()`) interface method. We strongly recommend that you provide your own custom views for both cases. Because the CirrusMDSDK uses SSO to authenticate your patients, we are unable to provide logged out UI that helps the patient log back in. By providing your patients with a custom _logout out view_ you can, for example, provide relevant messaging and a button to log back in using the same SSO you implemented to log them in originally. Every time the _error view_ is shown the resolution is retrieving a new SSO token and setting it via `CirrusMDSDK.start(token, secret)`. Providing a custom _error view_ gives you the ability to display relevant messaging and interactions the user can take, most likely a button to re-attempt SSO.
+Two screens displayed by the SDK have default views that can be overridden via the `CirrusMD.CirrusDataEventListener.viewForError()` interface method. We strongly recommend that you provide your own custom views for both cases. Because the CirrusMDSDK uses SSO to authenticate your patients, we are unable to provide logged out UI that helps the patient log back in. By providing your patients with a custom _logout out view_ you can, for example, provide relevant messaging and a button to log back in using the same SSO you implemented to log them in originally. Every time the _error view_ is shown the resolution is retrieving a new SSO token and setting it via `CirrusMDSDK.start(token, secret)`. Providing a custom _error view_ gives you the ability to display relevant messaging and interactions the user can take, most likely a button to re-attempt SSO.
 
-When an error view would be displayed, errors will also be delivered to the `CirrusMD.CirrusListener.onEvent` interface if you would like to handle the error entirely outside of the CirrusMD SDK. (NOTE: This has been deprecated, errors will be delivered to the `CirrusMD.CirrusDataEventListener.onDataEvent` interface)
+When an error view would be displayed, errors will also be delivered to the `CirrusMD.CirrusDataEventListener.onDataEvent` interface if you would like to handle the error entirely outside of the CirrusMD SDK.
 
 By default they will look similar to the screens below:
 
@@ -214,25 +199,14 @@ The default logged out screen is shown after you call `CirrusMD.logout()`.
 
 The error screen can be shown for several reasons, such as providing an expired token or invalid secret.
 
-Providing custom views of both the _logged out view_ and _error view_ happens via the currently set `CirrusMD.CirrusListener`. (NOTE: This has been deprecated, the custom views happen via the currently set `CirrusMD.CirrusDataEventListener`)
+Providing custom views of both the _logged out view_ and _error view_ happens via the currently set `CirrusMD.CirrusDataEventListener`.
 
 ### Push notifications
 
-If you would like for your app to receive push notifications for the SDK you will need to call `CirrusMD.setPushToken(token)` AFTER you have successfully called `CirrusMD.setSessionToken(token: String)` and received a SUCCESS event in the `CirrusMD.CirrusListener.onEvent` interface. (NOTE: This has been deprecated, you will receive a Success event in the `CirrusMD.CirrusDataEventListener.onDataEvent` interface)
+If you would like for your app to receive push notifications for the SDK you will need to call `CirrusMD.setPushToken(token)` AFTER you have successfully called `CirrusMD.setSessionToken(token: String)` and received a `CirrusDataEvents.Success` event in the `CirrusMD.CirrusDataEventListener.onDataEvent` interface.
 
 Example implementation using `FirebaseInstanceId`:
 ```
-@Deprecated
-override fun onEvent(event: CirrusEvents) {
-    when (event) {
-        CirrusEvents.SUCCESS -> fetchPushToken() // fetch push token here
-        CirrusEvents.USER_INTERACTION -> onUserInteraction()
-        CirrusEvents.LOGGED_OUT -> onLoggedOut()
-        else -> onError()
-    }
-}
-
-// Using new CirrusDataEventListener and CirrusDataEvents
 override fun onDataEvent(event: CirrusDataEvents) {
     when (event) {
         CirrusDataEvents.Success -> fetchPushToken() // fetch push token here
@@ -265,7 +239,7 @@ The notifications from CirrusMD contain a JSON payload similar to this:
 
 The SDK provides a `NotificationMetaData` interface class, which can be used to pass this information in via the `CirrusMD.shouldShowNotification(metaData: NotificationMetaData)` and `CirrusMD.onPushNotificationSelected(metaData: NotificationMetaData)` functions. There is also a `CirrusMD.shouldShowNotification(streamId: String, event: String)` convenience function available, which maps those strings to a `NotificationMetaData` object and then calls `CirrusMD.shouldShowNotification(metaData: NotificationMetaData)`.
 
-When your app recieves a push notification from CirrusMD, the `CirrusMD.shouldShowNotification` functions can be used to help determine if the notification should be displayed.
+When your app receives a push notification from CirrusMD, the `CirrusMD.shouldShowNotification` functions can be used to help determine if the notification should be displayed.
 
 Once a user taps on a notification the `CirrusMD.onPushNotificationSelected(metaData: NotificationMetaData)` function can be used to navigate to the channel (stream) associated to the notification. If `CirrusMD.intent` is not currently started, it will open to the selected stream when it is started.
 
@@ -436,7 +410,7 @@ When a user selects a channel `CirrusMD.navigateToChannel(id: String)` can be ca
 
 ### Debug Fragment
 
-You can use `CirrusMD.debugFragment()` to get a Fragment that will display some basic debugging information. For exmaple it can confirm that the session token and/or push token has been correctly set and that the expected user is logged in. This Fragment should NEVER be shown to an end user and is only to be used for development and debugging.
+You can use `CirrusMD.debugFragment()` to get a Fragment that will display some basic debugging information. For example it can confirm that the session token and/or push token has been correctly set and that the expected user is logged in. This Fragment should NEVER be shown to an end user and is only to be used for development and debugging.
 
 ### Cirrus Actions
 

@@ -1,3 +1,11 @@
+# 11.0.0 / July 6th, 2023 / minSdk = API 24 (Android 7) / targetSDK: API 33 (Android 13)
+### SDK Breaking Changes:
+- Moved to Chime SDK for Video call feature
+- Removed Opentok SDK from project
+- Officially removed CirrusEvents, and CirrusListener from SDK module. Now, all events are of type `CirrusDataEvent` and are handled by `CirrusDataListener`
+- Removed VideoSessionEvents.SessionError from SDK module
+
+
 # 10.5.0 / June 7th, 2023 / minSdk = API 24 (Android 7) / targetSDK: API 33 (Android 13)
 ### SDK Features/Changes:
 - Minor UI updates in My Family settings
