@@ -110,7 +110,6 @@ Through the `CirrusMD.CirrusDataEventListener.onDataEvent` interface method, you
   - `UnknownError`: This is the generic catch for errors that could not be identified
 - `VideoSessionEvents`: Video session related events:
   - `ConnectionStatus`: Video session connection events
-  - `SessionError`:  An error occurred during a video session
 
 
 ### Custom Colors And Drawables
