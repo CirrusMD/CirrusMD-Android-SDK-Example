@@ -1,3 +1,13 @@
+# 11.1.0 / September 1st, 2023 / minSdk = API 24 (Android 7) / targetSDK: API 33 (Android 13)
+- My Healthcare Services UI redesign
+- Health Coach UI improvements
+- Dependency updates:
+  - org.json:json -> 20220320 
+  - version_androidx_fragment -> '1.6.0' 
+  - version_androidx_compose -> '1.4.3' 
+  - version_androidx_compose_activity -> '1.7.2' 
+  - version_androidx_constraintlayout -> '2.1.4'
+
 # 11.0.0 / July 6th, 2023 / minSdk = API 24 (Android 7) / targetSDK: API 33 (Android 13)
 ### SDK Breaking Changes:
 - Moved to Chime SDK for Video call feature
