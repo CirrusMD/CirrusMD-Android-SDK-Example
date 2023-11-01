@@ -19,8 +19,8 @@ android {
     buildToolsVersion = '30.0.3'
     defaultConfig {
         applicationId "com.cirrusmd.cirrusmdexample"
-        minSdkVersion 24
-        targetSdkVersion 34
+        minSdkVersion 26      // Android 8
+        targetSdkVersion 34   // Android 14
         versionCode 1
         versionName "1.0"
         multiDexEnabled true
@@ -34,8 +34,12 @@ android {
     }
 
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
+        sourceCompatibility JavaVersion.VERSION_11
+        targetCompatibility JavaVersion.VERSION_11
+    }
+
+    kotlin {
+        jvmToolchain(11)
     }
 
     configurations.configureEach {
@@ -45,7 +49,7 @@ android {
 
 dependencies {
     // CirrusMD SDK
-    implementation ('com.github.CirrusMD:cirrusmd-android:11.1.0') {
+    implementation ('com.github.CirrusMD:cirrusmd-android:11.2.0') {
         // Only exclude this dependency if you're sure your plan does not use video.
         // Check with your account manager if you have questions.
         // exclude group: 'software.aws.chimesdk', module: 'amazon-chime-sdk'
