@@ -19,8 +19,8 @@ android {
     buildToolsVersion = '30.0.3'
     defaultConfig {
         applicationId "com.cirrusmd.cirrusmdexample"
-        minSdkVersion 24
-        targetSdkVersion 34
+        minSdkVersion 26      // Android 8
+        targetSdkVersion 34   // Android 14
         versionCode 1
         versionName "1.0"
         multiDexEnabled true
@@ -34,8 +34,12 @@ android {
     }
 
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
+        sourceCompatibility JavaVersion.VERSION_11
+        targetCompatibility JavaVersion.VERSION_11
+    }
+
+    kotlin {
+        jvmToolchain(11)
     }
 
     configurations.configureEach {
@@ -45,7 +49,7 @@ android {
 
 dependencies {
     // CirrusMD SDK
-    implementation ('com.github.CirrusMD:cirrusmd-android:11.1.0') {
+    implementation ('com.github.CirrusMD:cirrusmd-android:11.2.0') {
         // Only exclude this dependency if you're sure your plan does not use video.
         // Check with your account manager if you have questions.
         // exclude group: 'software.aws.chimesdk', module: 'amazon-chime-sdk'
@@ -53,12 +57,12 @@ dependencies {
     }
 
     // Android
-    implementation 'com.google.android.material:material:1.9.0'
+    implementation 'com.google.android.material:material:1.10.0'
     implementation 'androidx.appcompat:appcompat:1.6.1'
     implementation 'androidx.fragment:fragment-ktx:1.6.1'
-    implementation "androidx.core:core-ktx:1.10.1"
+    implementation "androidx.core:core-ktx:1.12.0"
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
-    implementation 'androidx.annotation:annotation:1.6.0'
+    implementation 'androidx.annotation:annotation:1.7.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
 
     // Firebase
@@ -68,7 +72,7 @@ dependencies {
         }
         exclude group: 'com.google.firebase', module: 'firebase-analytics'
     }
-    implementation("com.google.firebase:firebase-messaging:23.2.1") {
+    implementation("com.google.firebase:firebase-messaging:23.3.1") {
         exclude group: 'com.google.android'
         exclude group: 'com.android.support'
     }

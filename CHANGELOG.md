@@ -1,3 +1,22 @@
+# 11.2.0 / November 1st, 2023 / minSdk = API 26 (Android 8) / targetSDK: API 34 (Android 14)
+### SDK Features/Changes:
+- `targetSdk` is now API 34! (Android 14)
+- `minSDK` is now API 26! (Android 8.0)
+- Added a new Patient Health Goal feature:
+  - Added a new message view for Patient Health Goals that show up in the chat stream.
+  - New scrollable Patient Health Goals screen, where patients can see all Active, Upcoming, and Completed goals.
+- Dependency updates:
+  - `Androidx fragment -> '1.6.1'`
+  - `Androidx compose -> '1.5.0'`
+  - `Androidx core -> '1.10.1'`
+  - `Androidx recyclerview -> '1.3.1'`
+  - `Firebase messaging -> '23.2.1'`
+- Updated date/time stamps to be more consistent with iOS and Web experience
+
+### SDK Bug Fixes:
+- Fixed issue where inactive stream messages can consume the entire screen (when message is long, or accessibility font is being used), causing a bad user experience. The new behavior involves having a collapsable message, which the user can expand and collapse.
+
+
 # 11.1.0 / September 1st, 2023 / minSdk = API 24 (Android 7) / targetSDK: API 33 (Android 13)
 - My Healthcare Services UI redesign
 - Health Coach UI improvements
