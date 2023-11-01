@@ -28,8 +28,8 @@ The CirrusMD SDK it an embeddable SDK. It enables customers of CirrusMD to provi
 ## Requirements
 
 - Project language: Kotlin or Java
-- minSdk: `24`
-- targetSdk: `33` (As of v10.2.0 of CirrusMD SDK) 
+- minSdk: `26` (Since v11.2.0 of CirrusMD SDK)
+- targetSdk: `34` (Since v10.2.0 of CirrusMD SDK) 
 - supportLibrary: `AndroidX`
 
 ## Installing CirrusMDSDK in your own project
