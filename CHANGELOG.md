@@ -1,3 +1,33 @@
+# 11.3.0 / Jan 2nd, 2024 / minSdk = API 26 (Android 8) / targetSDK: API 34 (Android 14)
+### SDK Features/Changes:
+- Closed captions are now available during a video call.
+  - Updated video UI to allow for closed captions
+  - Users can toggle closed captions ON and OFF
+  - Closed caption feature is behind a feature flag and must be turned on in order for the feature to work
+  - Minor location selection text update
+- Dependency updates:
+  - Java 17 update
+  - Gradle build tools -> '8.1.2'
+  - Google-services -> '4.4.0'
+  - AndroidX RecyclerView -> '1.3.2'
+  - Compose Activity -> '1.8.0'
+  - Lifecycle -> '2.6.2'
+  - Material -> '1.10.0'
+  - Coroutines -> '1.7.3'
+  - Chime -> '0.18.3'
+  - Androidx_annotation -> '1.6.0'
+  - Androidx_compose -> '1.5.4'
+  - Compose BOM -> '2023.10.01'
+  - Moshi -> '1.15.0'
+  - Mockito -> '5.6.0'
+  - Robolectric -> '4.11'
+  - Coroutines_test -> '1.7.3'
+
+### SDK Bug Fixes:
+- Fixed bug where having more than 1 active patient goal would crash the Health Goals view
+
+
+
 # 11.2.0 / November 1st, 2023 / minSdk = API 26 (Android 8) / targetSDK: API 34 (Android 14)
 ### SDK Features/Changes:
 - `targetSdk` is now API 34! (Android 14)
