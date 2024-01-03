@@ -1,5 +1,14 @@
-# CirrusMD-Android-SDK-Example
-The CirrusMD SDK it an embeddable SDK. It enables customers of CirrusMD to provide the CirrusMD patient chat experience in their own applications. While the example application will work in a sandboxed environment when built, integrating the CirrusMD SDK into your own application will require you to be a CirrusMD customer. Integration requires a unique `secret` and SSO `token` to work correctly, however this example uses sandbox credentials for demo purposes. Please contact your CirrusMD account representative for more information.
+# CirrusMD-Android-SDK-Example App
+
+[![](https://jitpack.io/v/CirrusMD/cirrusmd-android.svg)](https://jitpack.io/#CirrusMD/cirrusmd-android)
+
+The CirrusMD SDK it an embeddable SDK. It enables customers of CirrusMD to provide the CirrusMD patient chat experience in their own applications. 
+While the example application will work in a sandboxed environment when built, integrating the CirrusMD SDK into your own application will require you to be a CirrusMD customer. 
+Integration requires a unique `secret` and SSO `token` to work correctly, however this example uses sandbox credentials for demo purposes. 
+Please contact your CirrusMD account representative for more information.
+
+
+## Table of Contents
 
 - [Requirements](#requirements)
 - [Installation](#installing-cirrusmdsdk-in-your-own-project)
