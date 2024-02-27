@@ -1,3 +1,19 @@
+# 11.4.0 / February 27th, 2024
+### SDK Features/Changes:
+- Android 14 related image permission updates:
+  - Dedicated UI to have the user either take an image, or select an existing image using Android's Photo Picker, on Android 14+ devices only: https://developer.android.com/training/data-storage/shared/photopicker
+- Lab PDFs are now viewable in the SDK
+  - These lab PDFs are shareable (using an Android Share-sheet)
+- Updated Stream Selector UI:
+  - Medical Records and Goals sections are now present in the SDK home screen (Configurable via Manage)
+- Added ability to share images from the SDK to other apps on the device (Using an Android Share-sheet)
+- Added pull-to-refresh functionality to the Labs view and Patient Goals view
+
+### SDK Bug Fixes:
+- Fixed issue where pharmacy selection can crash if the user backgrounds the app while on the results page, and then foregrounds the app and tries to select a pharmacy.
+
+
+
 # 11.3.0 / Jan 2nd, 2024 / minSdk = API 26 (Android 8) / targetSDK: API 34 (Android 14)
 ### SDK Features/Changes:
 - Closed captions are now available during a video call.
