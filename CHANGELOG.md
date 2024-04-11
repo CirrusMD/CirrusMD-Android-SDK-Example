@@ -1,17 +1,11 @@
 # 11.5.0 / April 11th, 2024
 ### SDK Features/Changes:
 - Dependency updates:
-  - version_firebase_messaging = '23.4.1'
-  - version_chime_media = '0.19.1'
-  - version_chime_sdk = '0.19.1'
-- Added "Permissions" setting in settings that pushes to the app settings
-- CostAndQuality now available in the UserProfile
-- Updated icons in the StreamSelector for the generic cards
-- Added FindCareFragment to the SDK
-- Find Care is displayed in the stream selector when CostAndQuality is populated in the UserProfile
-- Updated Goals and Labs Segment events
-- Find Care segment events implemented
-- Update the progress note fragment to consume dynamic titles as string resource
+- version_firebase_messaging = '23.4.1'
+- version_chime_media = '0.19.1'
+- version_chime_sdk = '0.19.1'
+- Added "Permissions" navigation in settings that pushes users to the app settings
+- Cost and quality tool now available. This tool adds the ability to locate in-network doctors, specialists, care centers near patients.
 
 # 11.4.0 / February 27th, 2024
 ### SDK Features/Changes:
