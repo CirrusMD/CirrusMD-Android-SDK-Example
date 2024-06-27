@@ -1,23 +1,20 @@
-# 11.6.0 / June 24th, 2024
+# 11.6.0 / June 25th, 2024
 ### SDK Features/Changes:
 - New Dependencies:
   - Markwon -> '4.6.2' (Markdown parser dependency)
 - Dependency updates:
   - Chime -> '0.20.0'
-- Added `StreamBannerView` to the event stream
-- Action Message logic has been broken down to be shared with other forms we might create in the future. Right now, all action message field view holders can be shared, and are being shared with ActionForms
-- Action Forms are now available in the SDK. They are a form that can be filled out by the user, and submitted to the backend. Currently, it's being used for HIE Consent, but would work for any form we might need in the future.
-- Added Data Sharing item to the settings page. Showing this item will be controlled by the backend, with the `hie_consent_enabled` flag in the `Customer` object.
-  - Data Sharing settings view gives the patient the option to opt in or out of data sharing.
-- AppStoreRequestManager implemented to handle business logic for when to attempt to display an app review
-- AppStoreRequestHandler created for callbacks to the app to give the app control of what review to display
-- Fixed camera image capture issues on some Samsung devices. We had to add Samsung specific logic to fix the issue, but we should now be able to upload images again (Chat, profile mage, dependent profile image uploads).
+  - Gradle Build Tools -> '8.3.0'
+  - Espresso -> '3.5.1'
+  - JJWT -> '0.12.5'
+- Consent Form added as a feature for patients to opt in/out of Health Information Exchange
+- Data Sharing settings view gives the patient the option to opt in or out of data sharing.
 
 ### SDK Bug Fixes:
 - Fixed issue where Health Goal messages (in the chat stream) would hide the message body, if there were consecutive health goals that happen to have the same message body (which is actually common enough)
 - Fixed PDFViewer issue where some of the pages were not rendering at all.
 - Fixed issue where push notifications for dependents caused an infinite loop on tap, and subsequently crashing the app.
-
+- Fixed camera image capture issues on some Samsung devices.
 
 # 11.5.0 / April 11th, 2024
 ### SDK Features/Changes:
