@@ -1,5 +1,6 @@
 package com.cirrusmd.cirrusmdexample
 
+import android.content.Context
 import android.os.Bundle
 import android.view.View
 import android.widget.Button
@@ -15,6 +16,10 @@ import com.cirrusmd.androidsdk.CirrusMD.enableDebugLogging
 import com.cirrusmd.androidsdk.CirrusMD.enableSettings
 import com.cirrusmd.androidsdk.CirrusMD.setSessionToken
 import com.cirrusmd.androidsdk.CirrusMD.start
+import com.cirrusmd.androidsdk.pinnedbanner.model.CirrusMDActionModal
+import com.cirrusmd.androidsdk.pinnedbanner.model.CirrusMDContactIcon
+import com.cirrusmd.androidsdk.pinnedbanner.model.CirrusMDContactOption
+import com.cirrusmd.androidsdk.pinnedbanner.model.CirrusMDPinnedBanner
 import com.google.gson.GsonBuilder
 import retrofit2.Call
 import retrofit2.Callback
@@ -54,26 +59,29 @@ class MainActivity : AppCompatActivity(), CirrusDataEventListener {
     }
 
     private fun setupCirrus() {
-        // For debug logging to be enabled correctly, set CirrusMD.enableDebugLogging = true,
-        // before calling CirrusMd.start()
+        // FOR DEBUGGING ONLY
         enableDebugLogging = true
 
-        // Settings view allows the user to view and edit their profile, medical history, dependents, permissions, and Terms of Use / Privacy Policy.
+        // OPTIONAL: Settings view allows the user to view and edit their profile, medical history, dependents, permissions, and Terms of Use / Privacy Policy.
         enableSettings = true
     
-        // Allows the CirrusMD SDK to follow the system wide setting for enabling/disabling Dark Theme. Otherwise the CirrusMD SDK will remain in Light mode
+        // OPTIONAL: Allows the CirrusMD SDK to follow the system wide setting for enabling/disabling Dark Theme. Otherwise the CirrusMD SDK will remain in Light mode
         allowDarkMode = true
 
         // Demo Patient does not currently have any dependents
         // enableDependentProfiles = true
 
-        // Obtain Credential Id
+        // OPTIONAL: Obtain Credential Id
         credentialIdListener = object : CredentialIdListener {
             override fun onCredentialIdReady(id: String) {
                 Timber.d("Credential ID: $id")
             }
         }
         cirrusDataEventListener = this
+        
+        // OPTIONAL: Set up pinned banner that displays on home, chat, and settings screens
+        configurePinnedBanner(this)
+        
         start(this, SECRET)
     }
 
@@ -124,6 +132,46 @@ class MainActivity : AppCompatActivity(), CirrusDataEventListener {
         Timber.e(error)
         homeText?.text = getString(R.string.error)
         displayCirrusSDKButton?.isEnabled = false
+    }
+    
+    private fun configurePinnedBanner(context: Context) {
+        CirrusMD.pinnedBanner = CirrusMDPinnedBanner(
+            infoBannerMessage = "My custom info banner message",
+            actionModal = CirrusMDActionModal(
+                bannerTitle = "My custom banner title",
+                modalTitle = "My custom modal title",
+                modalHeader = "My custom modal header",
+                modalSubHeader = "My custom modal sub header",
+                contactOptions = listOf(
+                    CirrusMDContactOption(
+                        CirrusMDContactIcon.PHONE,
+                        "Phone", "tel:8005555555"
+                    ),
+                    CirrusMDContactOption(
+                        CirrusMDContactIcon.TEXT,
+                        "SMS", "sms:555555"
+                    ),
+                    CirrusMDContactOption(
+                        CirrusMDContactIcon.CHAT,
+                        "Chat",
+                        "https://www.google.com"
+                    ),
+                    CirrusMDContactOption(
+                        CirrusMDContactIcon.TTY,
+                        "TTY", "tel:8005555555"
+                    ),
+                    CirrusMDContactOption(
+                        CirrusMDContactIcon.NONE,
+                        "My custom list header"
+                    ),
+                    CirrusMDContactOption(
+                        CirrusMDContactIcon.LINK,
+                        "URL",
+                        "https://www.google.com"
+                    )
+                )
+            )
+        )
     }
 
     /**
