@@ -29,6 +29,7 @@ Please contact your CirrusMD account representative for more information.
   - [Cirrus Actions](#cirrus-actions)
   - [Debug Fragment](#debug-fragment)
   - [Spanish Localization](#spanish-localization)  
+  - [Pinned Banner](#pinned-banner)
 - [Android 13 Permission Updates](#Android-13-Permission-Updates)
 - [SDK Size](#sdk-size)
 - [License](#license)
@@ -439,6 +440,58 @@ In v10.1.0 of the CirrusMD SDK, we introduced support for Spanish localization. 
 - Accessibility announcements for translated messages, when using talk-back
 
 Please contact your CirrusMD account representative for more information.
+
+### Pinned Banner
+
+In v11.7.0 of the CirrusMD SDK, we introduced a pinned banner feature. This feature allows you to pin a banner to the top of the home, chat, and settings screens. 
+The banner contains 2 different behaviors:
+1. An info banner message that can be used to display important but brief messages to the user.
+2. An action modal that can be used to display a list of information that the user can interact with. Example: Display helpful phone numbers, URLs, other useful information etc.
+
+Once the banner is initialized, it will remain present at all times in the mentioned screens. 
+
+```
+CirrusMD.pinnedBanner = CirrusMDPinnedBanner(
+    infoBannerMessage = "My custom info banner message", // Optional
+    actionModal = CirrusMDActionModal(                   // Optional
+        bannerTitle = "My custom banner title",
+        modalTitle = "My custom modal title",
+        modalHeader = "My custom modal header",
+        modalSubHeader = "My custom modal sub header",
+        contactOptions = listOf(
+            CirrusMDContactOption(
+                CirrusMDContactIcon.PHONE,  // Icons available: PHONE, TEXT, CHAT, TTY, LINK, NONE
+                "Phone",                    // text to be displayed and hyperlinked
+                "tel:8005555555"            // hyperlink
+            ),
+            CirrusMDContactOption(
+                CirrusMDContactIcon.TEXT,
+                "SMS", 
+                "sms:555555"
+            ),
+            CirrusMDContactOption(
+                CirrusMDContactIcon.CHAT,
+                "Chat",
+                "https://www.google.com"
+            ),
+            CirrusMDContactOption(
+                CirrusMDContactIcon.TTY,
+                "TTY", 
+                "tel:8005555555"
+            ),
+            CirrusMDContactOption(
+                CirrusMDContactIcon.NONE,
+                "My custom list header"
+            ),
+            CirrusMDContactOption(
+                CirrusMDContactIcon.LINK,
+                "URL",
+                "https://www.google.com"
+            )
+        )
+    )
+)
+```
 
 ### Support Library Versions
 

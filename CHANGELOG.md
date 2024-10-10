@@ -1,3 +1,22 @@
+# 11.7.0 / October 8th, 2024
+### SDK Features/Changes:
+- Dependency Updates:
+  - Gradle Build Tools -> '8.4.1'
+  - AndroidX Fragment -> '1.8.0'
+  - AndroidX Compose Activity -> '1.9.0'
+  - AppCompat -> '1.7.0'
+  - Lifecycle -> '2.8.2'
+  - Firebase Messaging -> '24.0.0'
+  - New Relic -> '7.3.1'
+  - Chime -> '0.21.1'
+  - Google Services -> '4.4.2'
+- Patient Goals view has been redesign with a TabLayout to display the different types of goals
+  - Added patient health goal details view
+  - Patients can complete goals on their own, for given categories.
+- Added `PinnedBanner` class that facilitates new banner feature inside the SDK
+  - `PinnedBanner` includes an optional `ActionBanner` and an `InfoBanner`
+  - Banner could be useful to display several types of information to patients
+
 # 11.6.0 / June 25th, 2024
 ### SDK Features/Changes:
 - New Dependencies:
