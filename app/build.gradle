@@ -35,12 +35,12 @@ android {
     }
 
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_11
-        targetCompatibility JavaVersion.VERSION_11
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
     }
 
     kotlin {
-        jvmToolchain(11)
+        jvmToolchain(17)
     }
 
     configurations.configureEach {
@@ -50,7 +50,7 @@ android {
 
 dependencies {
     // CirrusMD SDK
-    implementation ('com.github.CirrusMD:cirrusmd-android:11.7.0') {
+    implementation ('com.github.CirrusMD:cirrusmd-android:11.8.0') {
         // Only exclude this dependency if you're sure your plan does not use video.
         // Check with your account manager if you have questions.
         // exclude group: 'software.aws.chimesdk', module: 'amazon-chime-sdk'
