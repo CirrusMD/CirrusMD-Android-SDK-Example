@@ -1,3 +1,26 @@
+# 11.8.0 / Jan. 2nd, 2025
+### SDK Features/Changes:
+- Example Project Java update -> '17'
+- Dependency Updates:
+  - AndroidX Annotations -> '1.8.2'
+  - AndroidX Fragment -> '1.8.4'
+  - AndroidX ComposeActivity -> '1.9.2'
+  - AndroidX Core -> '1.13.1'
+  - Lifecycle -> '2.8.6'
+  - Firebase Messaging -> '24.0.1'
+  - BuildTools -> '34.0.0'
+  - Kotlin Reflect -> '1.9.20'
+  - Retrofit -> '2.11.0'
+- Added support for Bluetooth and wired devices for video calls. Also added ability to switch between devices during a video call.
+- Updated logic for handling image selection in the SDK. Now, all our supported versions of Android will use the Android Photo Picker to select an existing image in the user's device.
+  (Older version of android, Android 10 and below, will use the backported photopicker module update provided in the AndroidManifest file). Camera image capture will still require a runtime permissions check, in order to work properly. All versions of Android will now be prompted with an alert to choose how they want to upload images to CirrusMD (Camera or Gallery/PhotoPicker).
+- Language flag added to Manage to enable/disable functionality for displaying the language change option in the settings view.
+
+
+### SDK Bug Fixes:
+- Fixed issue where fetching more goals in a given category would override the existing list with the newly fetched goals. This would make the list of goals appear smaller than it actually is.
+- Fixed issue where data was missing when consecutive lab order results were displayed in the chat stream.
+
 # 11.7.0 / October 8th, 2024
 ### SDK Features/Changes:
 - Dependency Updates:
