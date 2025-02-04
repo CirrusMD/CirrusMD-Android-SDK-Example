@@ -1,6 +1,6 @@
 # 11.9.0 / Feb 4th, 2025
 ### SDK Features/Changes:
-- Added Security Settings to the SDK. This will allow the display a user's email, and allow them to update these settings, for the appropriate users. This is a configurable setting.
+- The CirrusMD SDK now includes configurable security settings.  This feature allows the SDK to display and update user security information, such as email (including future security features). This feature is configurable via the CirrusMD Manage console.
 
 ### SDK Bug Fixes:
 - Fixed race condition which causes items on the home screen to not appear correctly sometimes
