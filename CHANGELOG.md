@@ -1,3 +1,12 @@
+# 11.9.0 / Feb 4th, 2025
+### SDK Features/Changes:
+- The CirrusMD SDK now includes configurable security settings.  This feature allows the SDK to display and update user security information, such as email (including future security features). This feature is configurable via the CirrusMD Manage console.
+
+### SDK Bug Fixes:
+- Fixed race condition which causes items on the home screen to not appear correctly sometimes
+- Fixed Web-socket issue where patients that lock their device while on our app, would cause disconnection issues, without the ability to reconnect (unless the app was closed and reopened)
+
+
 # 11.8.0 / Jan. 2nd, 2025
 ### SDK Features/Changes:
 - Example Project Java update -> '17'
