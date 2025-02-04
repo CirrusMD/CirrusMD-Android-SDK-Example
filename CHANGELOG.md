@@ -1,3 +1,12 @@
+# 11.9.0 / Feb 4th, 2025
+### SDK Features/Changes:
+- Added Security Settings to the SDK. This will allow the display a user's email, and allow them to update these settings, for the appropriate users. This is a configurable setting.
+
+### SDK Bug Fixes:
+- Fixed race condition which causes items on the home screen to not appear correctly sometimes
+- Fixed Web-socket issue where patients that lock their device while on our app, would cause disconnection issues, without the ability to reconnect (unless the app was closed and reopened)
+
+
 # 11.8.0 / Jan. 2nd, 2025
 ### SDK Features/Changes:
 - Example Project Java update -> '17'
