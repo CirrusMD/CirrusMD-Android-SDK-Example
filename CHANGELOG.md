@@ -1,3 +1,9 @@
+# 11.10.0 / Feb. 26th, 2025
+### SDK Features/Changes:
+- Added support for new push notification type
+- Added support for in-app notifications, with the addition of a notification center. This allows displaying important notifications to the user, and allow them to interact with the notifications, all within the SDK.
+
+
 # 11.9.0 / Feb 4th, 2025
 ### SDK Features/Changes:
 - The CirrusMD SDK now includes configurable security settings.  This feature allows the SDK to display and update user security information, such as email (including future security features). This feature is configurable via the CirrusMD Manage console.
