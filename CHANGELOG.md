@@ -1,3 +1,22 @@
+# 12.0.0 / April 16, 2025
+### SDK Features/Changes:
+- Update Password now available in Settings > Security
+- Dependency updates:
+  - version_androidx_recyclerview = '1.4.0'
+  - version_androidx_fragment = '1.8.6'
+  - version_androidx_constraintlayout = '2.2.1'
+  - version_androidx_exifinterface = '1.4.0'
+- Visit Selector (Pre-Encounter action message) now available in the SDK. This allows the patient to answer questions
+  prior to starting an encounter/chat, in the same format as Action Messages. NOTE: This feature is an alternative to Location Selection.
+- Edge to Edge support added for API 31+ devices
+- Target SDK updated to API 35 (Android 15)
+- Min SDK updated to API 27 (Android 8.1)
+
+### SDK Bug Fixes:
+- Fixed issue where push notifications might not fully route the user to the intended screen.
+- Updated the web-socket reconnect logic so that the SDK doesn't attempt to reconnect if the web-socket becomes disconnected while the host app is backgrounded.
+
+
 # 11.10.0 / Feb. 26th, 2025
 ### SDK Features/Changes:
 - Added support for new push notification type

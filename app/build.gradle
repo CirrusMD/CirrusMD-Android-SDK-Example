@@ -16,12 +16,12 @@ repositories {
 
 android {
     namespace 'com.cirrusmd.cirrusmdexample'
-    compileSdk 34
+    compileSdk 35
     buildToolsVersion = '34.0.0'
     defaultConfig {
         applicationId "com.cirrusmd.cirrusmdexample"
-        minSdkVersion 26      // Android 8
-        targetSdkVersion 34   // Android 14
+        minSdkVersion 27      // Android 8.1
+        targetSdkVersion 35   // Android 15
         versionCode 1
         versionName "1.0"
         multiDexEnabled true
@@ -50,7 +50,7 @@ android {
 
 dependencies {
     // CirrusMD SDK
-    implementation ('com.github.CirrusMD:cirrusmd-android:11.10.0') {
+    implementation ('com.github.CirrusMD:cirrusmd-android:12.0.0') {
         // Only exclude this dependency if you're sure your plan does not use video.
         // Check with your account manager if you have questions.
         // exclude group: 'software.aws.chimesdk', module: 'amazon-chime-sdk'
@@ -60,11 +60,11 @@ dependencies {
     // Android
     implementation 'com.google.android.material:material:1.12.0'
     implementation 'androidx.appcompat:appcompat:1.7.0'
-    implementation 'androidx.fragment:fragment-ktx:1.8.5'
-    implementation "androidx.core:core-ktx:1.13.1"
+    implementation 'androidx.fragment:fragment-ktx:1.8.6'
+    implementation "androidx.core:core-ktx:1.15.0"
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     implementation 'androidx.annotation:annotation:1.9.1'
-    implementation 'androidx.constraintlayout:constraintlayout:2.2.0'
+    implementation 'androidx.constraintlayout:constraintlayout:2.2.1'
 
     // Firebase
     implementation("com.google.firebase:firebase-core:21.1.1") {
@@ -73,7 +73,7 @@ dependencies {
         }
         exclude group: 'com.google.firebase', module: 'firebase-analytics'
     }
-    implementation("com.google.firebase:firebase-messaging:24.1.0") {
+    implementation("com.google.firebase:firebase-messaging:24.1.1") {
         exclude group: 'com.google.android'
         exclude group: 'com.android.support'
     }
