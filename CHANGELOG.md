@@ -1,3 +1,25 @@
+# 12.1.0 / July 15th, 2025
+:warning: Important: This release of the SDK adds a new section to the security menu in settings for Biometrics. If your SDK implementation has settings turned on, we will have a release soon that provides a way to hide this in the SDK configuration. Please contact CirrusMD if you have any questions.
+
+### SDK Features/Changes:
+- Dependency updates:
+  - AndroidX Recyclerview = '1.4.0'
+  - AndroidX Compose Activity = '1.10.1'
+  - Chime Media = '0.24.0'
+  - Chime SDK = '0.24.1'
+  - Build Tools update to 35.0.0
+  - Gradle Build Tools update to 8.8
+  - Gradle wrapper version update to 8.11.1
+  - AndroidX Compose BOM update to 2025.02.00
+  - Kotlin Plugin Version to 1.9.25
+  - Kotlin Compiler Extension to 1.5.15 (for compatibility with new Kotlin Plugin version)
+  - KSP version update to 1.9.25 for compatibility with Kotlin Plugin
+  - Removed deprecated lifecycle-extensions dependency, and replaced with lifecycle-process
+- Added Dependencies:
+  - AndroidX Biometrics = '1.1.0' (for biometric authentication in white-labels, NOT APPLICABLE TO SDK CUSTOMERS)
+- Notification center improvements
+
+
 # 12.0.0 / April 16, 2025
 ### SDK Features/Changes:
 - Update Password now available in Settings > Security
