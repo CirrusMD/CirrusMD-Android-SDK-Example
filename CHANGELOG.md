@@ -1,3 +1,21 @@
+# 12.2.0 / October 13, 2025
+### SDK Features/Changes:
+- Dependency updates:
+  - Chime Media = '0.25.0'
+  - Chime SDK = '0.25.0'
+  - AndroidX Lifecycle = '2.9.1'
+  - AndroidX Fragment = '1.8.8'
+  - AndroidX ExifInterface = '1.4.1'
+  - AndroidX AppCompat = '1.7.1'
+  - Kotlin coroutines = '1.9.0'
+  - Mockito = '5.12.0'
+  - AndroidX autofill = '1.3.0'
+- Added new "enableSecuritySettings" boolean to CirrusMD object, to control show/hide of the Security Settings in the SDK.
+- Implemented ability to remove profile image from settings.
+- Created a new Medical Documents section for Lab and Imaging Orders/Results
+- Added ability to view Member ID cards (Insurance cards), when/if available
+
+
 # 12.1.0 / July 15th, 2025
 :warning: Important: This release of the SDK adds a new section to the security menu in settings for Biometrics. If your SDK implementation has settings turned on, we will have a release soon that provides a way to hide this in the SDK configuration. Please contact CirrusMD if you have any questions.
 

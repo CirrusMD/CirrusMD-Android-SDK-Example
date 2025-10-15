@@ -339,6 +339,13 @@ NOTE: The Settings view defaults to be disabled. To turn the Settings view ON, s
     CirrusMD.start(...)
 ```
 
+### Enable Security Settings View
+
+This is a setting that DOES NOT apply to most SDK customers. Please leave this setting OFF unless you have been instructed otherwise by your CirrusMD account representative.
+
+NOTE: The Security Settings view defaults to be disabled.
+
+
 ### Enable Debug Fragment in Settings
 
 There is an optional Debug view that you can use for *development ONLY, and you must have the Settings view enabled*. This view, when enabled, is accessed via the 'gear' button in the SDK's toolbar, and then it will appear as an option in the list of settings. This view allows developers to view debug infomation, that might be helpful during development. The availability of the Debug view is controlled by the `CirrusMD` Object.
