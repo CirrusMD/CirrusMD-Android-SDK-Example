@@ -38,8 +38,8 @@ Please contact your CirrusMD account representative for more information.
 ## Requirements
 
 - Project language: Kotlin or Java
-- minSdk: `26` (Since v11.2.0 of CirrusMD SDK)
-- targetSdk: `34` (Since v10.2.0 of CirrusMD SDK) 
+- minSdk: `28` (Since v12.3.0 of CirrusMD SDK)
+- targetSdk: `36` (Since v12.3.0 of CirrusMD SDK) 
 - supportLibrary: `AndroidX`
 
 ## Installing CirrusMDSDK in your own project

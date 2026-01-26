@@ -16,12 +16,12 @@ repositories {
 
 android {
     namespace 'com.cirrusmd.cirrusmdexample'
-    compileSdk 35
-    buildToolsVersion = '34.0.0'
+    compileSdk 36
+    buildToolsVersion = '35.0.0'
     defaultConfig {
         applicationId "com.cirrusmd.cirrusmdexample"
-        minSdkVersion 27      // Android 8.1
-        targetSdkVersion 35   // Android 15
+        minSdkVersion 28      // Android 9
+        targetSdkVersion 36   // Android 16
         versionCode 1
         versionName "1.0"
         multiDexEnabled true
@@ -50,7 +50,7 @@ android {
 
 dependencies {
     // CirrusMD SDK
-    implementation ('com.github.CirrusMD:cirrusmd-android:12.2.0') {
+    implementation ('com.github.CirrusMD:cirrusmd-android:12.3.1') {
         // Only exclude this dependency if you're sure your plan does not use video.
         // Check with your account manager if you have questions.
         // exclude group: 'software.aws.chimesdk', module: 'amazon-chime-sdk'
@@ -61,7 +61,7 @@ dependencies {
     implementation 'com.google.android.material:material:1.13.0'
     implementation 'androidx.appcompat:appcompat:1.7.1'
     implementation 'androidx.fragment:fragment-ktx:1.8.9'
-    implementation "androidx.core:core-ktx:1.16.0"
+    implementation "androidx.core:core-ktx:1.17.0"
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     implementation 'androidx.annotation:annotation:1.9.1'
     implementation 'androidx.constraintlayout:constraintlayout:2.2.1'
