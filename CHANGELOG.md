@@ -1,3 +1,56 @@
+# 12.3.1 / January 26, 2025 / minSdk = API 28 (Android 9) / targetSDK: API 36 (Android 16)
+### SDK Bug Fixes:
+- Fixed issue where "upload document" option shows up in the Chat Stream, even though General Medical Documents feature is turned off
+- Fixed issue where tapping on Medical Documents view and then tapping on back button causes duplicate streams
+- Fixed build memory issues for SDK
+
+
+# 12.3.0 / January 22, 2025 / minSdk = API 28 (Android 9) / targetSDK: API 36 (Android 16)
+### SDK Features/Changes:
+- MinSdk update to API 28 (Android 9)
+- TargetSdk update to API 36 (Android 16)
+- Dependency updates:
+  - Gradle Build Tools = '8.11.2'
+  - Kotlin Plugin = '2.0.10'
+  - KSP = '2.0.10-1.0.24'
+  - Compose Plugin = '2.0.10'
+  - AndroidX Fragment = '1.8.9'
+  - AndroidX Core = '1.17.0'
+  - Compose Activity = '1.11.0'
+  - Lifecycle = '2.9.4'
+  - Material = '1.13.0'
+  - Coroutines = '1.10.2'
+  - Moshi = '1.15.2'
+  - Retrofit = '3.0.0'
+  - JJWT = '0.13.0'
+  - Joda Time = '2.13.1'
+  - Chime Media = '0.25.1'
+  - Chime SDK = '0.25.1'
+  - AndroidX Runtime -> Now uses Compose BOM version
+- New Dependencies:
+  - AndroidX Compose Material (for new Composable views)
+  - KotlinX Coroutines rx2 (For RxJava interop with Kotlin Coroutines Flow)
+  - Glide Compose (For Glide integration with Compose)
+  - AndroidX Compose Foundations (for Compose views)
+
+- Certificate update to Certificate Pinning mechanism
+- Added Chat History to settings. Chat history opens up a list of Finished Encounters for the selected patient. Selecting a finished encounter brings up the Messages for that encounter.
+- Medical document access is determined on a Patient level instead of a customer level
+- Other Documents tab available in the Medical Documents feature, grants user ability to view pdfs and delete uploaded medical documents.
+  - Added ability to upload medical documents
+- Added ability to upload medical documents in the Chat Stream. This is added functionality to the Select Image/Attachment flow
+  - DocumentUploadFragment is reusable and will be used in General Medical Documents feature as well
+
+### SDK Bug Fixes:
+- Prevent chat stream from displaying second survey after completing the chat.
+- Fixed issue around how Clinical Documentation Notes show up in the Chat
+- Better handling of failed profile image fetches, which will now default back to patient initials
+
+
+### KNOWN ISSUE:
+- Users are able to attempt to upload a document from with in the Chat, even though the feature is turned off. This will be fixed with a Hot Fix version `12.3.1`
+
+
 # 12.2.0 / October 13, 2025
 ### SDK Features/Changes:
 - Dependency updates:
