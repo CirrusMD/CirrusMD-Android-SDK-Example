@@ -1,3 +1,22 @@
+# 13.0.0 / April 2nd, 2026
+###  Features/Changes:
+- Dependency updates:
+    - AndroidX Compose Activity -> '1.12.2'
+    - AndroidX SwipeRefreshLayout -> '1.2.0'
+    - AndroidX Exifinterface -> '1.4.2'
+    - Glide Compose -> '1.0.0-beta08'
+    - Joda Time -> '2.14.0'
+    - Chime Media -> '0.25.2'
+    - Chime SDK -> '0.25.2'
+- New Home Screen design with color palette update
+- Rearrange list of options for uploading attachments to a chat stream
+
+- **BREAKING CHANGES:**
+    - Removed `cirrus_primary` overridable color from CirrusMD SDK
+
+### Bug Fixes:
+- fix text overlap in Finished Encounters card view
+
 # 12.3.1 / January 26, 2025 / minSdk = API 28 (Android 9) / targetSDK: API 36 (Android 16)
 ### SDK Bug Fixes:
 - Fixed issue where "upload document" option shows up in the Chat Stream, even though General Medical Documents feature is turned off

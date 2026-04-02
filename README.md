@@ -127,7 +127,6 @@ Through the `CirrusMD.CirrusDataEventListener.onDataEvent` interface method, you
 The following colors are used in the SDK, but can be overridden.
 ```
     // These colors are used throughout the app. Mostly used for accents/buttons
-    <color name="cirrus_primary">#1A9AF2</color>
     <color name="cirrus_primary_dark">#0E5985</color>
     <color name="cirrus_secondary">#06CCBE</color>
     <color name="cirrus_tertiary">#39FEEE</color>
@@ -165,25 +164,22 @@ Example:
 // turn on Dark/Night Theme when configuring the CirrusMD SDK:
 allowDarkMode = true
 
-// Explicitly override cirrus_primary and cirrus_primary_dark in your values/colors.xml file
+// Explicitly override cirrus_primary_dark in your values/colors.xml file
 <resources>
     <color name="colorPrimary">#3a6ba7</color>     // blue
     <color name="colorPrimaryDark">#234171</color>
     <color name="colorAccent">#23caca</color>
 
     <!--  Specifying Day Theme colors explicitly. Otherwise, the night mode primary colors will default to CirrusMD's default -->
-    <color name="cirrus_primary">@color/colorPrimary</color>
     <color name="cirrus_primary_dark">@color/colorPrimaryDark</color>
 </resources>
 
-// Then, create a values-night/colors.xml file, and explicitly override cirrus_primary and cirrus_primary_dark
+// Then, create a values-night/colors.xml file, and explicitly override cirrus_primary_dark
 <resources>
-    <color name="colorPrimary">#CC1800</color>     // red
-    <color name="colorPrimaryDark">#660C00</color>
+    <color name="colorPrimaryDark">#CC1800</color>     // red
     <color name="colorAccent">#FFD2CC</color>
 
     <!--  Specifying Night Theme color explicitly. Otherwise, the night mode primary colors will default to CirrusMD's default -->
-    <color name="cirrus_primary">@color/colorPrimary</color>
     <color name="cirrus_primary_dark">@color/colorPrimaryDark</color>
 </resources>
 
