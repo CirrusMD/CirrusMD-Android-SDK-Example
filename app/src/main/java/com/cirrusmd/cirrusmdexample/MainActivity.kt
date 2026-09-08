@@ -65,7 +65,7 @@ class MainActivity : AppCompatActivity(), CirrusDataEventListener {
         // OPTIONAL: Settings view allows the user to view and edit their profile, medical history, dependents, permissions, and Terms of Use / Privacy Policy.
         enableSettings = true
     
-        // OPTIONAL: Allows the CirrusMD SDK to follow the system wide setting for enabling/disabling Dark Theme. Otherwise the CirrusMD SDK will remain in Light mode
+        // OPTIONAL: Allows the CirrusMD SDK to follow the system-wide setting for enabling/disabling Dark Theme. Otherwise, the CirrusMD SDK will remain in Light mode
         allowDarkMode = true
 
         // Demo Patient does not currently have any dependents

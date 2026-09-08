@@ -11,7 +11,7 @@ Please contact your CirrusMD account representative for more information.
 ## Table of Contents
 
 - [Requirements](#requirements)
-- [Installation](#installing-cirrusmdsdk-in-your-own-project)
+- [Installation](#installing-cirrusmd-sdk-in-your-own-project)
 - [Basic Usage](#basic-usage)
 - [Advanced Usage](#advanced-usage)
   - [Video](#video)
@@ -42,11 +42,10 @@ Please contact your CirrusMD account representative for more information.
 - targetSdk: `36` (Since v12.3.0 of CirrusMD SDK) 
 - supportLibrary: `AndroidX`
 
-## Installing CirrusMDSDK in your own project
-1. Grab the latest release from Jitpack:
+## Installing CirrusMD SDK in your own project
+1. Grab the latest release from JitPack:
 [![](https://jitpack.io/v/CirrusMD/cirrusmd-android.svg)](https://jitpack.io/#CirrusMD/cirrusmd-android)
-2. Update your gradle config to handle/exclude video: [Video/OpenTok](#video)
-3. Update your gradle config to handle/exclude Braze Push Notifications & In-app Messaging: [Braze](#braze)
+2. Update your Gradle config to handle/exclude video: [Video/AWS Chime](#video)
 
 **Version 1.0.9+ note**
 For this version and above you will need to include the following lines in your build.gradle file in order for the JWT to parse correctly:
@@ -61,7 +60,7 @@ A cleaner solution will be available in a future release.
 
 ## Basic Usage
 
-Basic usage of of the CirrusMD SDK is very simple.
+Basic usage of the CirrusMD SDK is very simple.
 1. Retrieve a token via SSO (See [the details](#the-details))
 2. Set the CirrusMD provided secret and context via `CirrusMD.start(context: Context, secret: String)`
 3. Set the retrieved token via `CirrusMD.setSessionToken(token: String)`
@@ -69,12 +68,12 @@ Basic usage of of the CirrusMD SDK is very simple.
 
 ### The details
 
-In Java you can get the SDK instance with `CirrusMD.INSTANCE`.  
+In Java, you can get the SDK instance with `CirrusMD.INSTANCE`.  
 In Kotlin you can call `CirrusMD`.
 
 *** **_Do not cache CirrusMD provided JWTs_** ***
 
-1. Our team works with your technical staff to provide SSO for your patients using the CirrusMD platform. The CirrusMDSDK uses tokens retrieved via SSO from CirrusMD's SSO service. Each SSO integration is slightly customized based on your needs. In general, your backend service requests a token representing a patient from our SSO service which provides the token that should be set on the SDK.
+1. Our team works with your technical staff to provide SSO for your patients using the CirrusMD platform. The CirrusMD SDK uses tokens retrieved via SSO from CirrusMD's SSO service. Each SSO integration is slightly customized based on your needs. In general, your backend service requests a token representing a patient from our SSO service which provides the token that should be set on the SDK.
 2. You have the option to set a `CirrusDataEventListener` for error and success events, as well as optionally providing customized error screens. This can be done with `CirrusMD.cirrusDataEventListener = yourCirrusDataEventListener`.
 3. Start the SDK with the secret and SSO token
 4. Once the SDK is started it will attempt to fetch the users profile. At this point you will either receive an error or success through the `CirrusMD.CirrusDataEventListener.onDataEvent(CirrusDataEvents)` method.
@@ -128,22 +127,10 @@ The following colors are used in the SDK, but can be overridden.
 ```
     // These colors are used throughout the app. Mostly used for accents/buttons
     <color name="cirrus_primary_dark">#0E5985</color>
-    <color name="cirrus_secondary">#06CCBE</color>
-    <color name="cirrus_tertiary">#39FEEE</color>
     <color name="back_button">#FFFFFF</color>
-
-    // These are used for the queue status bar/details screens
-    <color name="cirrus_off_hours">#4a4a4a</color>
-    <color name="cirrus_unassigned">#0c4c78</color>
-    <color name="cirrus_assigned">#44db5e</color>
-
-    // These are used throughout the app in alert/warning style events
-    <color name="cirrus_success">#44db5e</color>
-    <color name="cirrus_warning">#daaf0f</color>
-    <color name="cirrus_error">#DD0000</color>
 ```
 
-Currently the only drawable intended to be overridden is `ic_welcome.xml` which is the clapping hands vector image on the welcome screen. If you would like to completely remove it, you can add a drawable file with the same name no information within it.
+Currently, the only drawable intended to be overridden is `ic_welcome.xml` which is the clapping hands vector image on the welcome screen. If you would like to completely remove it, you can add a drawable file with the same name no information within it.
 ```
     <selector xmlns:android="http://schemas.android.com/apk/res/android" /> 
 ```
@@ -195,11 +182,11 @@ The first is when `CirrusMD.logout()` has been called. In that case they will no
 
 The second is when the SDK is unable to verify the secret, the token or there is another issue (ie network) starting the SDK. In either case, an _error view_  is shown. We recommend you handle all errors through `CirrusDataEventListener` prior to starting the Activity from `CirrusMD.intent` if possible. Doing so will provide a better experience for your user. Some errors may happen after the Activity is already on screen. In that case, _error view_ is displayed.
 
-Two screens displayed by the SDK have default views that can be overridden via the `CirrusMD.CirrusDataEventListener.viewForError()` interface method. We strongly recommend that you provide your own custom views for both cases. Because the CirrusMDSDK uses SSO to authenticate your patients, we are unable to provide logged out UI that helps the patient log back in. By providing your patients with a custom _logout out view_ you can, for example, provide relevant messaging and a button to log back in using the same SSO you implemented to log them in originally. Every time the _error view_ is shown the resolution is retrieving a new SSO token and setting it via `CirrusMDSDK.start(token, secret)`. Providing a custom _error view_ gives you the ability to display relevant messaging and interactions the user can take, most likely a button to re-attempt SSO.
+Two screens displayed by the SDK have default views that can be overridden via the `CirrusMD.CirrusDataEventListener.viewForError()` interface method. We strongly recommend that you provide your own custom views for both cases. Because the CirrusMD SDK uses SSO to authenticate your patients, we are unable to provide logged out UI that helps the patient log back in. By providing your patients with a custom _logout out view_ you can, for example, provide relevant messaging and a button to log back in using the same SSO you implemented to log them in originally. Every time the _error view_ is shown the resolution is retrieving a new SSO token and setting it via `CirrusMDSDK.start(token, secret)`. Providing a custom _error view_ gives you the ability to display relevant messaging and interactions the user can take, most likely a button to re-attempt SSO.
 
-When an error view would be displayed, errors will also be delivered to the `CirrusMD.CirrusDataEventListener.onDataEvent` interface if you would like to handle the error entirely outside of the CirrusMD SDK.
+When an error view would be displayed, errors will also be delivered to the `CirrusMD.CirrusDataEventListener.onDataEvent` interface if you would like to handle the error entirely outside the CirrusMD SDK.
 
-By default they will look similar to the screens below:
+By default, they will look similar to the screens below:
 
 The default logged out screen is shown after you call `CirrusMD.logout()`.
 
@@ -325,7 +312,7 @@ NOTE: Debug Logging defaults to be disabled. To turn Debug Logging ON, set `Cirr
 
 ### Enable Settings View
 
-There is an optional Settings view that you can allow your users to have access to. The Settings view, when enabled, is accessed via a 'gear' button in the SDK's toolbar. This Settings view allows the user to view and edit their profile, medical history, dependents, permissions, and Terms of Use / Privacy Policy. The Settings view also allows the user to manually log out of the CirrusMDSDK. The availability of the Settings view is controlled by the `CirrusMD` Object.
+There is an optional Settings view that you can allow your users to have access to. The Settings view, when enabled, is accessed via a 'gear' button in the SDK's toolbar. This Settings view allows the user to view and edit their profile, medical history, dependents, permissions, and Terms of Use / Privacy Policy. The Settings view also allows the user to manually log out of the CirrusMD SDK. The availability of the Settings view is controlled by the `CirrusMD` Object.
 
 NOTE: The Settings view defaults to be disabled. To turn the Settings view ON, set `CirrusMD.enableSettings = true`, before calling any other functions on the SDK.
 
@@ -344,7 +331,7 @@ NOTE: The Security Settings view defaults to be disabled.
 
 ### Enable Debug Fragment in Settings
 
-There is an optional Debug view that you can use for *development ONLY, and you must have the Settings view enabled*. This view, when enabled, is accessed via the 'gear' button in the SDK's toolbar, and then it will appear as an option in the list of settings. This view allows developers to view debug infomation, that might be helpful during development. The availability of the Debug view is controlled by the `CirrusMD` Object.
+There is an optional Debug view that you can use for *development ONLY, and you must have the Settings view enabled*. This view, when enabled, is accessed via the 'gear' button in the SDK's toolbar, and then it will appear as an option in the list of settings. This view allows developers to view debug information, that might be helpful during development. The availability of the Debug view is controlled by the `CirrusMD` Object.
 
 NOTE: You must have the Settings view enabled and then also enable the debug fragment view. To turn the Debug view ON, set `CirrusMD.enableSettings = true` *AND* `CirrusMD.enableDebugFragmentInSettings = true`, before calling any other functions on the SDK.
 
@@ -357,11 +344,11 @@ NOTE: You must have the Settings view enabled and then also enable the debug fra
 
 ### Enable User Sign Out
 
-The CirrusMDSDK can support a user signing out of the SDK *If you have the Settings view enabled*. When User Sign Out is enabled, they will see a sign out option, in the SDK's settings, that allows them leave the SDK, and there by, removing a user's push notification token and session token. Support for User Sign Out is controlled by the `CirrusMD` Object
+The CirrusMD SDK can support a user signing out of the SDK *If you have the Settings view enabled*. When User Sign Out is enabled, they will see a sign-out option, in the SDK's settings, that allows them to leave the SDK, and there by, removing a user's push notification token and session token. Support for User Sign Out is controlled by the `CirrusMD` Object
 
 IMPORTANT NOTE: If you allow your user to sign out of the SDK, you must re-initialize the SDK before attempting to give the user access to it!
 
-OTHER NOTES: The User Sign Out feature defaults to disabled. To turn this feature ON, set `CirrusMD.enableSettings = true` *AND* `CirrusMD.enableUserLogOut = true`, before calling any other functions on the SDK.
+OTHER NOTES: The User Sign Out feature defaults to "disabled". To turn this feature ON, set `CirrusMD.enableSettings = true` *AND* `CirrusMD.enableUserLogOut = true`, before calling any other functions on the SDK.
 
 ```
     CirrusMD.enableSettings = true
@@ -372,7 +359,7 @@ OTHER NOTES: The User Sign Out feature defaults to disabled. To turn this featur
 
 ### Enable Dependents View
 
-The CirrusMDSDK can support a user having dependents that can chat under their guarantor's account. When dependents support is enabled and a user has dependents, they will see a 'silhouette/dependents' button, in the SDK's toolbar, that allows them to switch to chatting as that dependent. Support for dependents is controlled by the `CirrusMD` Object
+The CirrusMD SDK can support a user having dependents that can chat under their guarantor's account. When dependents support is enabled and a user has dependents, they will see a 'silhouette/dependents' button, in the SDK's toolbar, that allows them to switch to chatting as that dependent. Support for dependents is controlled by the `CirrusMD` Object
 
 NOTE: The Dependent Profiles view defaults to be disabled. To turn the Dependent Profiles view ON, set `CirrusMD.enableDependentProfiles = true`, before calling any other functions on the SDK.
 
@@ -384,7 +371,7 @@ NOTE: The Dependent Profiles view defaults to be disabled. To turn the Dependent
 
 ### Set the User Agent Prefix String
 
-The CirrusMDSDK allows the addition of a prefix to the User Agent that is sent on network requests.
+The CirrusMD SDK allows the addition of a prefix to the User Agent that is sent on network requests.
 
 NOTE: The User Agent Prefix defaults to an empty String. To set your own User Agent Prefix, set `CirrusMD.userAgentPrefix = "YOUR_CUSTOM_PREFIX"`, before calling any other functions on the SDK.
 
@@ -417,13 +404,13 @@ The host application has the ability to fetch and navigate to the list of channe
 
 Calling `CirrusMD.channels()` will return a `List<Pair<String, String>>` which contains the channel information for the current user. These can be used to display the channels with a custom UI anywhere in the host application.
 1. `Pair.first` represents the channel ID. 
-1. `Pair.second` represents the channel name.
+2. `Pair.second` represents the channel name.
 
 When a user selects a channel `CirrusMD.navigateToChannel(id: String)` can be called to navigate to the selected channel. The argument is `Pair.first` from the selected item in the list of channels from `CirrusMD.channels()`. Once this is called, the SDK will navigate to the selected channel or will default to the selected channel when it is displayed.
 
 ### Debug Fragment
 
-You can use `CirrusMD.debugFragment()` to get a Fragment that will display some basic debugging information. For example it can confirm that the session token and/or push token has been correctly set and that the expected user is logged in. This Fragment should NEVER be shown to an end user and is only to be used for development and debugging.
+You can use `CirrusMD.debugFragment()` to get a Fragment that will display some basic debugging information. For example, it can confirm that the session token and/or push token has been correctly set and that the expected user is logged in. This Fragment should NEVER be shown to an end user and is only to be used for development and debugging.
 
 ### Cirrus Actions
 
@@ -439,7 +426,7 @@ CirrusMD.sendCirrusAction(CirrusActions.FINISH_ACTIVITY)
 In v10.1.0 of the CirrusMD SDK, we introduced support for Spanish localization. This feature includes:
 - Automatic translation of the CirrusMD SDK. 
 - A "Language" tab in the CirrusMD SDK Settings, which navigates user to the device's locale settings
-- Real time translation support when chatting with a doctor. The device's language must be set to Spanish (es, es-US, or any other spanish locale), AND this feature must be enabled in CirrusMD's Manage settings.
+- Real time translation support when chatting with a doctor. The device's language must be set to Spanish (es, es-US, or any other Spanish locale), AND this feature must be enabled in CirrusMD's Manage settings.
 - Accessibility announcements for translated messages, when using talk-back
 
 Please contact your CirrusMD account representative for more information.
