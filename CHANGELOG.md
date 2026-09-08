@@ -1,3 +1,20 @@
+13.1.1 / September 8th, 2026 / minSdk = API 28 (Android 9) / targetSDK: API 36 (Android 16)
+### Features/Changes:
+- Dependency updates:
+  - Lifecycle -> 2.10.0
+  - Joda Time -> 2.14.1
+  - Chime SDK -> 0.25.3
+- Added Appointment Scheduling capabilities
+- Added new Pre-Encounter (Pre-Chat) flow which serves as the new UI for patients looking to enter a chat stream. This flow also supports appointment scheduling
+
+- ***Breaking Change:***
+  - Added support for appointment push notifications, which requires updating the NotificationMetaData interface with new inherited field `appointmentId`
+
+### SDK Bug Fixes:
+- Fixed issue where action messages (assessments) view could hide the ability to move back and forth between pages, by making the buttons non-clickable
+- Fixed bug with patient satisfaction survey view which would cause multiple surveys to be displayed in the chat stream
+
+
 # 13.0.0 / April 2nd, 2026
 ###  Features/Changes:
 - Dependency updates:
