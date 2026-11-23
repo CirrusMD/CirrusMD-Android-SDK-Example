@@ -9,13 +9,6 @@ import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.cirrusmd.androidsdk.*
-import com.cirrusmd.androidsdk.CirrusMD.allowDarkMode
-import com.cirrusmd.androidsdk.CirrusMD.cirrusDataEventListener
-import com.cirrusmd.androidsdk.CirrusMD.credentialIdListener
-import com.cirrusmd.androidsdk.CirrusMD.enableDebugLogging
-import com.cirrusmd.androidsdk.CirrusMD.enableSettings
-import com.cirrusmd.androidsdk.CirrusMD.setSessionToken
-import com.cirrusmd.androidsdk.CirrusMD.start
 import com.cirrusmd.androidsdk.pinnedbanner.model.CirrusMDActionModal
 import com.cirrusmd.androidsdk.pinnedbanner.model.CirrusMDContactIcon
 import com.cirrusmd.androidsdk.pinnedbanner.model.CirrusMDContactOption
@@ -60,29 +53,32 @@ class MainActivity : AppCompatActivity(), CirrusDataEventListener {
 
     private fun setupCirrus() {
         // FOR DEBUGGING ONLY
-        enableDebugLogging = true
+        CirrusMD.enableDebugLogging = true
 
         // OPTIONAL: Settings view allows the user to view and edit their profile, medical history, dependents, permissions, and Terms of Use / Privacy Policy.
-        enableSettings = true
+        CirrusMD.enableSettings = true
     
         // OPTIONAL: Allows the CirrusMD SDK to follow the system-wide setting for enabling/disabling Dark Theme. Otherwise, the CirrusMD SDK will remain in Light mode
-        allowDarkMode = true
+        CirrusMD.allowDarkMode = true
+        
+        // OPTIONAL: Enables the close button on the CirrusMD SDK. If disabled, the user will not be able to exit the SDK without tapping on the back button. This is recommended to be enabled for a better user experience.
+        CirrusMD.enableCloseButton = true
 
         // Demo Patient does not currently have any dependents
         // enableDependentProfiles = true
 
-        // OPTIONAL: Obtain Credential Id
-        credentialIdListener = object : CredentialIdListener {
+        // OPTIONAL: Obtain Credential ID
+        CirrusMD.credentialIdListener = object : CredentialIdListener {
             override fun onCredentialIdReady(id: String) {
                 Timber.d("Credential ID: $id")
             }
         }
-        cirrusDataEventListener = this
+        CirrusMD.cirrusDataEventListener = this
         
         // OPTIONAL: Set up pinned banner that displays on home, chat, and settings screens
         configurePinnedBanner(this)
         
-        start(this, SECRET)
+        CirrusMD.start(this, SECRET)
     }
 
     private fun fetchTokenForCirrusMDSDK() {
@@ -100,7 +96,7 @@ class MainActivity : AppCompatActivity(), CirrusDataEventListener {
                 // There is a pre-flight process in the SDK to fetch the user's profile once it has started and report back to the listener.
                 // Because of this pre-flight, we are not displaying the fragment until we receive a CirrusDataEvents.Success event in the listener.
                 response.body()?.token?.let { token ->
-                    setSessionToken(token)
+                    CirrusMD.setSessionToken(token)
                 } ?: Timber.e("No token in response body")
             }
 

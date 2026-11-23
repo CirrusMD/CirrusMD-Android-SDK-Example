@@ -1,3 +1,17 @@
+13.2.0 / Nov. 23rd, 2026 / minSdk = API 28 (Android 9) / targetSDK: API 36 (Android 16)
+### Features/Changes:
+- Dependency updates
+- Added `enableCloseButton` configuration to `CirrusMD` object, to optionally display a close button in the home screen top bar. This button will dismiss the CirrusMD SDK and return to the host application.
+- Enhanced Medical information capture throughout the SDK
+- Updated Cost & Quality tool configuration.
+
+
+### Bug Fixes:
+- Fixed issue where the Chat History view would show Dependent and Doctor name, in a message cell that was written by a Doctor
+- Fixed minor UI bug in `ViewPagers` throughout the SDK
+- Other bug fixes and performance improvements
+
+
 13.1.1 / September 8th, 2026 / minSdk = API 28 (Android 9) / targetSDK: API 36 (Android 16)
 ### Features/Changes:
 - Dependency updates:
