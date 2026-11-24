@@ -23,6 +23,7 @@ Please contact your CirrusMD account representative for more information.
   - [Debug Logging](#debug-logging)
   - [Settings and Features](#enable-settings-view)
   - [Enable Dependents](#enable-dependents-view)
+  - [Enable Close Button](#enable-close-button)
   - [User Agent Prefix](#set-the-user-agent-prefix-string)
   - [Credential ID](#credential-id)
   - [External Channels](#external-channels)
@@ -365,6 +366,18 @@ NOTE: The Dependent Profiles view defaults to be disabled. To turn the Dependent
 
 ```
     CirrusMD.enableDependentProfiles = true
+    ...
+    CirrusMD.start(...)
+```
+
+### Enable Close Button
+
+Enables the close button on the CirrusMD SDK. If disabled, the user will not be able to exit the SDK without tapping on the back button. This is recommended to be enabled for a better user experience.
+
+NOTE: The close button defaults to be disabled. To turn the close button ON, set `CirrusMD.enableCloseButton = true`, before calling any other functions on the SDK.
+
+```
+    CirrusMD.enableCloseButton = true
     ...
     CirrusMD.start(...)
 ```
